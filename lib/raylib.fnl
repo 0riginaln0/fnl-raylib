@@ -23,6 +23,9 @@
   void CloseWindow(void);                                     // Close window and unload OpenGL context
 
   void ClearBackground(Color color);                          // Set background color (framebuffer clear color)
+  
+  // module: rtext
+  void DrawText(const char *text, int posX, int posY, int fontSize, Color color);       // Draw text (using default font)
 ")
 
 (local rl (ffi.load :lib\raylib-5.5_win64_mingw-w64\lib\raylib.dll))
@@ -41,6 +44,11 @@
                  (assert (<= 0 b 255) (.. "Blue value of Color must be in range of 0 to 255, but it's " b))
                  (assert (<= 0 a 255) (.. "Alpha value of Color must be in range of 0 to 255, but it's " a)))
                (ffi.new :Color [r g b a])))
+(local raywhite (Color 245 245 245 255))
+(local lightgray (Color 200 200 200 255))
+(local draw-text (fn [text pos-x pos-y font-size color]
+                   (rl.DrawText text pos-x pos-y font-size color)))
+
 
 
 (print "RAYLIB FFI INIT: COMPLETED")
@@ -54,5 +62,8 @@
  : end-drawing
  : Color
  : clear-background
+ : raywhite
+ : lightgray
+ : draw-text
  
  : rl}

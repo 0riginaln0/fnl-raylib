@@ -12,4 +12,4 @@
   (rl.end-drawing))
 
 (rl.close-window)
-(print "That's all")	
+(print "That's all")
