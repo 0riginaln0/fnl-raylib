@@ -3,7 +3,7 @@
 (local screen-width 800)
 (local screen-height 450)
 
-(rl.init-window screen-width screen-height)
+(rl.init-window screen-width screen-height "raylib [core] example - keyboard input")
 
 (var ball-position (rl.Vector2 (/ screen-width 2) (/ screen-height 2)))
 
