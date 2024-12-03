@@ -4,7 +4,7 @@
 (local ffi (require :ffi))
 
 (print ffi.os)
-(print ffi.arch)	
+(print ffi.arch)
 
 (ffi.cdef "
   // Color, 4 components, R8G8B8A8 (32bit)
