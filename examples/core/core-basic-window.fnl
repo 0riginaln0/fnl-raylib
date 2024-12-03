@@ -5,7 +5,7 @@
 (local screen-width 800)
 (local screen-height 450)
 
-(rl.init-window screen-width screen-height)
+(rl.init-window screen-width screen-height "I AM A WINDOW")
 (rl.set-target-fps 60)
 
 (while (not (rl.window-should-close))
