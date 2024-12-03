@@ -85,6 +85,7 @@ bool IsMouseButtonPressed(int button);                  // Check if a mouse butt
 (local beige (Color 211 176 131 255))
 (local brown (Color 127 106 79 255))
 (local darkbrown (Color 76 63 47 255))
+(local white (Color 255 255 255 255))
 (local black (Color 0 0 0 255))
 (local blank (Color 0 0 0 0))
 (local magenta (Color 255 0 255 255))
@@ -152,6 +153,7 @@ bool IsMouseButtonPressed(int button);                  // Check if a mouse butt
  : beige
  : brown
  : darkbrown
+ : white
  : black
  : blank
  : magenta
