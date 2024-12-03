@@ -1,4 +1,4 @@
-(print "!RAYLIB FFI INIT: STARTED")
+(print "RAYLIB FFI INIT: STARTED")
 (local ffi (require :ffi))
 
 (print ffi.os)
