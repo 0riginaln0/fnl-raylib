@@ -47,20 +47,20 @@ bool IsMouseButtonPressed(int button);                  // Check if a mouse butt
 
 (local rl (ffi.load :lib\raylib-5.5_win64_mingw-w64\lib\raylib.dll))
 
-(local init-window (fn [width height title] (rl.InitWindow width height title)))
-(local set-target-fps (fn [fps] (rl.SetTargetFPS fps)))
-(local window-should-close (fn [] (rl.WindowShouldClose)))
-(local close-window (fn [] (rl.CloseWindow)))
-(local begin-drawing (fn [] (rl.BeginDrawing)))
-(local end-drawing (fn [] (rl.EndDrawing)))
-(local clear-background (fn [color] (rl.ClearBackground color)))
-(local Color (fn [r g b a]
-               (when safe-mode
-                 (assert (<= 0 r 255) (.. "Red value of Color must be in range of 0 to 255, but it's " r))
-                 (assert (<= 0 g 255) (.. "Green value of Color must be in range of 0 to 255, but it's " g))
-                 (assert (<= 0 b 255) (.. "Blue value of Color must be in range of 0 to 255, but it's " b))
-                 (assert (<= 0 a 255) (.. "Alpha value of Color must be in range of 0 to 255, but it's " a)))
-               (ffi.new :Color [r g b a])))
+(fn init-window [width height title] (rl.InitWindow width height title))
+(fn set-target-fps [fps] (rl.SetTargetFPS fps))
+(fn window-should-close [] (rl.WindowShouldClose))
+(fn close-window [] (rl.CloseWindow))
+(fn begin-drawing [] (rl.BeginDrawing))
+(fn end-drawing [] (rl.EndDrawing))
+(fn clear-background [color] (rl.ClearBackground color))
+(fn Color [r g b a]
+  (when safe-mode
+    (assert (<= 0 r 255) (.. "Red value of Color must be in range of 0 to 255, but it's " r))
+    (assert (<= 0 g 255) (.. "Green value of Color must be in range of 0 to 255, but it's " g))
+    (assert (<= 0 b 255) (.. "Blue value of Color must be in range of 0 to 255, but it's " b))
+    (assert (<= 0 a 255) (.. "Alpha value of Color must be in range of 0 to 255, but it's " a)))
+  (ffi.new :Color [r g b a]))
 
 
 (local raywhite (Color 245 245 245 255))
@@ -90,10 +90,10 @@ bool IsMouseButtonPressed(int button);                  // Check if a mouse butt
 (local blank (Color 0 0 0 0))
 (local magenta (Color 255 0 255 255))
 
-(local draw-text (fn [text pos-x pos-y font-size color]
-                   (rl.DrawText text pos-x pos-y font-size color)))
-(local Vector2 (fn [x y]
-                 (ffi.new :Vector2 [x y])))
+(fn draw-text [text pos-x pos-y font-size color]
+  (rl.DrawText text pos-x pos-y font-size color))
+(fn Vector2 [x y]
+  (ffi.new :Vector2 [x y]))
 
 
 (local key-right 262) 
@@ -102,17 +102,18 @@ bool IsMouseButtonPressed(int button);                  // Check if a mouse butt
 (local key-up 265)
 
 
-(local is-key-down (fn [key]
-                     (rl.IsKeyDown key)))
+(fn is-key-down [key]
+  (rl.IsKeyDown key))
 
-(local draw-circle-v (fn [center radius color]
-                       (rl.DrawCircleV center radius color)))
+(fn draw-circle-v [center radius color]
+  (rl.DrawCircleV center radius color))
 
-(local get-mouse-position (fn []
-                            (rl.GetMousePosition)))
+(fn get-mouse-position []
+  (rl.GetMousePosition))
 
-(local is-mouse-button-pressed (fn [button]
-                                 (rl.IsMouseButtonPressed button)))
+(fn is-mouse-button-pressed [button]
+  (rl.IsMouseButtonPressed button))
+
 (local mouse-button-left 0)
 (local mouse-button-right 1)
 (local mouse-button-middle 2)
@@ -122,6 +123,7 @@ bool IsMouseButtonPressed(int button);                  // Check if a mouse butt
 (local mouse-button-back 6)
 
 (print "RAYLIB FFI INIT: COMPLETED")
+
 {: safe-mode
  
  : init-window

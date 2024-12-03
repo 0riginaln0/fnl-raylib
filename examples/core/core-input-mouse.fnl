@@ -5,7 +5,7 @@
 
 (rl.init-window screen-width screen-height "raylib [core] example - mouse input")
 
-(var ball-position (rl.Vector2 -100 -100))
+(var ball-position (rl.Vector2 0 0))
 (var ball-color rl.darkblue)
 
 
