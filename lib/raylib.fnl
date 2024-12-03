@@ -3,8 +3,13 @@
 
 (local ffi (require :ffi))
 
-(print ffi.os)
-(print ffi.arch)
+(local os ffi.os)
+(print os)
+
+(local rl 
+  (case os 
+    :Windows (ffi.load :lib\raylib-5.5_win64_mingw-w64\lib\raylib.dll) 
+    :Linux   (ffi.load :lib/raylib-5.5_linux_amd64/lib/libraylib.so)))
 
 (ffi.cdef "
 // Color, 4 components, R8G8B8A8 (32bit)
@@ -45,7 +50,6 @@ Vector2 GetMousePosition(void);                         // Get mouse position XY
 bool IsMouseButtonPressed(int button);                  // Check if a mouse button has been pressed once
 ")
 
-(local rl (ffi.load :lib\raylib-5.5_win64_mingw-w64\lib\raylib.dll))
 
 (fn init-window [width height title] (rl.InitWindow width height title))
 (fn set-target-fps [fps] (rl.SetTargetFPS fps))

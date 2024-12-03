@@ -1,17 +1,23 @@
-fennel-files = $(shell dir /S /B *.fnl)
+ifeq ($(OS),Windows_NT)
+	fennel-files = $(shell dir /S /B *.fnl)
 
-#fennel .\main.fnl
-#luajit .\main.lua
+	run-command = fennel .\main.fnl
+
+	clean-command = @for /f "delims=" %%f in ('dir /S /B *.lua ^| findstr /V /I "\\lib\\"') do del "%%f"
+else
+	fennel-files := $(shell find . -name '*.fnl')
+
+	run-command = fennel ./main.fnl
+
+	clean-command = find . -name '*.lua' ! -path '*/lib/*' -exec rm {} +
+endif
+
 run:
-	fennel .\main.fnl
-	
-# fennel --compile .\main.fnl > main.lua
+	$(run-command)
+
 build: $(fennel-files:.fnl=.lua)
 %.lua: %.fnl
 	fennel --compile $< > $@
 
-#del /S *.lua
 clean:
-	@for /f "delims=" %%f in ('dir /S /B *.lua ^| findstr /V /I "\\lib\\"') do del "%%f"
-
-#.PHONY: build clean
+	$(clean-command)
