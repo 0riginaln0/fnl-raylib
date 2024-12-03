@@ -15,13 +15,13 @@
   (set ball-position (rl.get-mouse-position))
   
   (if 
-    (rl.is-mouse-button-pressed rl.mouse-button-left) (set ball-color rl.maroon)
-    (rl.is-mouse-button-pressed rl.mouse-button-middle) (set ball-color rl.lime)
-    (rl.is-mouse-button-pressed rl.mouse-button-right) (set ball-color rl.darkblue)
-    (rl.is-mouse-button-pressed rl.mouse-button-side) (set ball-color rl.purple)
-    (rl.is-mouse-button-pressed rl.mouse-button-extra) (set ball-color rl.yellow)
+    (rl.is-mouse-button-pressed rl.mouse-button-left)    (set ball-color rl.maroon)
+    (rl.is-mouse-button-pressed rl.mouse-button-middle)  (set ball-color rl.lime)
+    (rl.is-mouse-button-pressed rl.mouse-button-right)   (set ball-color rl.darkblue)
+    (rl.is-mouse-button-pressed rl.mouse-button-side)    (set ball-color rl.purple)
+    (rl.is-mouse-button-pressed rl.mouse-button-extra)   (set ball-color rl.yellow)
     (rl.is-mouse-button-pressed rl.mouse-button-forward) (set ball-color rl.orange)
-    (rl.is-mouse-button-pressed rl.mouse-button-back) (set ball-color rl.beige))
+    (rl.is-mouse-button-pressed rl.mouse-button-back)    (set ball-color rl.beige))
   
   (rl.begin-drawing)
   (rl.clear-background rl.raywhite)
