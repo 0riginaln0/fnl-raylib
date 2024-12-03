@@ -1,4 +1,6 @@
 (print "RAYLIB FFI INIT: STARTED")
+(local safe-mode true)
+
 (local ffi (require :ffi))
 
 (print ffi.os)
@@ -33,16 +35,24 @@
 (local end-drawing (fn [] (rl.EndDrawing)))
 (local clear-background (fn [color] (rl.ClearBackground color)))
 (local Color (fn [r g b a]
+               (when safe-mode
+                 (assert (<= 0 r 255) (.. "Red value of Color must be in range of 0 to 255, but it's " r))
+                 (assert (<= 0 g 255) (.. "Green value of Color must be in range of 0 to 255, but it's " g))
+                 (assert (<= 0 b 255) (.. "Blue value of Color must be in range of 0 to 255, but it's " b))
+                 (assert (<= 0 a 255) (.. "Alpha value of Color must be in range of 0 to 255, but it's " a)))
                (ffi.new :Color [r g b a])))
 
 
 (print "RAYLIB FFI INIT: COMPLETED")
-{: init-window
+{: safe-mode
+ 
+ : init-window
  : set-target-fps
  : window-should-close
  : close-window
  : begin-drawing
  : end-drawing
- : clear-background
  : Color
+ : clear-background
+ 
  : rl}
