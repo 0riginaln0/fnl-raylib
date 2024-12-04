@@ -30,16 +30,16 @@ def add_export_name(newname):
     export_names.append(f" : {newname}\n")
 
 
-ignorelist = [
-    "// Callbacks to hook some internal functions",
-    "// WARNING: These callbacks are intended for advanced users",
-    "typedef void (*TraceLogCallback)(int logLevel, const char *text, va_list args);  // Logging: Redirect trace log messages",
-    "typedef unsigned char *(*LoadFileDataCallback)(const char *fileName, int *dataSize);    // FileIO: Load binary data",
-    "typedef bool (*SaveFileDataCallback)(const char *fileName, void *data, int dataSize);   // FileIO: Save binary data",
-    "typedef char *(*LoadFileTextCallback)(const char *fileName);            // FileIO: Load text data",
-    "typedef bool (*SaveFileTextCallback)(const char *fileName, char *text); // FileIO: Save text data",
-    "typedef void (*AudioCallback)(void *bufferData, unsigned int frames);",
-]
+# ignorelist = [
+#     # "// Callbacks to hook some internal functions",
+#     # "// WARNING: These callbacks are intended for advanced users",
+#     # "typedef void (*TraceLogCallback)(int logLevel, const char *text, va_list args);  // Logging: Redirect trace log messages",
+#     # "typedef unsigned char *(*LoadFileDataCallback)(const char *fileName, int *dataSize);    // FileIO: Load binary data",
+#     # "typedef bool (*SaveFileDataCallback)(const char *fileName, void *data, int dataSize);   // FileIO: Save binary data",
+#     # "typedef char *(*LoadFileTextCallback)(const char *fileName);            // FileIO: Load text data",
+#     # "typedef bool (*SaveFileTextCallback)(const char *fileName, char *text); // FileIO: Save text data",
+#     # "typedef void (*AudioCallback)(void *bufferData, unsigned int frames);",
+# ]
 
 # # Писать определения структур в ffi_cdef
 # # Писать функции-конструкторы для структур
@@ -144,8 +144,8 @@ with open("lib/raylib-5.5_linux_amd64/include/raylib.h", "r") as rl_header:
         line = rl_header.readline()
         if not line:  # Check for EOF
             break
-        elif line.strip() in ignorelist:
-            continue
+        # elif line.strip() in ignorelist:
+        #     continue
         elif line.startswith("//"):
             # Комментарий верхнего уровня. Записываем в память.
             comment = line.replace("//", ";")

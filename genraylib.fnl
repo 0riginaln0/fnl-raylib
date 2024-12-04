@@ -294,6 +294,11 @@ typedef struct AutomationEventList {
     AutomationEvent *events;        // Events entries
     } AutomationEventList;
 
+typedef void (*TraceLogCallback)(int logLevel, const char *text, va_list args);  // Logging: Redirect trace log messages
+typedef unsigned char *(*LoadFileDataCallback)(const char *fileName, int *dataSize);    // FileIO: Load binary data
+typedef bool (*SaveFileDataCallback)(const char *fileName, void *data, int dataSize);   // FileIO: Save binary data
+typedef char *(*LoadFileTextCallback)(const char *fileName);            // FileIO: Load text data
+typedef bool (*SaveFileTextCallback)(const char *fileName, char *text); // FileIO: Save text data
 void InitWindow(int width, int height, const char *title);  // Initialize window and OpenGL context
 
 void CloseWindow(void);                                     // Close window and unload OpenGL context
@@ -1324,6 +1329,7 @@ RayCollision GetRayCollisionTriangle(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3
 
 RayCollision GetRayCollisionQuad(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3, Vector3 p4);    // Get collision info between ray and quad
 
+typedef void (*AudioCallback)(void *bufferData, unsigned int frames);
 void InitAudioDevice(void);                                     // Initialize audio device and context
 
 void CloseAudioDevice(void);                                    // Close the audio device and context
@@ -1557,6 +1563,11 @@ void DetachAudioMixedProcessor(AudioCallback processor); // Detach audio stream 
 (fn AutomationEvent [frame type params] (ffi.new :AutomationEvent [frame type params]))
 ; Automation event list
 (fn AutomationEventList [capacity count events] (ffi.new :AutomationEventList [capacity count events]))
+; Callbacks to hook some internal functions
+; WARNING: These callbacks are intended for advanced users
+;------------------------------------------------------------------------------------
+; Audio Loading and Playing Functions (Module: audio)
+;------------------------------------------------------------------------------------
 
 
 ; ENUMS BLOCK
@@ -4047,9 +4058,6 @@ void DetachAudioMixedProcessor(AudioCallback processor); // Detach audio stream 
 	"Get collision info between ray and quad"
 	(rl.GetRayCollisionQuad ray p1 p2 p3 p4))
 
-;------------------------------------------------------------------------------------
-; Audio Loading and Playing Functions (Module: audio)
-;------------------------------------------------------------------------------------
 ; Audio device management functions
 (fn init-audio-device []
 	"Initialize audio device and context"

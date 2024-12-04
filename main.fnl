@@ -1,4 +1,4 @@
-(local rl (require :lib.fennelib))
+(local rl (require :lib.raylib))
 (local lume (require :lib.lume))
 
 (print "epic")
