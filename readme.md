@@ -13,7 +13,7 @@ Includes:
 The only thing you need to have installed is Luajit and (optionally) Fennel. The main bindings file which you want to import is `raylib.fnl` or its compiled version `raylib.lua`.
 
 - Luajit installation is very easy. Just follow the instructions: https://luajit.org/download.html , https://luajit.org/install.html 
-- So the Fennel https://fennel-lang.org/setup (I install it via the script fennel-1.5.1 version https://fennel-lang.org/downloads/fennel-1.5.1)
+- Likewise with the Fennel https://fennel-lang.org/setup (I install it via the script fennel-1.5.1 version https://fennel-lang.org/downloads/fennel-1.5.1)
 
 # How to start using int
 
