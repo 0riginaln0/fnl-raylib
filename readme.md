@@ -24,7 +24,7 @@ luajit C:\Games\Fennel\fennel1.5.1 %*
 </details>
 
 
-# How to start using int
+# How to start using it
 
 Just `git clone` this repo, `cd fnl-raylib` and then
 
