@@ -1,4 +1,5 @@
 from caseconverter import kebabcase
+# pip install case-converter
 
 
 bindings = open("genraylib.fnl", "w")
