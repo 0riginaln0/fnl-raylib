@@ -1,6 +1,12 @@
 (local rl (require :lib.fennelib))
+(local lume (require :lib.lume))
 
 (print "epic")
+(-> 4.5
+    (lume.round)
+    (print))
+
+
 
 (rl.init-window 640 640 "Fennel & Raylib")
 (rl.set-target-fps 60)

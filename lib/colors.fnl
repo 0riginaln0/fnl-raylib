@@ -1,3 +1,5 @@
+(print "RAYLIB COLORS MODULE INIT")
+
 (local structs (require :lib.structs))
 
 ; COLORS BLOCK
