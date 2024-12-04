@@ -14,7 +14,7 @@ The only thing you need to have installed is Luajit and (optionally) Fennel. The
 
 # How to start using int
 
-Just git clone this repo, and then 
+Just `git clone` this repo, `cd fnl-raylib` and then
 
 `make run` 
 
