@@ -3,7 +3,7 @@
 API coverage is 99% (or maybe even 100%)
 
 Includes:
-- Built-in Raylib dynamic libraries for Windows and Linux (x64).
+- Built-in [Raylib dynamic libraries](https://github.com/raysan5/raylib/releases/tag/5.5) for Windows and Linux (x64).
 - Makefile for Windows and Linux
 - Lume library
 - A couple of examples
@@ -12,8 +12,17 @@ Includes:
 
 The only thing you need to have installed is Luajit and (optionally) Fennel. The main bindings file which you want to import is `raylib.fnl` or its compiled version `raylib.lua`.
 
-- Luajit installation is very easy. Just follow the instructions: https://luajit.org/download.html , https://luajit.org/install.html 
-- Likewise with the Fennel https://fennel-lang.org/setup (I install it via the script fennel-1.5.1 version https://fennel-lang.org/downloads/fennel-1.5.1)
+- Luajit installation is very easy. Just follow the [instructions](https://luajit.org/install.html) 
+- Likewise with the [Fennel](https://fennel-lang.org/setup) (I install it via the [script fennel-1.5.1 version](https://fennel-lang.org/downloads/fennel-1.5.1))
+<details>
+<summary>fennel.bat script to run Fennel on Windows</summary>
+
+```
+@echo off
+luajit C:\Games\Fennel\fennel1.5.1 %*
+```
+</details>
+
 
 # How to start using int
 
