@@ -66,10 +66,9 @@ state = "comment"
 # +"comment" - запоминать комментарии (верхнего уровня). Записать при переходе в другой стейт
 # +"typedef struct" - записать определение структуры в cffistruct
 #                    записать функцию-конструктор для струкруты в construct
-# "typedef enum"
+# +"typedef enum"
 # +"typedef alias"
-# "func"
-# TODO: обработка енамов, обработка функций
+# +"func"
 comments: list[str] = []
 cffistruct: list[str] = ['(ffi.cdef "\n']
 constructs: list[str] = []
@@ -188,7 +187,6 @@ with open("lib/raylib-5.5_linux_amd64/include/raylib.h", "r") as rl_header:
                     # print("someone here?", fname)
                     field_names.append(fname)
         elif line.startswith("typedef enum"):
-            # TODO: Handle enum
             enums_comment = "".join(comments)
             enums.append(enums_comment)
             comments.clear()
@@ -205,7 +203,20 @@ with open("lib/raylib-5.5_linux_amd64/include/raylib.h", "r") as rl_header:
             # typedef enum {
             #   PIXELFORMAT_UNCOMPRESSED_GRAYSCALE = 1, // 8 bit per pixel (no alpha)
             #   PIXELFORMAT_UNCOMPRESSED_GRAY_ALPHA,
+            # Заданные с возможными комментами между
+            # typedef enum {
+            #     KEY_NULL            = 0,        // Key: NULL, used for no key pressed
+            #     // Alphanumeric keys
+            #     KEY_APOSTROPHE      = 39,       // Key: '
+            #     KEY_COMMA           = 44,       // Key
 
+            # Заданные в BASE16
+            # typedef enum {
+            #     FLAG_VSYNC_HINT         = 0x00000040,   // Set to try enabling V-Sync on GPU
+            #     FLAG_FULLSCREEN_MODE    = 0x00000002,   // Set to run program in fullscreen
+            #     FLAG_WINDOW_RESIZABLE   = 0x00000004,   // Set to allow resizable window
+            #     FLAG_WINDOW_UNDECORATED = 0x00000008,   // Set to disable window decoration (frame and buttons)
+            #     FLAG_WINDOW_HIDDEN      = 0x00000080,
             parsing_enum = True
             cur_val = 0
             while parsing_enum:
@@ -234,22 +245,6 @@ with open("lib/raylib-5.5_linux_amd64/include/raylib.h", "r") as rl_header:
                         nline = nline.split("//")[0].strip()
                     cur_val += 1
                     enums.append(create_enum(nline, cur_val))
-
-            # Заданные с возможными комментами между
-            # typedef enum {
-            #     KEY_NULL            = 0,        // Key: NULL, used for no key pressed
-            #     // Alphanumeric keys
-            #     KEY_APOSTROPHE      = 39,       // Key: '
-            #     KEY_COMMA           = 44,       // Key
-
-            # Заданные в BASE16
-            # typedef enum {
-            #     FLAG_VSYNC_HINT         = 0x00000040,   // Set to try enabling V-Sync on GPU
-            #     FLAG_FULLSCREEN_MODE    = 0x00000002,   // Set to run program in fullscreen
-            #     FLAG_WINDOW_RESIZABLE   = 0x00000004,   // Set to allow resizable window
-            #     FLAG_WINDOW_UNDECORATED = 0x00000008,   // Set to disable window decoration (frame and buttons)
-            #     FLAG_WINDOW_HIDDEN      = 0x00000080,
-            pass
         elif line.startswith("typedef"):
             enums_comment = "".join(comments)
             constructs.append(enums_comment)
@@ -289,6 +284,7 @@ with open("lib/raylib-5.5_linux_amd64/include/raylib.h", "r") as rl_header:
                 add_export_name("Camera")
         elif line.startswith("RLAPI"):
             # TODO handle function
+
             pass
 
 cffistruct.append(f'")')
