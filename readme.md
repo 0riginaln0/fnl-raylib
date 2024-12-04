@@ -10,7 +10,7 @@ Includes:
 
 # Requirements
 
-The only thing you need to have installed is Luajit and (optionally) Fennel. The main bindings file which you want to "require" is `raylib.fnl` or its compiled version `raylib.lua`.
+The only thing you need to have installed is Luajit and (optionally) Fennel. The main bindings file which you want to import is `raylib.fnl` or its compiled version `raylib.lua`.
 
 # How to start using int
 
