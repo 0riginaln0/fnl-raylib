@@ -9,7 +9,7 @@
   (case os 
     :Windows (ffi.load :lib\raylib-5.5_win64_mingw-w64\lib\raylib.dll) 
     :Linux   (ffi.load :lib/raylib-5.5_linux_amd64/lib/libraylib.so)))
-(assert (= rl nil) "Unknown OS. Sorry")
+; (assert (= rl nil) "Unknown OS. Sorry")
 
 (ffi.cdef "
 void ClearBackground(Color color);                          // Set background color (framebuffer clear color)
@@ -123,15 +123,20 @@ void *MemAlloc(unsigned int size);                          // Internal memory a
 void *MemRealloc(void *ptr, unsigned int size);             // Internal memory reallocator
 
 void MemFree(void *ptr);                                    // Internal memory free
+typedef void (*TraceLogCallback)(int logLevel, const char *text, va_list args);  // Logging: Redirect trace log messages
 
 void SetTraceLogCallback(TraceLogCallback callback);         // Set custom trace log
 
+typedef unsigned char *(*LoadFileDataCallback)(const char *fileName, int *dataSize);    // FileIO: Load binary data
 void SetLoadFileDataCallback(LoadFileDataCallback callback); // Set custom file binary data loader
 
+typedef bool (*SaveFileDataCallback)(const char *fileName, void *data, int dataSize);   // FileIO: Save binary data
 void SetSaveFileDataCallback(SaveFileDataCallback callback); // Set custom file binary data saver
 
+typedef char *(*LoadFileTextCallback)(const char *fileName);            // FileIO: Load text data
 void SetLoadFileTextCallback(LoadFileTextCallback callback); // Set custom file text data loader
 
+typedef bool (*SaveFileTextCallback)(const char *fileName, char *text); // FileIO: Save text data
 void SetSaveFileTextCallback(SaveFileTextCallback callback); // Set custom file text data saver
 
 unsigned char *LoadFileData(const char *fileName, int *dataSize); // Load file data as byte array (read)

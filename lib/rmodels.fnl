@@ -10,7 +10,7 @@
   (case os 
     :Windows (ffi.load :lib\raylib-5.5_win64_mingw-w64\lib\raylib.dll) 
     :Linux   (ffi.load :lib/raylib-5.5_linux_amd64/lib/libraylib.so)))
-(assert (= rl nil) "Unknown OS. Sorry")
+; (assert (= rl nil) "Unknown OS. Sorry")
 
 (ffi.cdef "
 void DrawLine3D(Vector3 startPos, Vector3 endPos, Color color);                                    // Draw a line in 3D world space

@@ -14,17 +14,26 @@
 (local drawing (require :lib.drawing))
 (local inputhandling (require :lib.inputhandling))
 
+(fn merge-tables [t1 t2]
+  (each [key value (pairs t2)] 
+    (tset t1 key value))
+  t1)
+(merge-tables fnlib colors)
+(merge-tables fnlib window)
+(merge-tables fnlib structs)
+(merge-tables fnlib cursor)
+(merge-tables fnlib raudio)
+(merge-tables fnlib rmodels)
+(merge-tables fnlib rtext)
+(merge-tables fnlib rtextures)
+(merge-tables fnlib rshapes)
+(merge-tables fnlib drawing)
+(merge-tables fnlib inputhandling)
 
-(lume.table.merge fnlib colors)
-(lume.table.merge fnlib window)
-(lume.table.merge fnlib structs)
-(lume.table.merge fnlib cursor)
-(lume.table.merge fnlib raudio)
-(lume.table.merge fnlib rmodels)
-(lume.table.merge fnlib rtext)
-(lume.table.merge fnlib rtextures)
-(lume.table.merge fnlib rshapes)
-(lume.table.merge fnlib drawing)
-(lume.table.merge fnlib inputhandling)
+
+; (print "YYYYYYYYYYYYYYYYYYy")
+; (each [key value (pairs fnlib)]
+;   (print key value))
+; (print "YYYYYYYYYYYYYYYYYYy")
 
 fnlib

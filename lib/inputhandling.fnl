@@ -9,7 +9,7 @@
   (case os 
     :Windows (ffi.load :lib\raylib-5.5_win64_mingw-w64\lib\raylib.dll) 
     :Linux   (ffi.load :lib/raylib-5.5_linux_amd64/lib/libraylib.so)))
-(assert (= rl nil) "Unknown OS. Sorry")
+; (assert (= rl nil) "Unknown OS. Sorry")
 
 (ffi.cdef "
 bool IsKeyPressed(int key);                             // Check if a key has been pressed once
