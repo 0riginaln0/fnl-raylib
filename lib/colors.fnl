@@ -1,4 +1,4 @@
-(local structs (require :structs))
+(local structs (require :lib.structs))
 
 ; COLORS BLOCK
 (local raywhite (structs.Color 245 245 245 255))
