@@ -3,7 +3,7 @@
 API coverage is 99% (or maybe even 100%)
 
 Includes:
-- Built-in Raylib dynamic libraries for x64 Windows and Linux.
+- Built-in Raylib dynamic libraries for Windows and Linux (x64).
 - Makefile for Windows and Linux
 - Lume library
 - A couple of examples
