@@ -92,7 +92,11 @@ def create_construct(name: str, arguments: list[str]) -> str:
 
 
 def create_enum(name, value):
-    pass
+    name = kebabcase(name)
+    add_export_name(name)
+    enum = ""
+    enum += f"(local {name} {value})\n"
+    return enum
 
 
 def create_fn(name, arguments) -> str:
@@ -124,8 +128,8 @@ with open("lib/raylib-5.5_linux_amd64/include/raylib.h", "r") as rl_header:
             comments.append(comment)
         elif line.startswith("typedef struct"):
             struct_field_indent = "    "
-            struct_comment = "".join(comments)
-            constructs.append(struct_comment)
+            enums_comment = "".join(comments)
+            constructs.append(enums_comment)
             comments.clear()
             # Записать определение структуры в cffistruct
             cffistruct.append(line)
@@ -134,8 +138,8 @@ with open("lib/raylib-5.5_linux_amd64/include/raylib.h", "r") as rl_header:
             # print("Start:", struct_name)
             field_names = []
 
-            parsing_struct = True
-            while parsing_struct:
+            parsing_enum = True
+            while parsing_enum:
                 nline = rl_header.readline().strip()
                 cffistruct.append(struct_field_indent + nline + "\n")
                 if nline == "":
@@ -149,12 +153,12 @@ with open("lib/raylib-5.5_linux_amd64/include/raylib.h", "r") as rl_header:
                     "typedef struct rAudioBuffer rAudioBuffer;",
                     "typedef struct rAudioProcessor rAudioProcessor;",
                 ]:
-                    parsing_struct = False
+                    parsing_enum = False
                     struct_field_indent = ""
                     cffistruct.append("\n")
                     continue
                 if nline.split(" ")[1].strip() == f"{struct_name};":
-                    parsing_struct = False
+                    parsing_enum = False
                     struct_field_indent = ""
                     cffistruct.append("\n")
                     constructs.append(create_construct(struct_name, field_names))
@@ -185,15 +189,75 @@ with open("lib/raylib-5.5_linux_amd64/include/raylib.h", "r") as rl_header:
                     field_names.append(fname)
         elif line.startswith("typedef enum"):
             # TODO: Handle enum
+            enums_comment = "".join(comments)
+            enums.append(enums_comment)
+            comments.clear()
+
+            # Enum может быть типа:
+            # Автоинкремент
+            # typedef enum {
+            #   NPATCH_NINE_PATCH = 0,          // Npatch layout: 3x3 tiles
+            #   NPATCH_THREE_PATCH_VERTICAL,    // Npatch layout: 1x3 tiles
+            #   NPATCH_THREE_PATCH_HORIZONTAL   // Npatch layout: 3x1 tiles
+            # } NPatchLayout;
+
+            # Автоинкремент с единицы
+            # typedef enum {
+            #   PIXELFORMAT_UNCOMPRESSED_GRAYSCALE = 1, // 8 bit per pixel (no alpha)
+            #   PIXELFORMAT_UNCOMPRESSED_GRAY_ALPHA,
+
+            parsing_enum = True
+            cur_val = 0
+            while parsing_enum:
+                nline = rl_header.readline().strip()
+                if nline == "":
+                    continue
+                elif nline.startswith("//"):
+                    continue
+                elif nline.startswith("}"):
+                    parsing_enum = False
+                    cur_val = 0
+                elif "=" in nline:
+                    nline = nline.split(",")[0].strip()
+                    name, value = nline.split("=")
+                    value = value.split("//")[0].strip()
+                    name = kebabcase(name.strip())
+                    if "x" in value:
+                        value = int(value, 16)
+                    else:
+                        value = int(value)
+                    enums.append(create_enum(name, value))
+                    cur_val = value
+                else:
+                    nline = nline.split(",")[0].strip()
+                    if "//" in nline:
+                        nline = nline.split("//")[0].strip()
+                    cur_val += 1
+                    enums.append(create_enum(nline, cur_val))
+
+            # Заданные с возможными комментами между
+            # typedef enum {
+            #     KEY_NULL            = 0,        // Key: NULL, used for no key pressed
+            #     // Alphanumeric keys
+            #     KEY_APOSTROPHE      = 39,       // Key: '
+            #     KEY_COMMA           = 44,       // Key
+
+            # Заданные в BASE16
+            # typedef enum {
+            #     FLAG_VSYNC_HINT         = 0x00000040,   // Set to try enabling V-Sync on GPU
+            #     FLAG_FULLSCREEN_MODE    = 0x00000002,   // Set to run program in fullscreen
+            #     FLAG_WINDOW_RESIZABLE   = 0x00000004,   // Set to allow resizable window
+            #     FLAG_WINDOW_UNDECORATED = 0x00000008,   // Set to disable window decoration (frame and buttons)
+            #     FLAG_WINDOW_HIDDEN      = 0x00000080,
             pass
         elif line.startswith("typedef"):
-            struct_comment = "".join(comments)
-            constructs.append(struct_comment)
+            enums_comment = "".join(comments)
+            constructs.append(enums_comment)
             comments.clear()
             # Записать определение структуры в cffistruct
             cffistruct.append(line)
             line = line.strip()
-            print("", line.strip())
+            # print("", line.strip())
 
             if line == "typedef Vector4 Quaternion;":
                 constructs.append(
@@ -234,6 +298,9 @@ bindings.writelines(cffistruct)
 
 bindings.write("\n\n; CONSTRUCTS BLOCK\n")
 bindings.writelines(constructs)
+
+bindings.write("\n\n; ENUMS BLOCK\n")
+bindings.writelines(enums)
 
 basic_colors = r"""(local raywhite (Color 245 245 245 255))
 (local lightgray (Color 200 200 200 255))

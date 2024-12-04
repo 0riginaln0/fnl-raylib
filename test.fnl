@@ -7,3 +7,6 @@
    4 44))
 
 (print rl)
+
+(local a 0x00000040)
+(print a)
