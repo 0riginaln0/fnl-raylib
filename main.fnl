@@ -1,4 +1,4 @@
-(local rl (require :lib.genraylib))
+(local rl (require :lib.raylib))
 
 (rl.init-window 640 640 "Fennel & Raylib")
 (rl.set-target-fps 60)

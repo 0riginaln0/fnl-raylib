@@ -1,0 +1,33 @@
+
+
+; Color, 4 components, R8G8B8A8 (32bit)
+(fn Color [r g b a] (ffi.new :Color [r g b a]))
+
+
+; COLORS BLOCK
+(local raywhite (Color 245 245 245 255))
+(local lightgray (Color 200 200 200 255))
+(local maroon (Color 190 33 55 255))
+(local darkblue (Color 0 82 172 255))
+(local darkgray (Color 80 80 80 255))
+(local yellow (Color 253 249 0 255))
+(local gray (Color 130 130 130 255))
+(local gold (Color 255 203 0 255))
+(local orange (Color 255 161 0 255))
+(local pink (Color 255 109 194 255))
+(local red (Color 230 41 55 255))
+(local green (Color 0 228 48 255))
+(local lime (Color 0 158 47 255))
+(local darkgreen (Color 0 117 44 255))
+(local skyblue (Color 102 191 255 255))
+(local blue (Color 0 121 241 255))
+(local purple (Color 200 122 255 255))
+(local violet (Color 135 60 190 255))
+(local darkpurple (Color 112 31 126 255))
+(local beige (Color 211 176 131 255))
+(local brown (Color 127 106 79 255))
+(local darkbrown (Color 76 63 47 255))
+(local white (Color 255 255 255 255))
+(local black (Color 0 0 0 255))
+(local blank (Color 0 0 0 0))
+(local magenta (Color 255 0 255 255))
