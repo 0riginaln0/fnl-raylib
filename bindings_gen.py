@@ -98,18 +98,40 @@ def create_enum(name, value):
     return enum
 
 
-def create_fn(name, arguments) -> str:
-    add_export_name(name)
+def create_fn(name: str, arguments, doc: str) -> str:
+    fn_name = kebabcase(name)
+    add_export_name(fn_name)
     fn = ""
-    fn += f"(fn {name} ["
+    fn += f"(fn {fn_name} ["
     args = ""
     for i, arg in enumerate(arguments):
         if i == len(arguments) - 1:
             args += kebabcase(arg)
         else:
             args += kebabcase(arg) + " "
-    fn += f"{args}] (rl.{name} {args}))\n"
+    if name.startswith("*"):
+        name = name.removeprefix("*")
+    if name.startswith("*"):
+        name = name.removeprefix("*")
+    fn += f'{args}]\n\t"{doc.strip()}"\n\t(rl.{name} {args}))\n\n'
     return fn
+
+
+def get_args_names(args: str) -> list[str]:
+    # print("1: ", args)
+    args_names = []
+    if args == "void":
+        return args_names
+    arg = args.split(",")
+    cur_arg, *rest = arg
+    while cur_arg != "":
+        # print("1/5:", cur_arg)
+        args_names.append(kebabcase(cur_arg.split(" ")[-1]))
+        args = ", ".join(rest)
+        arg = args.split(",")
+        cur_arg, *rest = arg
+    # print("2: ", args_names)
+    return args_names
 
 
 struct_field_indent = ""
@@ -127,15 +149,15 @@ with open("lib/raylib-5.5_linux_amd64/include/raylib.h", "r") as rl_header:
             comments.append(comment)
         elif line.startswith("typedef struct"):
             struct_field_indent = "    "
-            enums_comment = "".join(comments)
-            constructs.append(enums_comment)
+            fn_comment = "".join(comments)
+            constructs.append(fn_comment)
             comments.clear()
             # Записать определение структуры в cffistruct
             cffistruct.append(line)
             # Записать функцию-конструктор для струкруты в construct
-            struct_name = line.split(" ")[2].strip()
+            fn_name = line.split(" ")[2].strip()
             # print("Start:", struct_name)
-            field_names = []
+            args_names = []
 
             parsing_enum = True
             while parsing_enum:
@@ -156,11 +178,11 @@ with open("lib/raylib-5.5_linux_amd64/include/raylib.h", "r") as rl_header:
                     struct_field_indent = ""
                     cffistruct.append("\n")
                     continue
-                if nline.split(" ")[1].strip() == f"{struct_name};":
+                if nline.split(" ")[1].strip() == f"{fn_name};":
                     parsing_enum = False
                     struct_field_indent = ""
                     cffistruct.append("\n")
-                    constructs.append(create_construct(struct_name, field_names))
+                    constructs.append(create_construct(fn_name, args_names))
                 # поля могут быть следующих типов:
                 # - в ряд
                 # float m0, m4, m8, m12;  // Matrix first row (4 components)
@@ -170,14 +192,14 @@ with open("lib/raylib-5.5_linux_amd64/include/raylib.h", "r") as rl_header:
                     fnames = nline.removeprefix(ftype).split(",")
                     for name in fnames:
                         name = name.strip()
-                        field_names.append(name)
+                        args_names.append(name)
                 # - одиночный массив
                 # float params[4];
                 elif len(nline.split("];")) > 1:
                     nline = nline.split(";")[0]
                     fname = nline.split(" ")[1]
                     fname = fname.split("[")[0]
-                    field_names.append(fname)
+                    args_names.append(fname)
                 # - одиночный (тип имя)
                 # unsigned char r;        // Color red value
                 # float w;                // Vector w component
@@ -185,10 +207,10 @@ with open("lib/raylib-5.5_linux_amd64/include/raylib.h", "r") as rl_header:
                     fname = nline.split(";")[0]
                     fname = fname.split(" ").pop()
                     # print("someone here?", fname)
-                    field_names.append(fname)
+                    args_names.append(fname)
         elif line.startswith("typedef enum"):
-            enums_comment = "".join(comments)
-            enums.append(enums_comment)
+            fn_comment = "".join(comments)
+            enums.append(fn_comment)
             comments.clear()
 
             # Enum может быть типа:
@@ -246,8 +268,8 @@ with open("lib/raylib-5.5_linux_amd64/include/raylib.h", "r") as rl_header:
                     cur_val += 1
                     enums.append(create_enum(nline, cur_val))
         elif line.startswith("typedef"):
-            enums_comment = "".join(comments)
-            constructs.append(enums_comment)
+            fn_comment = "".join(comments)
+            constructs.append(fn_comment)
             comments.clear()
             # Записать определение структуры в cffistruct
             cffistruct.append(line)
@@ -283,9 +305,21 @@ with open("lib/raylib-5.5_linux_amd64/include/raylib.h", "r") as rl_header:
                 )
                 add_export_name("Camera")
         elif line.startswith("RLAPI"):
-            # TODO handle function
+            fn_comment = "".join(comments)
+            functions.append(fn_comment)
+            comments.clear()
+            # Записать определение функции в cffistruct
+            line = line.removeprefix("RLAPI ")
+            cffistruct.append(line + "\n")
+            # Записать функцию-обёртку
+            docstring = line.split("//")[1]
+            fn_name = line.split("(")[0].split(" ")[-1]
 
-            pass
+            line = line.split("(")[1]
+            args = line.split(")")[0]
+            args_names = get_args_names(args)
+            functions.append(create_fn(fn_name, args_names, docstring))
+
 
 cffistruct.append(f'")')
 bindings.write("\n\n; CFFI BLOCK\n")
@@ -297,6 +331,9 @@ bindings.writelines(constructs)
 
 bindings.write("\n\n; ENUMS BLOCK\n")
 bindings.writelines(enums)
+
+bindings.write("\n\n; FUNCTIONS BLOCK\n")
+bindings.writelines(functions)
 
 basic_colors = r"""(local raywhite (Color 245 245 245 255))
 (local lightgray (Color 200 200 200 255))
