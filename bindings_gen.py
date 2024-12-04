@@ -63,16 +63,17 @@ ignorelist = [
 
 
 state = "comment"
-# "comment" - запоминать комментарии (верхнего уровня). Записать при переходе в другой стейт
-# "typedef struct" - записать определение структуры в cffistruct
+# +"comment" - запоминать комментарии (верхнего уровня). Записать при переходе в другой стейт
+# +"typedef struct" - записать определение структуры в cffistruct
 #                    записать функцию-конструктор для струкруты в construct
 # "typedef enum"
-# "typedef alias"
+# +"typedef alias"
 # "func"
-
+# TODO: обработка енамов, обработка функций
 comments: list[str] = []
 cffistruct: list[str] = ['(ffi.cdef "\n']
 constructs: list[str] = []
+enums: list[str] = []
 functions: list[str] = []
 
 
@@ -88,6 +89,10 @@ def create_construct(name: str, arguments: list[str]) -> str:
             args += kebabcase(arg) + " "
     constr += f"{args}] (ffi.new :{name} [{args}]))\n"
     return constr
+
+
+def create_enum(name, value):
+    pass
 
 
 def create_fn(name, arguments) -> str:
@@ -111,13 +116,13 @@ with open("lib/raylib-5.5_linux_amd64/include/raylib.h", "r") as rl_header:
         line = rl_header.readline()
         if not line:  # Check for EOF
             break
-        if line in ignorelist:
+        elif line.strip() in ignorelist:
             continue
-        if line.startswith("//"):
+        elif line.startswith("//"):
             # Комментарий верхнего уровня. Записываем в память.
             comment = line.replace("//", ";")
             comments.append(comment)
-        if line.startswith("typedef struct"):
+        elif line.startswith("typedef struct"):
             struct_field_indent = "    "
             struct_comment = "".join(comments)
             constructs.append(struct_comment)
@@ -178,6 +183,49 @@ with open("lib/raylib-5.5_linux_amd64/include/raylib.h", "r") as rl_header:
                     fname = fname.split(" ").pop()
                     # print("someone here?", fname)
                     field_names.append(fname)
+        elif line.startswith("typedef enum"):
+            # TODO: Handle enum
+            pass
+        elif line.startswith("typedef"):
+            struct_comment = "".join(comments)
+            constructs.append(struct_comment)
+            comments.clear()
+            # Записать определение структуры в cffistruct
+            cffistruct.append(line)
+            line = line.strip()
+            print("", line.strip())
+
+            if line == "typedef Vector4 Quaternion;":
+                constructs.append(
+                    "(fn Quaternion [x y z w] (ffi.new :Quaternion [x y z w]))"
+                )
+                add_export_name("Quaternion")
+            elif line == "typedef Texture Texture2D;":
+                constructs.append(
+                    "(fn Texture2D [id width height mipmaps format] (ffi.new :Texture2D [id width height mipmaps format]))"
+                )
+                add_export_name("Texture2D")
+            elif line == "typedef Texture TextureCubemap;":
+                constructs.append(
+                    "(fn TextureCubemap [id width height mipmaps format] (ffi.new :TextureCubemap [id width height mipmaps format]))"
+                )
+                add_export_name("TextureCubemap")
+            elif line == "typedef RenderTexture RenderTexture2D;":
+                constructs.append(
+                    "(fn RenderTexture2D [id texture depth] (ffi.new :RenderTexture2D [id texture depth]))"
+                )
+                add_export_name("RenderTexture2D")
+            elif (
+                line
+                == "typedef Camera3D Camera;    // Camera type fallback, defaults to Camera3D"
+            ):
+                constructs.append(
+                    "(fn Camera [position target up fovy projection] (ffi.new :Camera [position target up fovy projection]))"
+                )
+                add_export_name("Camera")
+        elif line.startswith("RLAPI"):
+            # TODO handle function
+            pass
 
 cffistruct.append(f'")')
 bindings.write("\n\n; CFFI BLOCK\n")

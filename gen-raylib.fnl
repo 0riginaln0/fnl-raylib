@@ -36,6 +36,7 @@ typedef struct Vector4 {
     float w;                // Vector w component
     } Vector4;
 
+typedef Vector4 Quaternion;
 typedef struct Matrix {
     float m0, m4, m8, m12;  // Matrix first row (4 components)
     float m1, m5, m9, m13;  // Matrix second row (4 components)
@@ -73,12 +74,15 @@ typedef struct Texture {
     int format;             // Data format (PixelFormat type)
     } Texture;
 
+typedef Texture Texture2D;
+typedef Texture TextureCubemap;
 typedef struct RenderTexture {
     unsigned int id;        // OpenGL framebuffer object id
     Texture texture;        // Color buffer attachment texture
     Texture depth;          // Depth buffer attachment texture
     } RenderTexture;
 
+typedef RenderTexture RenderTexture2D;
 typedef struct NPatchInfo {
     Rectangle source;       // Texture source rectangle
     int left;               // Left border offset
@@ -113,6 +117,7 @@ typedef struct Camera3D {
     int projection;         // Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
     } Camera3D;
 
+typedef Camera3D Camera;    // Camera type fallback, defaults to Camera3D
 typedef struct Camera2D {
     Vector2 offset;         // Camera offset (displacement from target)
     Vector2 target;         // Camera target (rotation and zoom origin)
@@ -323,7 +328,7 @@ typedef struct AutomationEventList {
 ; Vector4, 4 components
 (fn Vector4 [x y z w] (ffi.new :Vector4 [x y z w]))
 ; Quaternion, 4 components (Vector4 alias)
-; Matrix, 4x4 components, column major, OpenGL style, right-handed
+(fn Quaternion [x y z w] (ffi.new :Quaternion [x y z w])); Matrix, 4x4 components, column major, OpenGL style, right-handed
 (fn Matrix [m0 m4 m8 m12 m1 m5 m9 m13 m2 m6 m10 m14 m3 m7 m11 m15] (ffi.new :Matrix [m0 m4 m8 m12 m1 m5 m9 m13 m2 m6 m10 m14 m3 m7 m11 m15]))
 ; Color, 4 components, R8G8B8A8 (32bit)
 (fn Color [r g b a] (ffi.new :Color [r g b a]))
@@ -334,11 +339,11 @@ typedef struct AutomationEventList {
 ; Texture, tex data stored in GPU memory (VRAM)
 (fn Texture [id width height mipmaps format] (ffi.new :Texture [id width height mipmaps format]))
 ; Texture2D, same as Texture
-; TextureCubemap, same as Texture
-; RenderTexture, fbo for texture rendering
+(fn Texture2D [id width height mipmaps format] (ffi.new :Texture2D [id width height mipmaps format])); TextureCubemap, same as Texture
+(fn TextureCubemap [id width height mipmaps format] (ffi.new :TextureCubemap [id width height mipmaps format])); RenderTexture, fbo for texture rendering
 (fn RenderTexture [id texture depth] (ffi.new :RenderTexture [id texture depth]))
 ; RenderTexture2D, same as RenderTexture
-; NPatchInfo, n-patch layout info
+(fn RenderTexture2D [id texture depth] (ffi.new :RenderTexture2D [id texture depth])); NPatchInfo, n-patch layout info
 (fn NPatchInfo [source left top right bottom layout] (ffi.new :NPatchInfo [source left top right bottom layout]))
 ; GlyphInfo, font characters glyphs info
 (fn GlyphInfo [value offset-x offset-y advance-x image] (ffi.new :GlyphInfo [value offset-x offset-y advance-x image]))
@@ -346,7 +351,7 @@ typedef struct AutomationEventList {
 (fn Font [base-size glyph-count glyph-padding texture recs glyphs] (ffi.new :Font [base-size glyph-count glyph-padding texture recs glyphs]))
 ; Camera, defines position/orientation in 3d space
 (fn Camera3D [position target up fovy projection] (ffi.new :Camera3D [position target up fovy projection]))
-; Camera2D, defines position/orientation in 2d space
+(fn Camera [position target up fovy projection] (ffi.new :Camera [position target up fovy projection])); Camera2D, defines position/orientation in 2d space
 (fn Camera2D [offset target rotation zoom] (ffi.new :Camera2D [offset target rotation zoom]))
 ; Mesh, vertex data and vao/vbo
 (fn Mesh [vertex-count triangle-count vertices texcoords texcoords2 normals tangents colors indices anim-vertices anim-normals char-bone-ids bone-weights bone-matrices bone-count vao-id vbo-id] (ffi.new :Mesh [vertex-count triangle-count vertices texcoords texcoords2 normals tangents colors indices anim-vertices anim-normals char-bone-ids bone-weights bone-matrices bone-count vao-id vbo-id]))
@@ -426,16 +431,21 @@ typedef struct AutomationEventList {
  : Vector2
  : Vector3
  : Vector4
+ : Quaternion
  : Matrix
  : Color
  : Rectangle
  : Image
  : Texture
+ : Texture2D
+ : TextureCubemap
  : RenderTexture
+ : RenderTexture2D
  : NPatchInfo
  : GlyphInfo
  : Font
  : Camera3D
+ : Camera
  : Camera2D
  : Mesh
  : Shader
