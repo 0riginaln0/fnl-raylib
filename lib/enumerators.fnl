@@ -341,7 +341,7 @@
 
 (local enums {})
 
-(local utils (require :src.utils))
+(local utils (require :lib.utils))
 
 (utils.merge-tables enums enum1)
 (utils.merge-tables enums enum2)

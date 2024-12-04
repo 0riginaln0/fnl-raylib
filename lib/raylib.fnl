@@ -15,7 +15,7 @@
 (local inputhandling (require :lib.inputhandling))
 (local enumerators (require :lib.enumerators))
 
-(local utils (require :src.utils))
+(local utils (require :lib.utils))
 (utils.merge-tables raylib colors)
 (utils.merge-tables raylib window)
 (utils.merge-tables raylib structs)
