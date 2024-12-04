@@ -9,7 +9,7 @@ Everything is built-in:
 - Lume library
 
 
-The only thing you need to be installed is Luajit and Fennel. The main bindings file is `raylib.fnl` or its compiled version `raylib.lua`.
+The only thing you need to have installed is Luajit and (optionally) Fennel. The main bindings file is `raylib.fnl` or its compiled version `raylib.lua`.
 
 
 To start working just git clone this repo and try to `make run` or `fennel examples/core/core-input-keys.fnl`
