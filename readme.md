@@ -8,6 +8,32 @@ Includes:
 - A couple of [examples](https://github.com/0riginaln0/fnl-raylib/tree/main/examples)
 - Makefile for both Windows and Linux
 
+# Example
+
+Bindings use kebab-case naming
+
+```clojure
+(local rl (require :lib.raylib))
+(local lume (require :lib.lume))
+
+(print "epic")
+(-> 4.5
+    (lume.round)
+    (print))
+
+(rl.init-window 640 640 "Fennel & Raylib")
+(rl.set-target-fps 60)
+(local background (rl.Color 161 212 242 250))
+
+(while (not (rl.window-should-close))
+  (rl.begin-drawing)
+  (rl.clear-background background)
+  (rl.end-drawing))
+
+(rl.close-window)
+(print "That's all")
+```
+
 # Requirements
 
 The only thing you need to have installed is Luajit and (optionally) Fennel. The main bindings file which you want to import is `raylib.fnl` or its compiled version `raylib.lua`.
