@@ -6,6 +6,7 @@ Includes:
 - Built-in Raylib dynamic libraries for x64 Windows and Linux.
 - Makefile for Windows and Linux
 - Lume library
+- A couple of examples
 
 
 The only thing you need to have installed is Luajit and (optionally) Fennel. The main bindings file is `raylib.fnl` or its compiled version `raylib.lua`.
