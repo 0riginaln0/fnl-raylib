@@ -1,4 +1,4 @@
-Raylib 5.5 bindings for the Fennel programming language (and consequently for Lua) for the sake of interest.
+# Raylib 5.5 bindings for the Fennel programming language (and consequently for Lua) for the sake of interest.
 
 API coverage is 99% (or maybe even 100%)
 
@@ -8,12 +8,29 @@ Includes:
 - Lume library
 - A couple of examples
 
+# Requirements
 
 The only thing you need to have installed is Luajit and (optionally) Fennel. The main bindings file is `raylib.fnl` or its compiled version `raylib.lua`.
 
+# How to start using int
 
-To start working just git clone this repo and try to `make run` or `fennel examples/core/core-input-keys.fnl`
+Just git clone this repo, and then 
 
+`make run` 
+
+or 
+
+`fennel examples/core/core-input-keys.fnl`
+
+or
+
+`luajit main.lua`
+
+or
+
+`luajit examples/core/core-input-mouse.lua`
+
+you got it.
 
 https://fennel-lang.org/see
 
