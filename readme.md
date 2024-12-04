@@ -2,10 +2,9 @@ Handmade Raylib 5.5 bindings for the Fennel programming language (and consequent
 
 API coverage is 99% (or maybe even 100%)
 
-
-Everything is built-in: 
-- Raylib dynamic libraries for x64 Windows and Linux.
-- Cross-platform Makefile
+Includes:
+- Built-in Raylib dynamic libraries for x64 Windows and Linux.
+- Makefile for Windows and Linux
 - Lume library
 
 
