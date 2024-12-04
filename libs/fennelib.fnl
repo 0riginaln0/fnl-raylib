@@ -1,0 +1,28 @@
+(local fnlib (table))
+
+(local colors (require :colors))
+(local window (require :window))
+(local structs (require :structs))
+(local cursor (require :cursor))
+(local raudio (require :raudio))
+(local rmodels (require :rmodels))
+(local rtext (require :rtext))
+(local rtextures (require :rtextures))
+(local rshapes (require :rshapes))
+(local drawing (require :drawing))
+(local inputhandling (require :inputhandling))
+
+
+(table.merge fnlib colors)
+(table.merge fnlib window)
+(table.merge fnlib structs)
+(table.merge fnlib cursor)
+(table.merge fnlib raudio)
+(table.merge fnlib rmodels)
+(table.merge fnlib rtext)
+(table.merge fnlib rtextures)
+(table.merge fnlib rshapes)
+(table.merge fnlib drawing)
+(table.merge fnlib inputhandling)
+
+(return fnlib)
