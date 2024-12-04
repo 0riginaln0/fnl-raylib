@@ -1,6 +1,6 @@
 ; fennel .\examples\core\core-basic-window.fnl
 
-(local rl (require :lib.raylib))
+(local rl (require :lib.genraylib))
 
 (local screen-width 800)
 (local screen-height 450)

@@ -1,7 +1,7 @@
 from caseconverter import kebabcase
 
 
-bindings = open("gen-raylib.fnl", "w")
+bindings = open("genraylib.fnl", "w")
 bindings.write(
     r"""
 ; My Raylib bindings for Fennel and so for Lua
@@ -126,7 +126,10 @@ def get_args_names(args: str) -> list[str]:
     cur_arg, *rest = arg
     while cur_arg != "":
         # print("1/5:", cur_arg)
-        args_names.append(kebabcase(cur_arg.split(" ")[-1]))
+        new_arg_name = kebabcase(cur_arg.split(" ")[-1])
+        if new_arg_name == "length":
+            new_arg_name = "llength"
+        args_names.append(new_arg_name)
         args = ", ".join(rest)
         arg = args.split(",")
         cur_arg, *rest = arg

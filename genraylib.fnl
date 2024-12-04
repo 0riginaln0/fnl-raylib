@@ -3619,9 +3619,9 @@ void DetachAudioMixedProcessor(AudioCallback processor); // Detach audio stream 
 	(rl.GetGlyphAtlasRec font codepoint))
 
 ; Text codepoints management functions (unicode characters)
-(fn load-utf8 [codepoints length]
+(fn load-utf8 [codepoints llength]
 	"Load UTF-8 text encoded from codepoints array"
-	(rl.LoadUTF8 codepoints length))
+	(rl.LoadUTF8 codepoints llength))
 
 (fn unload-utf8 [text]
 	"Unload UTF-8 text encoded from codepoints array"
@@ -3673,9 +3673,9 @@ void DetachAudioMixedProcessor(AudioCallback processor); // Detach audio stream 
 	"Text formatting with variables (sprintf() style)"
 	(rl.TextFormat text ))
 
-(fn text-subtext [text position length]
+(fn text-subtext [text position llength]
 	"Get a piece of a text string"
-	(rl.TextSubtext text position length))
+	(rl.TextSubtext text position llength))
 
 (fn text-replace [text replace by]
 	"Replace text string (WARNING: memory must be freed!)"
@@ -3753,17 +3753,17 @@ void DetachAudioMixedProcessor(AudioCallback processor); // Detach audio stream 
 	"Draw a triangle strip defined by points"
 	(rl.DrawTriangleStrip3D points point-count color))
 
-(fn draw-cube [position width height length color]
+(fn draw-cube [position width height llength color]
 	"Draw cube"
-	(rl.DrawCube position width height length color))
+	(rl.DrawCube position width height llength color))
 
 (fn draw-cube-v [position size color]
 	"Draw cube (Vector version)"
 	(rl.DrawCubeV position size color))
 
-(fn draw-cube-wires [position width height length color]
+(fn draw-cube-wires [position width height llength color]
 	"Draw cube wires"
-	(rl.DrawCubeWires position width height length color))
+	(rl.DrawCubeWires position width height llength color))
 
 (fn draw-cube-wires-v [position size color]
 	"Draw cube wires (Vector version)"
@@ -3924,13 +3924,13 @@ void DetachAudioMixedProcessor(AudioCallback processor); // Detach audio stream 
 	"Generate polygonal mesh"
 	(rl.GenMeshPoly sides radius))
 
-(fn gen-mesh-plane [width length res-x res-z]
+(fn gen-mesh-plane [width llength res-x res-z]
 	"Generate plane mesh (with subdivisions)"
-	(rl.GenMeshPlane width length res-x res-z))
+	(rl.GenMeshPlane width llength res-x res-z))
 
-(fn gen-mesh-cube [width height length]
+(fn gen-mesh-cube [width height llength]
 	"Generate cuboid mesh"
-	(rl.GenMeshCube width height length))
+	(rl.GenMeshCube width height llength))
 
 (fn gen-mesh-sphere [radius rings slices]
 	"Generate sphere mesh (standard sphere)"
