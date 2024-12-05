@@ -1,6 +1,6 @@
 # Raylib 5.5 bindings for the Fennel programming language (and consequently for Lua) for the sake of interest.
 
-API coverage is 99% (or maybe even 100%)
+WIP
 
 Includes:
 - Built-in [Raylib dynamic libraries](https://github.com/raysan5/raylib/releases/tag/5.5) for Windows and Linux (x64).
