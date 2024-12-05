@@ -27,7 +27,6 @@
 
 (print (= vec1 vec2))
 (print (= vec1 vec3))
-(print (# vec1))
 
 
 (while (not (rl.window-should-close))
