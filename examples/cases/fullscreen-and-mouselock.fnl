@@ -10,18 +10,18 @@
 
 
 (var cursor-pos (rl.Vector2 0 0))
-(var cursor-color rl.darkpurple)
+(var cursor-color rl.maroon)
 (var current-screen (rl.get-current-monitor))
 
 (fn get-new-cursor-pos [] 
   (let [mouse-pos (rl.get-mouse-position)]
     ; When rl.is-cursor-hidden aka is captured, mouse can have coordinates out of the monitor 
-    ; (lower than 0 or higher than (rl.get-render-width or -hights))
+    ; (lower than 0 or higher than (rl.get-render-width or -height))
     (if (rl.is-cursor-hidden)
-      ; Captured. is in window?
+      ; Captured
       (let [window-width (rl.get-render-width)
             window-height (rl.get-render-height)]
-        ; Is mouse in window
+        ; Is mouse in window?
         (if (and (< 0 mouse-pos.x window-width) (< 0 mouse-pos.y window-height))
           ; yes, set to current mouse pos
           mouse-pos
@@ -30,8 +30,6 @@
                 dt-x (lume.clamp (+ cursor-pos.x mouse-dt.x) 0 window-width)
                 dt-y (lume.clamp (+ cursor-pos.y mouse-dt.y) 0 window-height)
                 dt (rl.Vector2 dt-x dt-y)]
-            (print "\nWindow:" window-width " " window-height
-                   "\n Mouse pos" mouse-pos)
             (rl.set-mouse-position dt.x dt.y)
             dt)))
       ; Not captured. Set to current mouse pos
@@ -59,11 +57,11 @@
   
   ; Draw
   (rl.begin-drawing)
-  (rl.clear-background rl.raywhite)
+  (rl.clear-background rl.darkgray)
   
-  (rl.draw-text "Press F11 to toggle full screen mode" 10 10 20 rl.darkgray)
+  (rl.draw-text "Press F11 to toggle full screen mode" 10 10 20 rl.lightgray)
   (rl.draw-circle-v cursor-pos 10 cursor-color)
-  (rl.draw-text "Press F10 to toggle mouse lock mode" 10 40 20 rl.darkgray)
+  (rl.draw-text "Press F10 to toggle mouse lock mode" 10 40 20 rl.lightgray)
   (rl.draw-circle-v cursor-pos 10 cursor-color)
   
   (rl.end-drawing))
