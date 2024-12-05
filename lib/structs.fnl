@@ -294,7 +294,11 @@ typedef struct AutomationEventList {
 ;----------------------------------------------------------------------------------
 ; Boolean type
 ; Vector2, 2 components
-(fn Vector2 [x y] (ffi.new :Vector2 [x y]))
+(local Vector2-mt {:__eq (fn [vec1 vec2] (and (= vec1.x vec2.x) (= vec1.y vec2.y)))})
+(local Vector2-ctype (ffi.metatype :Vector2 Vector2-mt))
+(fn Vector2 [x y]
+  (Vector2-ctype x y))
+
 ; Vector3, 3 components
 (fn Vector3 [x y z] (ffi.new :Vector3 [x y z]))
 ; Vector4, 4 components

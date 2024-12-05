@@ -250,7 +250,10 @@ void DisableEventWaiting(void);                             // Disable waiting f
 	(rl.GetMonitorCount ))
 
 (fn get-current-monitor []
-	"Get current monitor where window is placed"
+	"
+	Get current monitor where window is placed. 
+	Returns 0, 1, 2 or any other number according to the Monitor number
+	"
 	(rl.GetCurrentMonitor ))
 
 (fn get-monitor-position [monitor]
