@@ -298,13 +298,20 @@ typedef struct AutomationEventList {
 (local Vector2-ctype (ffi.metatype :Vector2 Vector2-mt))
 (fn Vector2 [x y]
   (Vector2-ctype x y))
+
 ; Vector3, 3 components
 (local Vector3-mt 
   {:__eq (fn [vec1 vec2] (and (= vec1.x vec2.x) (= vec1.y vec2.y) (= vec1.z vec2.z)))})
 (local Vector3-ctype (ffi.metatype :Vector3 Vector3-mt))
 (fn Vector3 [x y z] (Vector3-ctype x y z))
+
 ; Vector4, 4 components
-(fn Vector4 [x y z w] (ffi.new :Vector4 [x y z w]))
+(local Vector4-mt 
+  {:__eq (fn [vec1 vec2] (and (= vec1.x vec2.x) (= vec1.y vec2.y) 
+                              (= vec1.z vec2.z) (= vec1.w vec2.w)))})
+(local Vector4-ctype (ffi.metatype :Vector4 Vector4-mt))
+(fn Vector4 [x y z w] (Vector4-ctype [x y z w]))
+
 ; Quaternion, 4 components (Vector4 alias)
 (fn Quaternion [x y z w] (ffi.new :Quaternion [x y z w])); Matrix, 4x4 components, column major, OpenGL style, right-handed
 (fn Matrix [m0 m4 m8 m12 m1 m5 m9 m13 m2 m6 m10 m14 m3 m7 m11 m15] (ffi.new :Matrix [m0 m4 m8 m12 m1 m5 m9 m13 m2 m6 m10 m14 m3 m7 m11 m15]))
