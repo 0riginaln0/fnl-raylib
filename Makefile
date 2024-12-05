@@ -3,7 +3,7 @@ ifeq ($(OS),Windows_NT)
 
 	run-command = fennel .\main.fnl
 
-	clean-command = @for /f "delims=" %%f in ('dir /S /B *.lua ^| findstr /V /I "\\lib\\"') do del "%%f"
+	clean-command = @for /f "delims=" %%f in ('dir /S /B *.lua ^| findstr /V /I "\\nolib\\"') do del "%%f"
 else
 	fennel-files := $(shell find . -name '*.fnl')
 

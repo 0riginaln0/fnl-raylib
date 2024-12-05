@@ -1,15 +1,9 @@
 (print "RAYLIB SHAPES INIT: STARTED")
 (local safe-mode true)
 
-(local ffi (require :ffi))
-
-(local os ffi.os)
-; (print os)
-
-(local rl 
-  (case os 
-    :Windows (ffi.load :lib\raylib-5.5_win64_mingw-w64\lib\raylib.dll) 
-    :Linux   (ffi.load :lib/raylib-5.5_linux_amd64/lib/libraylib.so)))
+(local dll (require :lib.dll))
+(local ffi (. dll :ffi))
+(local rl (. dll :rl))
 
 (ffi.cdef "
 void SetShapesTexture(Texture2D texture, Rectangle source);       // Set texture and rectangle to be used on shapes drawing

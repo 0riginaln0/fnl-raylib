@@ -1,16 +1,8 @@
 (print "RAYLIB STRUCT MODULE INIT")
 
-(local ffi (require :ffi))
-
-(local os ffi.os)
-
-; (print os)
-; (print "hey")
-
-(local rl 
-  (case os 
-    :Windows (ffi.load :lib\raylib-5.5_win64_mingw-w64\lib\raylib.dll) 
-    :Linux   (ffi.load :lib/raylib-5.5_linux_amd64/lib/libraylib.so)))
+(local dll (require :lib.dll))
+(local ffi (. dll :ffi))
+(local rl (. dll :rl))
 
 (ffi.cdef "
 typedef struct Vector2 {
@@ -296,7 +288,7 @@ typedef struct AutomationEventList {
 ; Vector2, 2 components
 (local Vector2-mt
   {:__eq (fn [vec1 vec2] (and (= vec1.x vec2.x) (= vec1.y vec2.y)))
-   :__tostring (fn [vec] (.. "[x: " vec.x "y:" vec.y "]"))})
+   :__tostring (fn [vec] (.. "[x: " vec.x "\ty:" vec.y "]"))})
 (local Vector2-ctype (ffi.metatype :Vector2 Vector2-mt))
 (fn Vector2 [x y]
   (Vector2-ctype x y))
@@ -304,7 +296,7 @@ typedef struct AutomationEventList {
 ; Vector3, 3 components
 (local Vector3-mt 
   {:__eq (fn [vec1 vec2] (and (= vec1.x vec2.x) (= vec1.y vec2.y) (= vec1.z vec2.z)))
-   :__tostring (fn [vec] (.. "[x: " vec.x "y:" vec.y "z:" vec.z "]"))})
+   :__tostring (fn [vec] (.. "[x: " vec.x "\ty:" vec.y "\tz:" vec.z "]"))})
 (local Vector3-ctype (ffi.metatype :Vector3 Vector3-mt))
 (fn Vector3 [x y z] (Vector3-ctype x y z))
 
@@ -312,7 +304,7 @@ typedef struct AutomationEventList {
 (local Vector4-mt 
   {:__eq (fn [vec1 vec2] (and (= vec1.x vec2.x) (= vec1.y vec2.y) 
                               (= vec1.z vec2.z) (= vec1.w vec2.w)))
-   :__tostring (fn [vec] (.. "[x: " vec.x "y:" vec.y "z:" vec.z "w: " vec.w "]"))})
+   :__tostring (fn [vec] (.. "[x: " vec.x "\ty:" vec.y "\tz:" vec.z "\tw: " vec.w "]"))})
 (local Vector4-ctype (ffi.metatype :Vector4 Vector4-mt))
 (fn Vector4 [x y z w] (Vector4-ctype [x y z w]))
 
