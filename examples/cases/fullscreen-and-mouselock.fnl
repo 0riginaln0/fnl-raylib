@@ -11,29 +11,14 @@
 (var cursor-color rl.darkpurple)
 (var monitor-number (rl.get-current-monitor))
 (var window-pos (rl.get-window-position))
-(print window-pos)
-(print "Windows pos x:" window-pos.x)
-(print "Windows pos y:" window-pos.y)
-(var aindow-pos (rl.Vector2 240 267))
-(print aindow-pos)
-(print "Aindows pos x:" aindow-pos.x)
-(print "Aindows pos y:" aindow-pos.y)
-(print (= aindow-pos window-pos))
-
-(print "vectors eq")
-(local vec1 (rl.Vector2 1.0 2.0))
-(local vec2 (rl.Vector2 1.0 2.0))
-(local vec3 (rl.Vector2 2.0 3.0))
-
-(print (= vec1 vec2))
-(print (= vec1 vec3))
-
 
 (while (not (rl.window-should-close))
   ; Update
   (set cursor-pos (rl.get-mouse-position))
+  ; If window moves, we must 
   (set monitor-number (rl.get-current-monitor))
-  
+  (set window-pos (rl.get-window-position))
+  (print window-pos)
   
   ; (if (rl.is-key-pressed rl.key-f11)
   ;   )
