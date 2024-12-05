@@ -1,12 +1,38 @@
 # Raylib 5.5 bindings for the Fennel programming language (and consequently for Lua) for the sake of interest.
 
-API coverage is 99% (or maybe even 100%)
+WIP
 
 Includes:
 - Built-in [Raylib dynamic libraries](https://github.com/raysan5/raylib/releases/tag/5.5) for Windows and Linux (x64).
 - [Lume](https://github.com/rxi/lume) library
 - A couple of [examples](https://github.com/0riginaln0/fnl-raylib/tree/main/examples)
 - Makefile for both Windows and Linux
+
+# Example
+
+Bindings use kebab-case naming
+
+```clojure
+(local rl (require :lib.raylib))
+(local lume (require :lib.lume))
+
+(print "epic")
+(-> 4.5
+    (lume.round)
+    (print))
+
+(rl.init-window 640 640 "Fennel & Raylib")
+(rl.set-target-fps 60)
+(local background (rl.Color 161 212 242 250))
+
+(while (not (rl.window-should-close))
+  (rl.begin-drawing)
+  (rl.clear-background background)
+  (rl.end-drawing))
+
+(rl.close-window)
+(print "That's all")
+```
 
 # Requirements
 
