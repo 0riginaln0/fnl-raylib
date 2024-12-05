@@ -27,7 +27,7 @@
                    "\nis hidden:" (rl.is-cursor-hidden)))
         mouse-position))))
 
-; Когда is-cursor-hidden (после rl.disable-cursor), то мышь может иметь координаты за пределами
+; when is-cursor-hidden (после rl.disable-cursor), rl.get-mouse-position can have negative and others values
 
 (while (not (rl.window-should-close))
   ; Update
