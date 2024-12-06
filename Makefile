@@ -3,6 +3,8 @@ ifeq ($(OS),Windows_NT)
 
 	run-command = fennel .\main.fnl
 
+# If you want .lua files from the lib folder not being deleted after make clean,
+# uncomment commented clean-command and coment the uncommented one
 #	clean-command = @for /f "delims=" %%f in ('dir /S /B *.lua ^| findstr /V /I "\\lib\\"') do del "%%f"
 	clean-command = @for /f "delims=" %%f in ('dir /S /B *.lua ^| findstr /V /I "\\libb\\"') do del "%%f"
 
@@ -14,6 +16,8 @@ else
 
 	run-command = fennel ./main.fnl
 
+# If you want .lua files from the lib folder not being deleted after make clean
+# uncomment commented clean-command and coment the uncommented one
 #	clean-command = find . -name '*.lua' ! -path '*/lib/*' -exec rm {} +
 	clean-command = find . -name '*.lua' ! -path '*/libb/*' -exec rm {} +
 
