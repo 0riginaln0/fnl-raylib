@@ -44,7 +44,8 @@
   "
   Sets window to fullscreen and captures the mouse
   or
-  Sets window to default res and uncaptures the mouse"
+  Sets window to default res and uncaptures the mouse
+  "
   (set current-screen (rl.get-current-monitor))
   (if (rl.is-window-fullscreen)
     (do 
