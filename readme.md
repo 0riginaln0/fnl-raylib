@@ -54,23 +54,23 @@ luajit C:\Games\Fennel\fennel1.5.1 %*
 
 Just `git clone` this repo, `cd fnl-raylib` and then
 
-`fennel main.fnl`
+```fennel main.fnl```
 
 *or*
 
-`make run` 
+```make run` ``
 
 *or*
 
-`fennel examples/core/core-input-keys.fnl`
+```fennel examples/core/core-input-keys.fnl```
 
 *or*
 
-`luajit main.lua`
+```luajit main.lua```
 
 *or*
 
-`luajit examples/core/core-input-mouse.lua`
+```luajit examples/core/core-input-mouse.lua```
 
 you got it.
 
