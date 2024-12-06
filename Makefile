@@ -27,3 +27,6 @@ release: build
 	$(compile-release-binary)
 
 	$(copy-to-release)
+
+clean:
+	python cleanup_luafiles.py

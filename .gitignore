@@ -1,1 +1,4 @@
 .vscode/
+
+release/*
+!release/note.md
