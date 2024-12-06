@@ -38,7 +38,7 @@ Bindings use kebab-case naming
 
 You need to have Luajit and Fennel installed. The main bindings file which you want to import is `raylib.fnl`.
 
-- Luajit installation is very easy. Just follow the [instructions](https://luajit.org/install.html) 
+- Luajit installation is very easy. Just follow the [instructions](https://luajit.org/install.html) Windows users read carefully the "Installing LuaJIT" section of the page: "Copy luajit.exe and lua51.dll (built in the src directory)..."
 - Likewise with the [Fennel](https://fennel-lang.org/setup) (I install it via the [script fennel-1.5.1 version](https://fennel-lang.org/downloads/fennel-1.5.1))
 <details>
 <summary>fennel.bat script to run Fennel on Windows</summary>
@@ -98,7 +98,7 @@ https://github.com/raysan5/raylib/blob/1f0325b52c87af4820b31957d8e40d7bc1f112bb/
 **Prerequirements**
 
 - gcc compiler
-- (if windows) LuaJIT installation into the `C:\` path. (When you installed luajit, you should `git clone` their repo from the `C:\` folder, so the resulting structure will be `C:\LuaJIT\src`)
+- (if windows) LuaJIT installation into the `C:\` path. (When you installed luajit, you should `git clone` their repo from the `C:\` folder)
 
 Both C compiler and LuaJIT installation path could be tweaked and replaced by yourself!
 
@@ -115,17 +115,19 @@ make release
 ```shell
 make build
 ```
-
 2. Compile Lua to Bytecode
 ```shell
 luajit -b main.lua main.luac
 ```
-
 3. Create a C Wrapper and comile it
+- Linux
 ```shell
 gcc -o main main.c -lluajit-5.1
 ```
-
+- Windows:
+```shell
+gcc -o main main.c -I"C:\LuaJIT\src" -L"C:\LuaJIT\src" -l"luajit-5.1"
+```
 4. Run your executable! Test how it works
 ```
 ./main
