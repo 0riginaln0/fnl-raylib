@@ -38,7 +38,7 @@ Bindings use kebab-case naming
 
 You need to have Luajit and Fennel installed. The main bindings file which you want to import is `raylib.fnl`.
 
-- Luajit installation is very easy. Just follow the [instructions](https://luajit.org/install.html) Windows users read carefully the "Installing LuaJIT" section of the page: "Copy luajit.exe and lua51.dll (built in the src directory)..."
+- Luajit installation is very easy. Just follow the [instructions](https://luajit.org/install.html) Windows users read carefully the ***"Installing LuaJIT"*** section of the page: *"Copy luajit.exe and lua51.dll (built in the src directory)..."*
 - Likewise with the [Fennel](https://fennel-lang.org/setup) (I install it via the [script fennel-1.5.1 version](https://fennel-lang.org/downloads/fennel-1.5.1))
 <details>
 <summary>fennel.bat script to run Fennel on Windows</summary>
