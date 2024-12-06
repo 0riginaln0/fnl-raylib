@@ -11,12 +11,12 @@
 (rl.init-window 640 640 "Fennel & Raylib")
 (rl.set-target-fps 60)
 
-(local background (rl.Color 161 212 242 250))
+(local background rl.darkgray)
 
 (while (not (rl.window-should-close))
   (rl.begin-drawing)
   (rl.clear-background background)
-  
+  (rl.draw-text "Congrats! You created your first window!" 10 10 20 rl.lightgray)
   (rl.end-drawing))
 
 (rl.close-window)
