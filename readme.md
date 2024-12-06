@@ -77,3 +77,29 @@ https://github.com/raysan5/raylib/tree/master/examples
 
 
 https://github.com/raysan5/raylib/blob/1f0325b52c87af4820b31957d8e40d7bc1f112bb/src/raylib.h#L183
+
+
+# How to build an executable
+
+1. Compile to Lua
+```shell
+make build
+```
+
+2. Compile to Lua bytecode
+```shell
+luajit -b main.lua main.luac
+```
+
+3. Create a C Wrapper and comile it
+```shell
+gcc -o main main.c -lluajit-5.1
+```
+
+4. Run your executable!
+```
+./main
+```
+5. Package a release
+
+Copy `main`, `main.luac` files and `lib` folder into seperate directory (for example in `release`)
