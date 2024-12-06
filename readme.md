@@ -58,7 +58,7 @@ Just `git clone` this repo, `cd fnl-raylib` and then
 
 *or*
 
-```make run` ``
+```make run```
 
 *or*
 
