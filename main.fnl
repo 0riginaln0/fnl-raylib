@@ -6,8 +6,6 @@
     (lume.round)
     (print))
 
-
-
 (rl.init-window 640 640 "Fennel & Raylib")
 (rl.set-target-fps 60)
 
