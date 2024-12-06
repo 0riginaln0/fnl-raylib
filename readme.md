@@ -104,7 +104,10 @@ Both C compiler and LuaJIT installation path could be tweaked and replaced by yo
 
 **So how to build an executable?**
 
-Run `make release`
+Run 
+```shell
+make release
+```
 
 *or* if you want to do it manually:
 
