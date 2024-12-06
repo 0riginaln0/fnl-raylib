@@ -3,7 +3,8 @@ ifeq ($(OS),Windows_NT)
 
 	run-command = fennel .\main.fnl
 
-	clean-command = @for /f "delims=" %%f in ('dir /S /B *.lua ^| findstr /V /I "\\lib\\"') do del "%%f"
+#	clean-command = @for /f "delims=" %%f in ('dir /S /B *.lua ^| findstr /V /I "\\lib\\"') do del "%%f"
+	clean-command = @for /f "delims=" %%f in ('dir /S /B *.lua ^| findstr /V /I "\\libb\\"') do del "%%f"
 
 	compile-release-binary = gcc -o main main.c -I"C:\LuaJIT\src" -L"C:\LuaJIT\src" -l"luajit-5.1"
 	copy-to-release = copy main.exe release\ & copy main.luac release\ & xcopy lib release\lib /E /I
@@ -13,7 +14,8 @@ else
 
 	run-command = fennel ./main.fnl
 
-	clean-command = find . -name '*.lua' ! -path '*/lib/*' -exec rm {} +
+#	clean-command = find . -name '*.lua' ! -path '*/lib/*' -exec rm {} +
+	clean-command = find . -name '*.lua' ! -path '*/libb/*' -exec rm {} +
 
 	compile-release-binary = gcc -o main main.c -lluajit-5.1
 	copy-to-release = cp main main.luac release/; cp -r lib release/
