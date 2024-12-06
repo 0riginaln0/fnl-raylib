@@ -30,3 +30,6 @@ release: build
 
 clean:
 	python cleanup_luafiles.py
+
+clean-all:
+	python cleanup_luafiles.py --all
