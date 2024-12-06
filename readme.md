@@ -54,17 +54,21 @@ luajit C:\Games\Fennel\fennel1.5.1 %*
 
 Just `git clone` this repo, `cd fnl-raylib` and then
 
+`fennel main.fnl`
+
+*or*
+
 `make run` 
 
-or 
+*or*
 
 `fennel examples/core/core-input-keys.fnl`
 
-or
+*or*
 
 `luajit main.lua`
 
-or
+*or*
 
 `luajit examples/core/core-input-mouse.lua`
 
@@ -81,12 +85,25 @@ https://github.com/raysan5/raylib/blob/1f0325b52c87af4820b31957d8e40d7bc1f112bb/
 
 # How to build an executable
 
-1. Compile to Lua
+**Prerequirements**
+
+- gcc compiler
+- (if windows) LuaJIT installation into the `C:\` path. (When you installed luajit, you should `git clone` their repo from the `C:\` folder, so the resulting structure will be `C:\LuaJIT\src`)
+
+Both C compiler and LuaJIT installation path could be tweaked and replaced by yourself!
+
+**So how to build an executable?**
+
+Run `make release`
+
+*or* if you want to do it manually:
+
+1. Compile Fennel to Lua
 ```shell
 make build
 ```
 
-2. Compile to Lua bytecode
+2. Compile Lua to Bytecode
 ```shell
 luajit -b main.lua main.luac
 ```
@@ -96,14 +113,10 @@ luajit -b main.lua main.luac
 gcc -o main main.c -lluajit-5.1
 ```
 
-4. Run your executable!
+4. Run your executable! Test how it works
 ```
 ./main
 ```
 5. Package a release
 
 Copy `main`, `main.luac` files and `lib` folder into seperate directory (for example in `release`)
-
-*or*
-
-run `make release` which does everything described above except for the 4th point.
