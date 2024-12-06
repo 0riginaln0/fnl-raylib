@@ -35,25 +35,35 @@
       ; Not captured. Set to current mouse pos
       mouse-pos)))
 
+(fn toggle-fullscreen []
+  "
+  Sets window to fullscreen and captures the mouse
+  or
+  Sets window to default res and uncaptures the mouse"
+  (set current-screen (rl.get-current-monitor))
+  (if (rl.is-window-fullscreen)
+    (do 
+      (rl.set-window-size screen-width screen-height) 
+      (rl.enable-cursor))
+    (do 
+      (rl.set-window-size (rl.get-monitor-width current-screen) (rl.get-monitor-height current-screen))
+      (rl.disable-cursor)))
+  (rl.toggle-fullscreen))
+
+(fn toggle-mouselock []
+  (if (rl.is-cursor-hidden)
+    (rl.enable-cursor)
+    (rl.disable-cursor)))
 
 (while (not (rl.window-should-close))
   ; Update
   (set cursor-pos (get-new-cursor-pos))
   
-  ; Toggle Fullscreen
   (when (rl.is-key-pressed rl.key-f11)
-    (set current-screen (rl.get-current-monitor))
-    (if (rl.is-window-fullscreen)
-      (rl.set-window-size screen-width screen-height)
-      (rl.set-window-size (rl.get-monitor-width current-screen)
-                          (rl.get-monitor-height current-screen)))
-    (rl.toggle-fullscreen))
+    (toggle-fullscreen))
   
-  ; Toggle Mouse Lock
   (when (rl.is-key-pressed rl.key-f10)
-    (if (rl.is-cursor-hidden)
-      (rl.enable-cursor)
-      (rl.disable-cursor)))
+    (toggle-mouselock))
   
   ; Draw
   (rl.begin-drawing)
