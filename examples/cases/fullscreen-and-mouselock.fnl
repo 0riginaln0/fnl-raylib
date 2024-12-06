@@ -1,17 +1,22 @@
 (local rl (require :lib.raylib))
 (local lume (require :lib.lume))
+(local utils (require :lib.utils))
+(local inspect (. utils :inspect))
 
 
 ; Initialization
 (var screen-width 500)
 (var screen-height 500)
-(rl.init-window screen-width screen-height "raylib [core] example - mouse input")
-(rl.set-target-fps 60)
-
+(rl.init-window screen-width screen-height "raylib [core] example - mouse input!")
 
 (var cursor-pos (rl.Vector2 0 0))
 (var cursor-color rl.maroon)
 (var current-screen (rl.get-current-monitor))
+
+(-> (rl.get-monitor-refresh-rate current-screen)
+    (inspect "Monitor refresh rate:")
+    (rl.set-target-fps))
+
 
 (fn get-new-cursor-pos [] 
   (let [mouse-pos (rl.get-mouse-position)]
