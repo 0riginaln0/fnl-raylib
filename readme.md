@@ -70,7 +70,7 @@ make run
 fennel examples/core/core-input-keys.fnl
 ```
 
-*or*
+*or* (after `make build`)
 
 ```shell
 luajit main.lua
