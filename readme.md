@@ -103,3 +103,7 @@ gcc -o main main.c -lluajit-5.1
 5. Package a release
 
 Copy `main`, `main.luac` files and `lib` folder into seperate directory (for example in `release`)
+
+*or*
+
+run `make release` which does everything described above except for the 4th point.
