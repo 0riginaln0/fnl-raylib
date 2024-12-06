@@ -2,7 +2,7 @@ print("RAYLIB CURSOR MODULE INIT")
 local dll = require("lib.dll")
 local ffi = dll.ffi
 local rl = dll.rl
-ffi.cdef("\nvoid ShowCursor(void);                                      // Shows cursor\n\nvoid HideCursor(void);                                      // Hides cursor\n\nbool IsCursorHidden(void);                                  // Check if cursor is not visible\n\nvoid EnableCursor(void);                                    // Enables cursor (unlock cursor)\n\nvoid DisableCursor(void);                                   // Disables cursor (lock cursor)\n\nbool IsCursorOnScreen(void);                                // Check if cursor is on the screen\n")
+ffi.cdef("\13\nvoid ShowCursor(void);                                      // Shows cursor\13\n\13\nvoid HideCursor(void);                                      // Hides cursor\13\n\13\nbool IsCursorHidden(void);                                  // Check if cursor is not visible\13\n\13\nvoid EnableCursor(void);                                    // Enables cursor (unlock cursor)\13\n\13\nvoid DisableCursor(void);                                   // Disables cursor (lock cursor)\13\n\13\nbool IsCursorOnScreen(void);                                // Check if cursor is on the screen\13\n")
 local function show_cursor()
   return rl.ShowCursor()
 end
