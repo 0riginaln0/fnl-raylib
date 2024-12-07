@@ -439,8 +439,13 @@ int QuaternionEquals(Quaternion p, Quaternion q);                           // C
 ; Vector3, 3 components
 (fn Vector3 [x y z] (ffi.new :Vector3 [x y z]))
 (local Vector3-mt 
-  {:__eq (fn [vec1 vec2] (and (= vec1.x vec2.x) (= vec1.y vec2.y) (= vec1.z vec2.z)))
-   :__tostring (fn [vec] (.. "[x: " vec.x "\ty:" vec.y "\tz:" vec.z "]"))})
+  {:__eq (fn [vec1 vec2] (= (rl.Vector3Equals vec1 vec2) 1))
+   :__tostring (fn [vec] (.. "[x: " vec.x "\ty:" vec.y "\tz:" vec.z "]"))
+   :__add (fn [vec1 vec2] (rl.Vector3Add vec1 vec2))
+   :__sub (fn [vec1 vec2] (rl.Vector3Subtract vec1 vec2))
+   :__mul (fn [vec1 vec2] (rl.Vector3Multiply vec1 vec2))
+   :__div (fn [vec1 vec2] (rl.Vector3Divide vec1 vec2))
+   :__unm (fn [vec] (rl.Vector3Negate vec))})
 (local Vector3-ctype (ffi.metatype :Vector3 Vector3-mt))
 (fn Vector3 [x y z] (Vector3-ctype x y z))
 
