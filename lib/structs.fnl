@@ -416,17 +416,21 @@ int QuaternionEquals(Quaternion p, Quaternion q);                           // C
 ")
 
 
-(local utils (require :lib.utils))
-(local inspect (. utils :inspect))
 ; Structures Definition
 ;----------------------------------------------------------------------------------
 ; Boolean type
 ; Vector2, 2 components
 (fn Vector2 [x y] (ffi.new :Vector2 [x y]))
 (local Vector2-mt
-  {:__eq (fn [vec1 vec2] (and (= vec1.x vec2.x) (= vec1.y vec2.y)))
+  {
+   :__eq (fn [vec1 vec2] (= (rl.Vector2Equals vec1 vec2) 1))
+  ;  :__eq (fn [vec1 vec2] (and (= vec1.x vec2.x) (= vec1.y vec2.y)))
    :__tostring (fn [vec] (.. "[x: " vec.x "\ty:" vec.y "]"))
-   :__add (fn [vec1 vec2] (inspect (Vector2 (+ vec1.x vec2.x) (+ vec1.y vec2.y)) "aaaaa"))})
+   :__add (fn [vec1 vec2] (rl.Vector2Add vec1 vec2))
+   :__sub (fn [vec1 vec2] (rl.Vector2Subtract vec1 vec2))
+   :__mul (fn [vec1 vec2] (rl.Vector2Multiply vec1 vec2))
+   :__div (fn [vec1 vec2] (rl.Vector2Divide vec1 vec2))
+   :__unm (fn [vec] (rl.Vector2Negate vec))})
 (local Vector2-ctype (ffi.metatype :Vector2 Vector2-mt))
 (fn Vector2 [x y] (Vector2-ctype x y))
 
