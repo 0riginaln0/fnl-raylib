@@ -4,8 +4,6 @@ Provides full coverage of:
 - `raylib.h` [main cheatsheet](https://www.raylib.com/cheatsheet/cheatsheet.html)
 - `raymath.h` [math module](https://www.raylib.com/cheatsheet/raymath_cheatsheet.html)
 
-WIP
-
 Includes:
 - Built-in [Raylib dynamic libraries](https://github.com/raysan5/raylib/releases/tag/5.5) for Windows and Linux (x64).
 - [Lume](https://github.com/rxi/lume) library
