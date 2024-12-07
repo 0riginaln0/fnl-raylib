@@ -1,5 +1,14 @@
 (local rl (require :lib.raylib))
 
+; Vector2 and Vector3 have the following metamethods defined:
+;  :__eq (fn [vec1 vec2] (= (rl.Vector2Equals vec1 vec2) 1))
+;  :__tostring (fn [vec] (.. "[x: " vec.x "\ty:" vec.y "]"))
+;  :__add (fn [vec1 vec2] (rl.Vector2Add vec1 vec2))
+;  :__sub (fn [vec1 vec2] (rl.Vector2Subtract vec1 vec2))
+;  :__mul (fn [vec1 vec2] (rl.Vector2Multiply vec1 vec2))
+;  :__div (fn [vec1 vec2] (rl.Vector2Divide vec1 vec2))
+;  :__unm (fn [vec] (rl.Vector2Negate vec))
+
 (local a (rl.Vector2 5 6))
 (local b (rl.Vector2 5 4))
 (print "a:" a)

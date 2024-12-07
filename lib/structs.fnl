@@ -424,7 +424,6 @@ int QuaternionEquals(Quaternion p, Quaternion q);                           // C
 (local Vector2-mt
   {
    :__eq (fn [vec1 vec2] (= (rl.Vector2Equals vec1 vec2) 1))
-  ;  :__eq (fn [vec1 vec2] (and (= vec1.x vec2.x) (= vec1.y vec2.y)))
    :__tostring (fn [vec] (.. "[x: " vec.x "\ty:" vec.y "]"))
    :__add (fn [vec1 vec2] (rl.Vector2Add vec1 vec2))
    :__sub (fn [vec1 vec2] (rl.Vector2Subtract vec1 vec2))
