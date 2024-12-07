@@ -1,4 +1,4 @@
-(print "RAYLIB TEXTURES INIT: STARTED")
+(print "INIT: TEXTURES")
 (local safe-mode true)
 
 (local dll (require :lib.dll))

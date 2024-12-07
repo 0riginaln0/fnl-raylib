@@ -5,7 +5,7 @@
 
 (fn inspect [value str]
   (if str
-    (print str value)
+    (print (.. str value))
     (print value))
   value)
 

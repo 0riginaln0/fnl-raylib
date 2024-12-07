@@ -1,6 +1,6 @@
 ; Cursor-related functions
 
-(print "RAYLIB CURSOR MODULE INIT")
+(print "INIT: CURSOR")
 
 (local dll (require :lib.dll))
 (local ffi (. dll :ffi))

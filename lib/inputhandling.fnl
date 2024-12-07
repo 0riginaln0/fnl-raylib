@@ -1,4 +1,4 @@
-(print "RAYLIB INPUT HANDLING MODULE INIT")
+(print "INIT: INPUT HANDLING")
 
 (local dll (require :lib.dll))
 (local ffi (. dll :ffi))

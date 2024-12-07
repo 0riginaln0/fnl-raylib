@@ -1,4 +1,4 @@
-(print "RAYLIB SHAPES INIT: STARTED")
+(print "INIT: SHAPES")
 (local safe-mode true)
 
 (local dll (require :lib.dll))

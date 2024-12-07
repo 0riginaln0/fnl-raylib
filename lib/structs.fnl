@@ -1,8 +1,10 @@
-(print "RAYLIB STRUCT MODULE INIT")
+(print "INIT: STRUCTS")
 
 (local dll (require :lib.dll))
 (local ffi (. dll :ffi))
 (local rl (. dll :rl))
+
+(local math (require :lib.math))
 
 (ffi.cdef "
 typedef struct Vector2 {

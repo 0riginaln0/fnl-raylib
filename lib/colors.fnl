@@ -1,4 +1,4 @@
-(print "RAYLIB COLORS MODULE INIT")
+(print "INIT: COLORS")
 
 (local structs (require :lib.structs))
 

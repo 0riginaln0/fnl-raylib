@@ -1,3 +1,4 @@
+(print "INIT: LUME")
 (local lume {:_version :2.3.0})
 (local (pairs ipairs) (values pairs ipairs))
 (local (type assert unpack) (values type assert (or unpack table.unpack)))

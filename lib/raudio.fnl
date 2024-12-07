@@ -1,4 +1,4 @@
-(print "RAYLIB RAUDIO INIT: STARTED")
+(print "INIT: RAUDIO")
 (local safe-mode true)
 
 (local dll (require :lib.dll))

@@ -1,4 +1,4 @@
-(print "RAYLIB TEXT INIT: STARTED")
+(print "INIT: TEXT")
 (local safe-mode true)
 
 (local dll (require :lib.dll))

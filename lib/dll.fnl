@@ -1,3 +1,5 @@
+(print "INIT: DLL")
+
 (local ffi (require :ffi))
 
 (local os ffi.os)

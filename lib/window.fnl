@@ -1,4 +1,4 @@
-(print "RAYLIB WINDOW MODULE INIT")
+(print "INIT: WINDOW")
 
 (local dll (require :lib.dll))
 (local ffi (. dll :ffi))

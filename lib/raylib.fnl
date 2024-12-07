@@ -1,3 +1,4 @@
+(print "INIT: RAYLIB")
 (local lume (require :lib.lume))
 
 (local raylib {})
@@ -14,6 +15,7 @@
 (local drawing (require :lib.drawing))
 (local inputhandling (require :lib.inputhandling))
 (local enumerators (require :lib.enumerators))
+(local math (require :lib.math))
 
 (local utils (require :lib.utils))
 (utils.merge-tables raylib colors)
@@ -28,5 +30,6 @@
 (utils.merge-tables raylib drawing)
 (utils.merge-tables raylib inputhandling)
 (utils.merge-tables raylib enumerators)
+(utils.merge-tables raylib math)
 
 raylib

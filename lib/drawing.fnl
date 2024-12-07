@@ -1,4 +1,4 @@
-(print "RAYLIB Drawing Vr Shader Screenspace and others MODULE INIT")
+(print "INIT: Drawing, Vr, Shader, and others")
 
 (local dll (require :lib.dll))
 (local ffi (. dll :ffi))
