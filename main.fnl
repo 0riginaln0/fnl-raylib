@@ -1,6 +1,5 @@
 (local rl (require :lib.raylib))
 (local lume (require :lib.lume))
-(local math (require :lib.math))
 (local utils (require :lib.utils))
 (local inspect (. utils :inspect))
 
@@ -25,5 +24,5 @@
 
 (-> 245
     (inspect "RGBA color before normalization: ")
-    (math.normalize 0 255)
+    (rl.normalize 0 255)
     (inspect "RGBA color after normalization:  "))
