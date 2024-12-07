@@ -76,7 +76,6 @@
   (rl.clear-background rl.darkgray)
   
   (rl.draw-text "Press F11 to toggle full screen mode" 10 10 20 rl.lightgray)
-  (rl.draw-circle-v cursor-pos 10 cursor-color)
   (rl.draw-text "Press F10 to toggle mouse lock mode" 10 40 20 rl.lightgray)
   (rl.draw-circle-v cursor-pos 10 cursor-color)
   
