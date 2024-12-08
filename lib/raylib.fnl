@@ -1,5 +1,3 @@
-(print "Loading Raylib bindings...")
-
 (local raylib {})
 
 (local ffi (require :ffi))
@@ -15,58 +13,58 @@
   typedef struct Vector2 {
       float x;                // Vector x component
       float y;                // Vector y component
-      } Vector2;
+  } Vector2;
   typedef struct Vector3 {
       float x;                // Vector x component
       float y;                // Vector y component
       float z;                // Vector z component
-      } Vector3;
+  } Vector3;
   typedef struct Vector4 {
       float x;                // Vector x component
       float y;                // Vector y component
       float z;                // Vector z component
       float w;                // Vector w component
-      } Vector4;
+  } Vector4;
   typedef Vector4 Quaternion;
   typedef struct Matrix {
       float m0, m4, m8, m12;  // Matrix first row (4 components)
       float m1, m5, m9, m13;  // Matrix second row (4 components)
       float m2, m6, m10, m14; // Matrix third row (4 components)
       float m3, m7, m11, m15; // Matrix fourth row (4 components)
-      } Matrix;
+  } Matrix;
   typedef struct Color {
       unsigned char r;        // Color red value
       unsigned char g;        // Color green value
       unsigned char b;        // Color blue value
       unsigned char a;        // Color alpha value
-      } Color;
+  } Color;
   typedef struct Rectangle {
       float x;                // Rectangle top-left corner position x
       float y;                // Rectangle top-left corner position y
       float width;            // Rectangle width
       float height;           // Rectangle height
-      } Rectangle;
+  } Rectangle;
   typedef struct Image {
       void *data;             // Image raw data
       int width;              // Image base width
       int height;             // Image base height
       int mipmaps;            // Mipmap levels, 1 by default
       int format;             // Data format (PixelFormat type)
-      } Image;
+  } Image;
   typedef struct Texture {
       unsigned int id;        // OpenGL texture id
       int width;              // Texture base width
       int height;             // Texture base height
       int mipmaps;            // Mipmap levels, 1 by default
       int format;             // Data format (PixelFormat type)
-      } Texture;
+  } Texture;
   typedef Texture Texture2D;
   typedef Texture TextureCubemap;
   typedef struct RenderTexture {
       unsigned int id;        // OpenGL framebuffer object id
       Texture texture;        // Color buffer attachment texture
       Texture depth;          // Depth buffer attachment texture
-      } RenderTexture;
+  } RenderTexture;
   typedef RenderTexture RenderTexture2D;
   typedef struct NPatchInfo {
       Rectangle source;       // Texture source rectangle
@@ -75,14 +73,14 @@
       int right;              // Right border offset
       int bottom;             // Bottom border offset
       int layout;             // Layout of the n-patch: 3x3, 1x3 or 3x1
-      } NPatchInfo;
+  } NPatchInfo;
   typedef struct GlyphInfo {
       int value;              // Character value (Unicode)
       int offsetX;            // Character offset X when drawing
       int offsetY;            // Character offset Y when drawing
       int advanceX;           // Character advance position X
       Image image;            // Character image data
-      } GlyphInfo;
+  } GlyphInfo;
   typedef struct Font {
       int baseSize;           // Base size (default chars height)
       int glyphCount;         // Number of glyph characters
@@ -90,21 +88,21 @@
       Texture2D texture;      // Texture atlas containing the glyphs
       Rectangle *recs;        // Rectangles in texture for the glyphs
       GlyphInfo *glyphs;      // Glyphs info data
-      } Font;
+  } Font;
   typedef struct Camera3D {
       Vector3 position;       // Camera position
       Vector3 target;         // Camera target it looks-at
       Vector3 up;             // Camera up vector (rotation over its axis)
       float fovy;             // Camera field-of-view aperture in Y (degrees) in perspective, used as near plane width in orthographic
       int projection;         // Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
-      } Camera3D;
+  } Camera3D;
   typedef Camera3D Camera;    // Camera type fallback, defaults to Camera3D
   typedef struct Camera2D {
       Vector2 offset;         // Camera offset (displacement from target)
       Vector2 target;         // Camera target (rotation and zoom origin)
       float rotation;         // Camera rotation in degrees
       float zoom;             // Camera zoom (scaling), should be 1.0f by default
-      } Camera2D;
+  } Camera2D;
   typedef struct Mesh {
       int vertexCount;        // Number of vertices stored in arrays
       int triangleCount;      // Number of triangles stored (indexed or not)
@@ -126,30 +124,30 @@
       // OpenGL identifiers
       unsigned int vaoId;     // OpenGL Vertex Array Object id
       unsigned int *vboId;    // OpenGL Vertex Buffer Objects id (default vertex data)
-      } Mesh;
+  } Mesh;
   typedef struct Shader {
       unsigned int id;        // Shader program id
       int *locs;              // Shader locations array (RL_MAX_SHADER_LOCATIONS)
-      } Shader;
+  } Shader;
   typedef struct MaterialMap {
       Texture2D texture;      // Material map texture
       Color color;            // Material map color
       float value;            // Material map value
-      } MaterialMap;
+  } MaterialMap;
   typedef struct Material {
       Shader shader;          // Material shader
       MaterialMap *maps;      // Material maps array (MAX_MATERIAL_MAPS)
       float params[4];        // Material generic parameters (if required)
-      } Material;
+  } Material;
   typedef struct Transform {
       Vector3 translation;    // Translation
       Quaternion rotation;    // Rotation
       Vector3 scale;          // Scale
-      } Transform;
+  } Transform;
   typedef struct BoneInfo {
       char name[32];          // Bone name
       int parent;             // Bone parent
-      } BoneInfo;
+  } BoneInfo;
   typedef struct Model {
       Matrix transform;       // Local transform matrix
       int meshCount;          // Number of meshes
@@ -161,55 +159,55 @@
       int boneCount;          // Number of bones
       BoneInfo *bones;        // Bones information (skeleton)
       Transform *bindPose;    // Bones base transformation (pose)
-      } Model;
+  } Model;
   typedef struct ModelAnimation {
       int boneCount;          // Number of bones
       int frameCount;         // Number of animation frames
       BoneInfo *bones;        // Bones information (skeleton)
       Transform **framePoses; // Poses array by frame
       char name[32];          // Animation name
-      } ModelAnimation;
+  } ModelAnimation;
   typedef struct Ray {
       Vector3 position;       // Ray position (origin)
       Vector3 direction;      // Ray direction (normalized)
-      } Ray;
+  } Ray;
   typedef struct RayCollision {
       bool hit;               // Did the ray hit something?
       float distance;         // Distance to the nearest hit
       Vector3 point;          // Point of the nearest hit
       Vector3 normal;         // Surface normal of hit
-      } RayCollision;
+  } RayCollision;
   typedef struct BoundingBox {
       Vector3 min;            // Minimum vertex box-corner
       Vector3 max;            // Maximum vertex box-corner
-      } BoundingBox;
+  } BoundingBox;
   typedef struct Wave {
       unsigned int frameCount;    // Total number of frames (considering channels)
       unsigned int sampleRate;    // Frequency (samples per second)
       unsigned int sampleSize;    // Bit depth (bits per sample): 8, 16, 32 (24 not supported)
       unsigned int channels;      // Number of channels (1-mono, 2-stereo, ...)
       void *data;                 // Buffer data pointer
-      } Wave;
+  } Wave;
   typedef struct rAudioBuffer rAudioBuffer;
-      typedef struct rAudioProcessor rAudioProcessor;
+  typedef struct rAudioProcessor rAudioProcessor;
   typedef struct AudioStream {
       rAudioBuffer *buffer;       // Pointer to internal data used by the audio system
       rAudioProcessor *processor; // Pointer to internal data processor, useful for audio effects
       unsigned int sampleRate;    // Frequency (samples per second)
       unsigned int sampleSize;    // Bit depth (bits per sample): 8, 16, 32 (24 not supported)
       unsigned int channels;      // Number of channels (1-mono, 2-stereo, ...)
-      } AudioStream;
+  } AudioStream;
   typedef struct Sound {
       AudioStream stream;         // Audio stream
       unsigned int frameCount;    // Total number of frames (considering channels)
-      } Sound;
+  } Sound;
   typedef struct Music {
       AudioStream stream;         // Audio stream
       unsigned int frameCount;    // Total number of frames (considering channels)
       bool looping;               // Music looping enable
       int ctxType;                // Type of music context (audio filetype)
       void *ctxData;              // Audio context data, depends on type
-      } Music;
+  } Music;
   typedef struct VrDeviceInfo {
       int hResolution;                // Horizontal resolution in pixels
       int vResolution;                // Vertical resolution in pixels
@@ -220,7 +218,7 @@
       float interpupillaryDistance;   // IPD (distance between pupils) in meters
       float lensDistortionValues[4];  // Lens distortion constant parameters
       float chromaAbCorrection[4];    // Chromatic aberration correction parameters
-      } VrDeviceInfo;
+  } VrDeviceInfo;
   typedef struct VrStereoConfig {
       Matrix projection[2];           // VR projection matrices (per eye)
       Matrix viewOffset[2];           // VR view offset matrices (per eye)
@@ -230,22 +228,22 @@
       float rightScreenCenter[2];     // VR right screen center
       float scale[2];                 // VR distortion scale
       float scaleIn[2];               // VR distortion scale in
-      } VrStereoConfig;
+  } VrStereoConfig;
   typedef struct FilePathList {
       unsigned int capacity;          // Filepaths max entries
       unsigned int count;             // Filepaths entries count
       char **paths;                   // Filepaths entries
-      } FilePathList;
+  } FilePathList;
   typedef struct AutomationEvent {
       unsigned int frame;             // Event frame
       unsigned int type;              // Event type (AutomationEventType)
       int params[4];                  // Event parameters (if required)
-      } AutomationEvent;
+  } AutomationEvent;
   typedef struct AutomationEventList {
       unsigned int capacity;          // Events max entries (MAX_AUTOMATION_EVENTS)
       unsigned int count;             // Events entries count
       AutomationEvent *events;        // Events entries
-      } AutomationEventList;
+  } AutomationEventList;
   // Utils math
   float Clamp(float value, float min, float max);                             // Clamp float value
   float Lerp(float start, float end, float amount);                           // Calculate linear interpolation between two floats
@@ -1007,12 +1005,12 @@
     (fn Vector3 [x y z] (ffi.new :Vector3 [x y z]))
     (local Vector3-mt 
       {:__eq (fn [vec1 vec2] (= (rl.Vector3Equals vec1 vec2) 1))
-      :__tostring (fn [vec] (.. "[x: " vec.x "\ty:" vec.y "\tz:" vec.z "]"))
-      :__add (fn [vec1 vec2] (rl.Vector3Add vec1 vec2))
-      :__sub (fn [vec1 vec2] (rl.Vector3Subtract vec1 vec2))
-      :__mul (fn [vec1 vec2] (rl.Vector3Multiply vec1 vec2))
-      :__div (fn [vec1 vec2] (rl.Vector3Divide vec1 vec2))
-      :__unm (fn [vec] (rl.Vector3Negate vec))})
+       :__tostring (fn [vec] (.. "[x: " vec.x "\ty:" vec.y "\tz:" vec.z "]"))
+       :__add (fn [vec1 vec2] (rl.Vector3Add vec1 vec2))
+       :__sub (fn [vec1 vec2] (rl.Vector3Subtract vec1 vec2))
+       :__mul (fn [vec1 vec2] (rl.Vector3Multiply vec1 vec2))
+       :__div (fn [vec1 vec2] (rl.Vector3Divide vec1 vec2))
+       :__unm (fn [vec] (rl.Vector3Negate vec))})
     (local Vector3-ctype (ffi.metatype :Vector3 Vector3-mt))
     (fn Vector3 [x y z] (Vector3-ctype x y z))
     ; Vector4, 4 components
@@ -1020,7 +1018,7 @@
     (local Vector4-mt 
       {:__eq (fn [vec1 vec2] (and (= vec1.x vec2.x) (= vec1.y vec2.y) 
                                   (= vec1.z vec2.z) (= vec1.w vec2.w)))
-      :__tostring (fn [vec] (.. "[x: " vec.x "\ty:" vec.y "\tz:" vec.z "\tw: " vec.w "]"))})
+       :__tostring (fn [vec] (.. "[x: " vec.x "\ty:" vec.y "\tz:" vec.z "\tw: " vec.w "]"))})
     (local Vector4-ctype (ffi.metatype :Vector4 Vector4-mt))
     (fn Vector4 [x y z w] (Vector4-ctype [x y z w]))
     ; Quaternion, 4 components (Vector4 alias)
@@ -1429,156 +1427,156 @@
     (fn quaternion-equals [p q]
       "Check whether two given quaternions are almost equal"
       (rl.QuaternionEquals p q))
-    { : Vector2
-      : Vector3
-      : Vector4
-      : Quaternion
-      : Matrix
-      : Color
-      : Rectangle
-      : Image
-      : Texture
-      : Texture2D
-      : TextureCubemap
-      : RenderTexture
-      : RenderTexture2D
-      : NPatchInfo
-      : GlyphInfo
-      : Font
-      : Camera3D
-      : Camera
-      : Camera2D
-      : Mesh
-      : Shader
-      : MaterialMap
-      : Material
-      : Transform
-      : BoneInfo
-      : Model
-      : ModelAnimation
-      : Ray
-      : RayCollision
-      : BoundingBox
-      : Wave
-      : AudioStream
-      : Sound
-      : Music
-      : VrDeviceInfo
-      : VrStereoConfig
-      : FilePathList
-      : AutomationEvent
-      : AutomationEventList
-      : clamp
-      : lerp
-      : normalize
-      : remap
-      : wrap
-      : float-equals
-      : vector2-zero
-      : vector2-one
-      : vector2-add
-      : vector2-add-value
-      : vector2-subtract
-      : vector2-subtract-value
-      : vector2-length
-      : vector2-length-sqr
-      : vector2-dot-product
-      : vector2-distance
-      : vector2-distance-sqr
-      : vector2-angle
-      : vector2-scale
-      : vector2-multiply
-      : vector2-negate
-      : vector2-divide
-      : vector2-normalize
-      : vector2-transform
-      : vector2-lerp
-      : vector2-reflect
-      : vector2-rotate
-      : vector2-move-towards
-      : vector2-invert
-      : vector2-clamp
-      : vector2-clamp-value
-      : vector2-equals
-      : vector3-zero
-      : vector3-one
-      : vector3-add
-      : vector3-add-value
-      : vector3-subtract
-      : vector3-subtract-value
-      : vector3-scale
-      : vector3-multiply
-      : vector3-cross-product
-      : vector3-perpendicular
-      : vector3-length
-      : vector3-length-sqr
-      : vector3-dot-product
-      : vector3-distance
-      : vector3-distance-sqr
-      : vector3-angle
-      : vector3-negate
-      : vector3-divide
-      : vector3-normalize
-      : vector3-ortho-normalize
-      : vector3-transform
-      : vector3-rotate-by-quaternion
-      : vector3-rotate-by-axis-angle
-      : vector3-lerp
-      : vector3-reflect
-      : vector3-min
-      : vector3-max
-      : vector3-barycenter
-      : vector3-unproject
-      : vector3-to-float-v
-      : vector3-invert
-      : vector3-clamp
-      : vector3-clamp-value
-      : vector3-equals
-      : vector3-refract
-      : matrix-determinant
-      : matrix-trace
-      : matrix-transpose
-      : matrix-invert
-      : matrix-identity
-      : matrix-add
-      : matrix-subtract
-      : matrix-multiply
-      : matrix-translate
-      : matrix-rotate
-      : matrix-rotate-x
-      : matrix-rotate-y
-      : matrix-rotate-z
-      : matrix-rotate-xyz
-      : matrix-rotate-zyx
-      : matrix-scale
-      : matrix-frustum
-      : matrix-perspective
-      : matrix-ortho
-      : matrix-look-at
-      : matrix-to-float-v
-      : quaternion-add
-      : quaternion-add-value
-      : quaternion-subtract
-      : quaternion-subtract-value
-      : quaternion-identity
-      : quaternion-length
-      : quaternion-normalize
-      : quaternion-invert
-      : quaternion-multiply
-      : quaternion-scale
-      : quaternion-divide
-      : quaternion-lerp
-      : quaternion-nlerp
-      : quaternion-slerp
-      : quaternion-from-vector3-to-vector3
-      : quaternion-from-matrix
-      : quaternion-to-matrix
-      : quaternion-from-axis-angle
-      : quaternion-to-axis-angle
-      : quaternion-from-euler
-      : quaternion-to-euler
-      : quaternion-transform
-      : quaternion-equals}))
+    {: Vector2
+     : Vector3
+     : Vector4
+     : Quaternion
+     : Matrix
+     : Color
+     : Rectangle
+     : Image
+     : Texture
+     : Texture2D
+     : TextureCubemap
+     : RenderTexture
+     : RenderTexture2D
+     : NPatchInfo
+     : GlyphInfo
+     : Font
+     : Camera3D
+     : Camera
+     : Camera2D
+     : Mesh
+     : Shader
+     : MaterialMap
+     : Material
+     : Transform
+     : BoneInfo
+     : Model
+     : ModelAnimation
+     : Ray
+     : RayCollision
+     : BoundingBox
+     : Wave
+     : AudioStream
+     : Sound
+     : Music
+     : VrDeviceInfo
+     : VrStereoConfig
+     : FilePathList
+     : AutomationEvent
+     : AutomationEventList
+     : clamp
+     : lerp
+     : normalize
+     : remap
+     : wrap
+     : float-equals
+     : vector2-zero
+     : vector2-one
+     : vector2-add
+     : vector2-add-value
+     : vector2-subtract
+     : vector2-subtract-value
+     : vector2-length
+     : vector2-length-sqr
+     : vector2-dot-product
+     : vector2-distance
+     : vector2-distance-sqr
+     : vector2-angle
+     : vector2-scale
+     : vector2-multiply
+     : vector2-negate
+     : vector2-divide
+     : vector2-normalize
+     : vector2-transform
+     : vector2-lerp
+     : vector2-reflect
+     : vector2-rotate
+     : vector2-move-towards
+     : vector2-invert
+     : vector2-clamp
+     : vector2-clamp-value
+     : vector2-equals
+     : vector3-zero
+     : vector3-one
+     : vector3-add
+     : vector3-add-value
+     : vector3-subtract
+     : vector3-subtract-value
+     : vector3-scale
+     : vector3-multiply
+     : vector3-cross-product
+     : vector3-perpendicular
+     : vector3-length
+     : vector3-length-sqr
+     : vector3-dot-product
+     : vector3-distance
+     : vector3-distance-sqr
+     : vector3-angle
+     : vector3-negate
+     : vector3-divide
+     : vector3-normalize
+     : vector3-ortho-normalize
+     : vector3-transform
+     : vector3-rotate-by-quaternion
+     : vector3-rotate-by-axis-angle
+     : vector3-lerp
+     : vector3-reflect
+     : vector3-min
+     : vector3-max
+     : vector3-barycenter
+     : vector3-unproject
+     : vector3-to-float-v
+     : vector3-invert
+     : vector3-clamp
+     : vector3-clamp-value
+     : vector3-equals
+     : vector3-refract
+     : matrix-determinant
+     : matrix-trace
+     : matrix-transpose
+     : matrix-invert
+     : matrix-identity
+     : matrix-add
+     : matrix-subtract
+     : matrix-multiply
+     : matrix-translate
+     : matrix-rotate
+     : matrix-rotate-x
+     : matrix-rotate-y
+     : matrix-rotate-z
+     : matrix-rotate-xyz
+     : matrix-rotate-zyx
+     : matrix-scale
+     : matrix-frustum
+     : matrix-perspective
+     : matrix-ortho
+     : matrix-look-at
+     : matrix-to-float-v
+     : quaternion-add
+     : quaternion-add-value
+     : quaternion-subtract
+     : quaternion-subtract-value
+     : quaternion-identity
+     : quaternion-length
+     : quaternion-normalize
+     : quaternion-invert
+     : quaternion-multiply
+     : quaternion-scale
+     : quaternion-divide
+     : quaternion-lerp
+     : quaternion-nlerp
+     : quaternion-slerp
+     : quaternion-from-vector3-to-vector3
+     : quaternion-from-matrix
+     : quaternion-to-matrix
+     : quaternion-from-axis-angle
+     : quaternion-to-axis-angle
+     : quaternion-from-euler
+     : quaternion-to-euler
+     : quaternion-transform
+     : quaternion-equals}))
 (local colors 
   (do
     ; COLORS BLOCK
@@ -1608,32 +1606,32 @@
     (local black (structs.Color 0 0 0 255))
     (local blank (structs.Color 0 0 0 0))
     (local magenta (structs.Color 255 0 255 255))
-    { : raywhite
-      : lightgray
-      : maroon
-      : darkblue
-      : darkgray
-      : yellow
-      : gray
-      : gold
-      : orange
-      : pink
-      : red
-      : green
-      : lime
-      : darkgreen
-      : skyblue
-      : blue
-      : purple
-      : violet
-      : darkpurple
-      : beige
-      : brown
-      : darkbrown
-      : white
-      : black
-      : blank
-      : magenta}))
+    {: raywhite
+     : lightgray
+     : maroon
+     : darkblue
+     : darkgray
+     : yellow
+     : gray
+     : gold
+     : orange
+     : pink
+     : red
+     : green
+     : lime
+     : darkgreen
+     : skyblue
+     : blue
+     : purple
+     : violet
+     : darkpurple
+     : beige
+     : brown
+     : darkbrown
+     : white
+     : black
+     : blank
+     : magenta}))
 (local window
   (do
     ; Window-related functions
@@ -1788,54 +1786,54 @@
       "Disable waiting for events on EndDrawing(), automatic events polling"
       (rl.DisableEventWaiting ))
     {: init-window
-    : close-window
-    : window-should-close
-    : is-window-ready
-    : is-window-fullscreen
-    : is-window-hidden
-    : is-window-minimized
-    : is-window-maximized
-    : is-window-focused
-    : is-window-resized
-    : is-window-state
-    : set-window-state
-    : clear-window-state
-    : toggle-fullscreen
-    : toggle-borderless-windowed
-    : maximize-window
-    : minimize-window
-    : restore-window
-    : set-window-icon
-    : set-window-icons
-    : set-window-title
-    : set-window-position
-    : set-window-monitor
-    : set-window-min-size
-    : set-window-max-size
-    : set-window-size
-    : set-window-opacity
-    : set-window-focused
-    : get-window-handle
-    : get-screen-width
-    : get-screen-height
-    : get-render-width
-    : get-render-height
-    : get-monitor-count
-    : get-current-monitor
-    : get-monitor-position
-    : get-monitor-width
-    : get-monitor-height
-    : get-monitor-physical-width
-    : get-monitor-physical-height
-    : get-monitor-refresh-rate
-    : get-window-position
-    : get-window-scale-dpi
-    : get-monitor-name
-    : set-clipboard-text
-    : get-clipboard-text
-    : get-clipboard-image
-    : enable-event-waiting
-    : disable-event-waiting}))
+     : close-window
+     : window-should-close
+     : is-window-ready
+     : is-window-fullscreen
+     : is-window-hidden
+     : is-window-minimized
+     : is-window-maximized
+     : is-window-focused
+     : is-window-resized
+     : is-window-state
+     : set-window-state
+     : clear-window-state
+     : toggle-fullscreen
+     : toggle-borderless-windowed
+     : maximize-window
+     : minimize-window
+     : restore-window
+     : set-window-icon
+     : set-window-icons
+     : set-window-title
+     : set-window-position
+     : set-window-monitor
+     : set-window-min-size
+     : set-window-max-size
+     : set-window-size
+     : set-window-opacity
+     : set-window-focused
+     : get-window-handle
+     : get-screen-width
+     : get-screen-height
+     : get-render-width
+     : get-render-height
+     : get-monitor-count
+     : get-current-monitor
+     : get-monitor-position
+     : get-monitor-width
+     : get-monitor-height
+     : get-monitor-physical-width
+     : get-monitor-physical-height
+     : get-monitor-refresh-rate
+     : get-window-position
+     : get-window-scale-dpi
+     : get-monitor-name
+     : set-clipboard-text
+     : get-clipboard-text
+     : get-clipboard-image
+     : enable-event-waiting
+     : disable-event-waiting}))
 (local cursor 
   (do
     (fn show-cursor []
@@ -1856,12 +1854,12 @@
     (fn is-cursor-on-screen []
       "Check if cursor is on the screen"
       (rl.IsCursorOnScreen ))
-    { : show-cursor
-      : hide-cursor
-      : is-cursor-hidden
-      : enable-cursor
-      : disable-cursor
-      : is-cursor-on-screen}))
+    {: show-cursor
+     : hide-cursor
+     : is-cursor-hidden
+     : enable-cursor
+     : disable-cursor
+     : is-cursor-on-screen}))
 (local raudio 
   (do
     ;------------------------------------------------------------------------------------
@@ -2071,71 +2069,71 @@
       "Detach audio stream processor from the entire audio pipeline"
       (rl.DetachAudioMixedProcessor processor))
     {: init-audio-device
-    : close-audio-device
-    : is-audio-device-ready
-    : set-master-volume
-    : get-master-volume
-    : load-wave
-    : load-wave-from-memory
-    : is-wave-valid
-    : load-sound
-    : load-sound-from-wave
-    : load-sound-alias
-    : is-sound-valid
-    : update-sound
-    : unload-wave
-    : unload-sound
-    : unload-sound-alias
-    : export-wave
-    : export-wave-as-code
-    : play-sound
-    : stop-sound
-    : pause-sound
-    : resume-sound
-    : is-sound-playing
-    : set-sound-volume
-    : set-sound-pitch
-    : set-sound-pan
-    : wave-copy
-    : wave-crop
-    : wave-format
-    : load-wave-samples
-    : unload-wave-samples
-    : load-music-stream
-    : load-music-stream-from-memory
-    : is-music-valid
-    : unload-music-stream
-    : play-music-stream
-    : is-music-stream-playing
-    : update-music-stream
-    : stop-music-stream
-    : pause-music-stream
-    : resume-music-stream
-    : seek-music-stream
-    : set-music-volume
-    : set-music-pitch
-    : set-music-pan
-    : get-music-time-length
-    : get-music-time-played
-    : load-audio-stream
-    : is-audio-stream-valid
-    : unload-audio-stream
-    : update-audio-stream
-    : is-audio-stream-processed
-    : play-audio-stream
-    : pause-audio-stream
-    : resume-audio-stream
-    : is-audio-stream-playing
-    : stop-audio-stream
-    : set-audio-stream-volume
-    : set-audio-stream-pitch
-    : set-audio-stream-pan
-    : set-audio-stream-buffer-size-default
-    : set-audio-stream-callback
-    : attach-audio-stream-processor
-    : detach-audio-stream-processor
-    : attach-audio-mixed-processor
-    : detach-audio-mixed-processor}))
+     : close-audio-device
+     : is-audio-device-ready
+     : set-master-volume
+     : get-master-volume
+     : load-wave
+     : load-wave-from-memory
+     : is-wave-valid
+     : load-sound
+     : load-sound-from-wave
+     : load-sound-alias
+     : is-sound-valid
+     : update-sound
+     : unload-wave
+     : unload-sound
+     : unload-sound-alias
+     : export-wave
+     : export-wave-as-code
+     : play-sound
+     : stop-sound
+     : pause-sound
+     : resume-sound
+     : is-sound-playing
+     : set-sound-volume
+     : set-sound-pitch
+     : set-sound-pan
+     : wave-copy
+     : wave-crop
+     : wave-format
+     : load-wave-samples
+     : unload-wave-samples
+     : load-music-stream
+     : load-music-stream-from-memory
+     : is-music-valid
+     : unload-music-stream
+     : play-music-stream
+     : is-music-stream-playing
+     : update-music-stream
+     : stop-music-stream
+     : pause-music-stream
+     : resume-music-stream
+     : seek-music-stream
+     : set-music-volume
+     : set-music-pitch
+     : set-music-pan
+     : get-music-time-length
+     : get-music-time-played
+     : load-audio-stream
+     : is-audio-stream-valid
+     : unload-audio-stream
+     : update-audio-stream
+     : is-audio-stream-processed
+     : play-audio-stream
+     : pause-audio-stream
+     : resume-audio-stream
+     : is-audio-stream-playing
+     : stop-audio-stream
+     : set-audio-stream-volume
+     : set-audio-stream-pitch
+     : set-audio-stream-pan
+     : set-audio-stream-buffer-size-default
+     : set-audio-stream-callback
+     : attach-audio-stream-processor
+     : detach-audio-stream-processor
+     : attach-audio-mixed-processor
+     : detach-audio-mixed-processor}))
 (local rmodels
   (do
     ;------------------------------------------------------------------------------------
@@ -2381,81 +2379,81 @@
       "Get collision info between ray and quad"
       (rl.GetRayCollisionQuad ray p1 p2 p3 p4))
     {: draw-line3d
-    : draw-point3d
-    : draw-circle3d
-    : draw-triangle3d
-    : draw-triangle-strip3d
-    : draw-cube
-    : draw-cube-v
-    : draw-cube-wires
-    : draw-cube-wires-v
-    : draw-sphere
-    : draw-sphere-ex
-    : draw-sphere-wires
-    : draw-cylinder
-    : draw-cylinder-ex
-    : draw-cylinder-wires
-    : draw-cylinder-wires-ex
-    : draw-capsule
-    : draw-capsule-wires
-    : draw-plane
-    : draw-ray
-    : draw-grid
-    : load-model
-    : load-model-from-mesh
-    : is-model-valid
-    : unload-model
-    : get-model-bounding-box
-    : draw-model
-    : draw-model-ex
-    : draw-model-wires
-    : draw-model-wires-ex
-    : draw-model-points
-    : draw-model-points-ex
-    : draw-bounding-box
-    : draw-billboard
-    : draw-billboard-rec
-    : draw-billboard-pro
-    : upload-mesh
-    : update-mesh-buffer
-    : unload-mesh
-    : draw-mesh
-    : draw-mesh-instanced
-    : get-mesh-bounding-box
-    : gen-mesh-tangents
-    : export-mesh
-    : export-mesh-as-code
-    : gen-mesh-poly
-    : gen-mesh-plane
-    : gen-mesh-cube
-    : gen-mesh-sphere
-    : gen-mesh-hemi-sphere
-    : gen-mesh-cylinder
-    : gen-mesh-cone
-    : gen-mesh-torus
-    : gen-mesh-knot
-    : gen-mesh-heightmap
-    : gen-mesh-cubicmap
-    : load-materials
-    : load-material-default
-    : is-material-valid
-    : unload-material
-    : set-material-texture
-    : set-model-mesh-material
-    : load-model-animations
-    : update-model-animation
-    : update-model-animation-bones
-    : unload-model-animation
-    : unload-model-animations
-    : is-model-animation-valid
-    : check-collision-spheres
-    : check-collision-boxes
-    : check-collision-box-sphere
-    : get-ray-collision-sphere
-    : get-ray-collision-box
-    : get-ray-collision-mesh
-    : get-ray-collision-triangle
-    : get-ray-collision-quad}))
+     : draw-point3d
+     : draw-circle3d
+     : draw-triangle3d
+     : draw-triangle-strip3d
+     : draw-cube
+     : draw-cube-v
+     : draw-cube-wires
+     : draw-cube-wires-v
+     : draw-sphere
+     : draw-sphere-ex
+     : draw-sphere-wires
+     : draw-cylinder
+     : draw-cylinder-ex
+     : draw-cylinder-wires
+     : draw-cylinder-wires-ex
+     : draw-capsule
+     : draw-capsule-wires
+     : draw-plane
+     : draw-ray
+     : draw-grid
+     : load-model
+     : load-model-from-mesh
+     : is-model-valid
+     : unload-model
+     : get-model-bounding-box
+     : draw-model
+     : draw-model-ex
+     : draw-model-wires
+     : draw-model-wires-ex
+     : draw-model-points
+     : draw-model-points-ex
+     : draw-bounding-box
+     : draw-billboard
+     : draw-billboard-rec
+     : draw-billboard-pro
+     : upload-mesh
+     : update-mesh-buffer
+     : unload-mesh
+     : draw-mesh
+     : draw-mesh-instanced
+     : get-mesh-bounding-box
+     : gen-mesh-tangents
+     : export-mesh
+     : export-mesh-as-code
+     : gen-mesh-poly
+     : gen-mesh-plane
+     : gen-mesh-cube
+     : gen-mesh-sphere
+     : gen-mesh-hemi-sphere
+     : gen-mesh-cylinder
+     : gen-mesh-cone
+     : gen-mesh-torus
+     : gen-mesh-knot
+     : gen-mesh-heightmap
+     : gen-mesh-cubicmap
+     : load-materials
+     : load-material-default
+     : is-material-valid
+     : unload-material
+     : set-material-texture
+     : set-model-mesh-material
+     : load-model-animations
+     : update-model-animation
+     : update-model-animation-bones
+     : unload-model-animation
+     : unload-model-animations
+     : is-model-animation-valid
+     : check-collision-spheres
+     : check-collision-boxes
+     : check-collision-box-sphere
+     : get-ray-collision-sphere
+     : get-ray-collision-box
+     : get-ray-collision-mesh
+     : get-ray-collision-triangle
+     : get-ray-collision-quad}))
 (local rtext
   (do
     ;------------------------------------------------------------------------------------
@@ -2618,55 +2616,55 @@
       "Get float value from text (negative values not supported)"
       (rl.TextToFloat text))
     {: get-font-default
-    : load-font
-    : load-font-ex
-    : load-font-from-image
-    : load-font-from-memory
-    : is-font-valid
-    : load-font-data
-    : gen-image-font-atlas
-    : unload-font-data
-    : unload-font
-    : export-font-as-code
-    : draw-fps
-    : draw-text
-    : draw-text-ex
-    : draw-text-pro
-    : draw-text-codepoint
-    : draw-text-codepoints
-    : set-text-line-spacing
-    : measure-text
-    : measure-text-ex
-    : get-glyph-index
-    : get-glyph-info
-    : get-glyph-atlas-rec
-    : load-utf8
-    : unload-utf8
-    : load-codepoints
-    : unload-codepoints
-    : get-codepoint-count
-    : get-codepoint
-    : get-codepoint-next
-    : get-codepoint-previous
-    : codepoint-to-utf8
-    : text-copy
-    : text-is-equal
-    : text-length
-    : text-format
-    : text-subtext
-    : text-replace
-    : text-insert
-    : text-join
-    : text-split
-    : text-append
-    : text-find-index
-    : text-to-upper
-    : text-to-lower
-    : text-to-pascal
-    : text-to-snake
-    : text-to-camel
-    : text-to-integer
-    : text-to-float}))
+     : load-font
+     : load-font-ex
+     : load-font-from-image
+     : load-font-from-memory
+     : is-font-valid
+     : load-font-data
+     : gen-image-font-atlas
+     : unload-font-data
+     : unload-font
+     : export-font-as-code
+     : draw-fps
+     : draw-text
+     : draw-text-ex
+     : draw-text-pro
+     : draw-text-codepoint
+     : draw-text-codepoints
+     : set-text-line-spacing
+     : measure-text
+     : measure-text-ex
+     : get-glyph-index
+     : get-glyph-info
+     : get-glyph-atlas-rec
+     : load-utf8
+     : unload-utf8
+     : load-codepoints
+     : unload-codepoints
+     : get-codepoint-count
+     : get-codepoint
+     : get-codepoint-next
+     : get-codepoint-previous
+     : codepoint-to-utf8
+     : text-copy
+     : text-is-equal
+     : text-length
+     : text-format
+     : text-subtext
+     : text-replace
+     : text-insert
+     : text-join
+     : text-split
+     : text-append
+     : text-find-index
+     : text-to-upper
+     : text-to-lower
+     : text-to-pascal
+     : text-to-snake
+     : text-to-camel
+     : text-to-integer
+     : text-to-float}))
 (local rtextures
   (do
     ;------------------------------------------------------------------------------------
@@ -3029,120 +3027,120 @@
       "Get pixel data size in bytes for certain format"
       (rl.GetPixelDataSize width height format))
     {: load-image
-    : load-image-raw
-    : load-image-anim
-    : load-image-anim-from-memory
-    : load-image-from-memory
-    : load-image-from-texture
-    : load-image-from-screen
-    : is-image-valid
-    : unload-image
-    : export-image
-    : export-image-to-memory
-    : export-image-as-code
-    : gen-image-color
-    : gen-image-gradient-linear
-    : gen-image-gradient-radial
-    : gen-image-gradient-square
-    : gen-image-checked
-    : gen-image-white-noise
-    : gen-image-perlin-noise
-    : gen-image-cellular
-    : gen-image-text
-    : image-copy
-    : image-from-image
-    : image-from-channel
-    : image-text
-    : image-text-ex
-    : image-format
-    : image-to-pot
-    : image-crop
-    : image-alpha-crop
-    : image-alpha-clear
-    : image-alpha-mask
-    : image-alpha-premultiply
-    : image-blur-gaussian
-    : image-kernel-convolution
-    : image-resize
-    : image-resize-nn
-    : image-resize-canvas
-    : image-mipmaps
-    : image-dither
-    : image-flip-vertical
-    : image-flip-horizontal
-    : image-rotate
-    : image-rotate-cw
-    : image-rotate-ccw
-    : image-color-tint
-    : image-color-invert
-    : image-color-grayscale
-    : image-color-contrast
-    : image-color-brightness
-    : image-color-replace
-    : load-image-colors
-    : load-image-palette
-    : unload-image-colors
-    : unload-image-palette
-    : get-image-alpha-border
-    : get-image-color
-    : image-clear-background
-    : image-draw-pixel
-    : image-draw-pixel-v
-    : image-draw-line
-    : image-draw-line-v
-    : image-draw-line-ex
-    : image-draw-circle
-    : image-draw-circle-v
-    : image-draw-circle-lines
-    : image-draw-circle-lines-v
-    : image-draw-rectangle
-    : image-draw-rectangle-v
-    : image-draw-rectangle-rec
-    : image-draw-rectangle-lines
-    : image-draw-triangle
-    : image-draw-triangle-ex
-    : image-draw-triangle-lines
-    : image-draw-triangle-fan
-    : image-draw-triangle-strip
-    : image-draw
-    : image-draw-text
-    : image-draw-text-ex
-    : load-texture
-    : load-texture-from-image
-    : load-texture-cubemap
-    : load-render-texture
-    : is-texture-valid
-    : unload-texture
-    : is-render-texture-valid
-    : unload-render-texture
-    : update-texture
-    : update-texture-rec
-    : gen-texture-mipmaps
-    : set-texture-filter
-    : set-texture-wrap
-    : draw-texture
-    : draw-texture-v
-    : draw-texture-ex
-    : draw-texture-rec
-    : draw-texture-pro
-    : draw-texture-npatch
-    : color-is-equal
-    : fade
-    : color-to-int
-    : color-normalize
-    : color-from-normalized
-    : color-to-hsv
-    : color-from-hsv
-    : color-tint
-    : color-brightness
-    : color-contrast
-    : color-alpha
-    : color-alpha-blend
-    : color-lerp
-    : get-color
-    : get-pixel-color
-    : set-pixel-color
-    : get-pixel-data-size}))
+     : load-image-raw
+     : load-image-anim
+     : load-image-anim-from-memory
+     : load-image-from-memory
+     : load-image-from-texture
+     : load-image-from-screen
+     : is-image-valid
+     : unload-image
+     : export-image
+     : export-image-to-memory
+     : export-image-as-code
+     : gen-image-color
+     : gen-image-gradient-linear
+     : gen-image-gradient-radial
+     : gen-image-gradient-square
+     : gen-image-checked
+     : gen-image-white-noise
+     : gen-image-perlin-noise
+     : gen-image-cellular
+     : gen-image-text
+     : image-copy
+     : image-from-image
+     : image-from-channel
+     : image-text
+     : image-text-ex
+     : image-format
+     : image-to-pot
+     : image-crop
+     : image-alpha-crop
+     : image-alpha-clear
+     : image-alpha-mask
+     : image-alpha-premultiply
+     : image-blur-gaussian
+     : image-kernel-convolution
+     : image-resize
+     : image-resize-nn
+     : image-resize-canvas
+     : image-mipmaps
+     : image-dither
+     : image-flip-vertical
+     : image-flip-horizontal
+     : image-rotate
+     : image-rotate-cw
+     : image-rotate-ccw
+     : image-color-tint
+     : image-color-invert
+     : image-color-grayscale
+     : image-color-contrast
+     : image-color-brightness
+     : image-color-replace
+     : load-image-colors
+     : load-image-palette
+     : unload-image-colors
+     : unload-image-palette
+     : get-image-alpha-border
+     : get-image-color
+     : image-clear-background
+     : image-draw-pixel
+     : image-draw-pixel-v
+     : image-draw-line
+     : image-draw-line-v
+     : image-draw-line-ex
+     : image-draw-circle
+     : image-draw-circle-v
+     : image-draw-circle-lines
+     : image-draw-circle-lines-v
+     : image-draw-rectangle
+     : image-draw-rectangle-v
+     : image-draw-rectangle-rec
+     : image-draw-rectangle-lines
+     : image-draw-triangle
+     : image-draw-triangle-ex
+     : image-draw-triangle-lines
+     : image-draw-triangle-fan
+     : image-draw-triangle-strip
+     : image-draw
+     : image-draw-text
+     : image-draw-text-ex
+     : load-texture
+     : load-texture-from-image
+     : load-texture-cubemap
+     : load-render-texture
+     : is-texture-valid
+     : unload-texture
+     : is-render-texture-valid
+     : unload-render-texture
+     : update-texture
+     : update-texture-rec
+     : gen-texture-mipmaps
+     : set-texture-filter
+     : set-texture-wrap
+     : draw-texture
+     : draw-texture-v
+     : draw-texture-ex
+     : draw-texture-rec
+     : draw-texture-pro
+     : draw-texture-npatch
+     : color-is-equal
+     : fade
+     : color-to-int
+     : color-normalize
+     : color-from-normalized
+     : color-to-hsv
+     : color-from-hsv
+     : color-tint
+     : color-brightness
+     : color-contrast
+     : color-alpha
+     : color-alpha-blend
+     : color-lerp
+     : get-color
+     : get-pixel-color
+     : set-pixel-color
+     : get-pixel-data-size}))
 (local rshapes
   (do
     ;------------------------------------------------------------------------------------
@@ -3354,71 +3352,71 @@
       "Get collision rectangle for two rectangles collision"
       (rl.GetCollisionRec rec1 rec2))
     {: set-shapes-texture
-    : get-shapes-texture
-    : get-shapes-texture-rectangle
-    : draw-pixel
-    : draw-pixel-v
-    : draw-line
-    : draw-line-v
-    : draw-line-ex
-    : draw-line-strip
-    : draw-line-bezier
-    : draw-circle
-    : draw-circle-sector
-    : draw-circle-sector-lines
-    : draw-circle-gradient
-    : draw-circle-v
-    : draw-circle-lines
-    : draw-circle-lines-v
-    : draw-ellipse
-    : draw-ellipse-lines
-    : draw-ring
-    : draw-ring-lines
-    : draw-rectangle
-    : draw-rectangle-v
-    : draw-rectangle-rec
-    : draw-rectangle-pro
-    : draw-rectangle-gradient-v
-    : draw-rectangle-gradient-h
-    : draw-rectangle-gradient-ex
-    : draw-rectangle-lines
-    : draw-rectangle-lines-ex
-    : draw-rectangle-rounded
-    : draw-rectangle-rounded-lines
-    : draw-rectangle-rounded-lines-ex
-    : draw-triangle
-    : draw-triangle-lines
-    : draw-triangle-fan
-    : draw-triangle-strip
-    : draw-poly
-    : draw-poly-lines
-    : draw-poly-lines-ex
-    : draw-spline-linear
-    : draw-spline-basis
-    : draw-spline-catmull-rom
-    : draw-spline-bezier-quadratic
-    : draw-spline-bezier-cubic
-    : draw-spline-segment-linear
-    : draw-spline-segment-basis
-    : draw-spline-segment-catmull-rom
-    : draw-spline-segment-bezier-quadratic
-    : draw-spline-segment-bezier-cubic
-    : get-spline-point-linear
-    : get-spline-point-basis
-    : get-spline-point-catmull-rom
-    : get-spline-point-bezier-quad
-    : get-spline-point-bezier-cubic
-    : check-collision-recs
-    : check-collision-circles
-    : check-collision-circle-rec
-    : check-collision-circle-line
-    : check-collision-point-rec
-    : check-collision-point-circle
-    : check-collision-point-triangle
-    : check-collision-point-line
-    : check-collision-point-poly
-    : check-collision-lines
-    : get-collision-rec}))
+     : get-shapes-texture
+     : get-shapes-texture-rectangle
+     : draw-pixel
+     : draw-pixel-v
+     : draw-line
+     : draw-line-v
+     : draw-line-ex
+     : draw-line-strip
+     : draw-line-bezier
+     : draw-circle
+     : draw-circle-sector
+     : draw-circle-sector-lines
+     : draw-circle-gradient
+     : draw-circle-v
+     : draw-circle-lines
+     : draw-circle-lines-v
+     : draw-ellipse
+     : draw-ellipse-lines
+     : draw-ring
+     : draw-ring-lines
+     : draw-rectangle
+     : draw-rectangle-v
+     : draw-rectangle-rec
+     : draw-rectangle-pro
+     : draw-rectangle-gradient-v
+     : draw-rectangle-gradient-h
+     : draw-rectangle-gradient-ex
+     : draw-rectangle-lines
+     : draw-rectangle-lines-ex
+     : draw-rectangle-rounded
+     : draw-rectangle-rounded-lines
+     : draw-rectangle-rounded-lines-ex
+     : draw-triangle
+     : draw-triangle-lines
+     : draw-triangle-fan
+     : draw-triangle-strip
+     : draw-poly
+     : draw-poly-lines
+     : draw-poly-lines-ex
+     : draw-spline-linear
+     : draw-spline-basis
+     : draw-spline-catmull-rom
+     : draw-spline-bezier-quadratic
+     : draw-spline-bezier-cubic
+     : draw-spline-segment-linear
+     : draw-spline-segment-basis
+     : draw-spline-segment-catmull-rom
+     : draw-spline-segment-bezier-quadratic
+     : draw-spline-segment-bezier-cubic
+     : get-spline-point-linear
+     : get-spline-point-basis
+     : get-spline-point-catmull-rom
+     : get-spline-point-bezier-quad
+     : get-spline-point-bezier-cubic
+     : check-collision-recs
+     : check-collision-circles
+     : check-collision-circle-rec
+     : check-collision-circle-line
+     : check-collision-point-rec
+     : check-collision-point-circle
+     : check-collision-point-triangle
+     : check-collision-point-line
+     : check-collision-point-poly
+     : check-collision-lines
+     : get-collision-rec}))
 (local drawing
   (do
     ; Drawing-related functions
@@ -3758,110 +3756,110 @@
       "Play a recorded automation event"
       (rl.PlayAutomationEvent event))
     {: clear-background
-    : begin-drawing
-    : end-drawing
-    : begin-mode2d
-    : end-mode2d
-    : begin-mode3d
-    : end-mode3d
-    : begin-texture-mode
-    : end-texture-mode
-    : begin-shader-mode
-    : end-shader-mode
-    : begin-blend-mode
-    : end-blend-mode
-    : begin-scissor-mode
-    : end-scissor-mode
-    : begin-vr-stereo-mode
-    : end-vr-stereo-mode
-    : load-vr-stereo-config
-    : unload-vr-stereo-config
-    : load-shader
-    : load-shader-from-memory
-    : is-shader-valid
-    : get-shader-location
-    : get-shader-location-attrib
-    : set-shader-value
-    : set-shader-value-v
-    : set-shader-value-matrix
-    : set-shader-value-texture
-    : unload-shader
-    : get-screen-to-world-ray
-    : get-screen-to-world-ray-ex
-    : get-world-to-screen
-    : get-world-to-screen-ex
-    : get-world-to-screen2d
-    : get-screen-to-world2d
-    : get-camera-matrix
-    : get-camera-matrix2d
-    : set-target-fps
-    : get-frame-time
-    : get-time
-    : get-fps
-    : swap-screen-buffer
-    : poll-input-events
-    : wait-time
-    : set-random-seed
-    : get-random-value
-    : load-random-sequence
-    : unload-random-sequence
-    : take-screenshot
-    : set-config-flags
-    : open-url
-    : trace-log
-    : set-trace-log-level
-    : mem-alloc
-    : mem-realloc
-    : mem-free
-    : set-trace-log-callback
-    : set-load-file-data-callback
-    : set-save-file-data-callback
-    : set-load-file-text-callback
-    : set-save-file-text-callback
-    : load-file-data
-    : unload-file-data
-    : save-file-data
-    : export-data-as-code
-    : load-file-text
-    : unload-file-text
-    : save-file-text
-    : file-exists
-    : directory-exists
-    : is-file-extension
-    : get-file-length
-    : get-file-extension
-    : get-file-name
-    : get-file-name-without-ext
-    : get-directory-path
-    : get-prev-directory-path
-    : get-working-directory
-    : get-application-directory
-    : make-directory
-    : change-directory
-    : is-path-file
-    : is-file-name-valid
-    : load-directory-files
-    : load-directory-files-ex
-    : unload-directory-files
-    : is-file-dropped
-    : load-dropped-files
-    : unload-dropped-files
-    : get-file-mod-time
-    : compress-data
-    : decompress-data
-    : encode-data-base64
-    : decode-data-base64
-    : compute-crc32
-    : compute-md5
-    : compute-sha1
-    : load-automation-event-list
-    : unload-automation-event-list
-    : export-automation-event-list
-    : set-automation-event-list
-    : set-automation-event-base-frame
-    : start-automation-event-recording
-    : stop-automation-event-recording
-    : play-automation-event}))
+     : begin-drawing
+     : end-drawing
+     : begin-mode2d
+     : end-mode2d
+     : begin-mode3d
+     : end-mode3d
+     : begin-texture-mode
+     : end-texture-mode
+     : begin-shader-mode
+     : end-shader-mode
+     : begin-blend-mode
+     : end-blend-mode
+     : begin-scissor-mode
+     : end-scissor-mode
+     : begin-vr-stereo-mode
+     : end-vr-stereo-mode
+     : load-vr-stereo-config
+     : unload-vr-stereo-config
+     : load-shader
+     : load-shader-from-memory
+     : is-shader-valid
+     : get-shader-location
+     : get-shader-location-attrib
+     : set-shader-value
+     : set-shader-value-v
+     : set-shader-value-matrix
+     : set-shader-value-texture
+     : unload-shader
+     : get-screen-to-world-ray
+     : get-screen-to-world-ray-ex
+     : get-world-to-screen
+     : get-world-to-screen-ex
+     : get-world-to-screen2d
+     : get-screen-to-world2d
+     : get-camera-matrix
+     : get-camera-matrix2d
+     : set-target-fps
+     : get-frame-time
+     : get-time
+     : get-fps
+     : swap-screen-buffer
+     : poll-input-events
+     : wait-time
+     : set-random-seed
+     : get-random-value
+     : load-random-sequence
+     : unload-random-sequence
+     : take-screenshot
+     : set-config-flags
+     : open-url
+     : trace-log
+     : set-trace-log-level
+     : mem-alloc
+     : mem-realloc
+     : mem-free
+     : set-trace-log-callback
+     : set-load-file-data-callback
+     : set-save-file-data-callback
+     : set-load-file-text-callback
+     : set-save-file-text-callback
+     : load-file-data
+     : unload-file-data
+     : save-file-data
+     : export-data-as-code
+     : load-file-text
+     : unload-file-text
+     : save-file-text
+     : file-exists
+     : directory-exists
+     : is-file-extension
+     : get-file-length
+     : get-file-extension
+     : get-file-name
+     : get-file-name-without-ext
+     : get-directory-path
+     : get-prev-directory-path
+     : get-working-directory
+     : get-application-directory
+     : make-directory
+     : change-directory
+     : is-path-file
+     : is-file-name-valid
+     : load-directory-files
+     : load-directory-files-ex
+     : unload-directory-files
+     : is-file-dropped
+     : load-dropped-files
+     : unload-dropped-files
+     : get-file-mod-time
+     : compress-data
+     : decompress-data
+     : encode-data-base64
+     : decode-data-base64
+     : compute-crc32
+     : compute-md5
+     : compute-sha1
+     : load-automation-event-list
+     : unload-automation-event-list
+     : export-automation-event-list
+     : set-automation-event-list
+     : set-automation-event-base-frame
+     : start-automation-event-recording
+     : stop-automation-event-recording
+     : play-automation-event}))
 (local inputhandling
   (do 
     ;------------------------------------------------------------------------------------
@@ -4021,385 +4019,387 @@
     (fn update-camera-pro [camera movement rotation zoom]
       "Update camera movement/rotation"
       (rl.UpdateCameraPro camera movement rotation zoom))
-    { : is-key-pressed
-      : is-key-pressed-repeat
-      : is-key-down
-      : is-key-released
-      : is-key-up
-      : get-key-pressed
-      : get-char-pressed
-      : set-exit-key
-      : is-gamepad-available
-      : get-gamepad-name
-      : is-gamepad-button-pressed
-      : is-gamepad-button-down
-      : is-gamepad-button-released
-      : is-gamepad-button-up
-      : get-gamepad-button-pressed
-      : get-gamepad-axis-count
-      : get-gamepad-axis-movement
-      : set-gamepad-mappings
-      : set-gamepad-vibration
-      : is-mouse-button-pressed
-      : is-mouse-button-down
-      : is-mouse-button-released
-      : is-mouse-button-up
-      : get-mouse-x
-      : get-mouse-y
-      : get-mouse-position
-      : get-mouse-delta
-      : set-mouse-position
-      : set-mouse-offset
-      : set-mouse-scale
-      : get-mouse-wheel-move
-      : get-mouse-wheel-move-v
-      : set-mouse-cursor
-      : get-touch-x
-      : get-touch-y
-      : get-touch-position
-      : get-touch-point-id
-      : get-touch-point-count
-      : set-gestures-enabled
-      : is-gesture-detected
-      : get-gesture-detected
-      : get-gesture-hold-duration
-      : get-gesture-drag-vector
-      : get-gesture-drag-angle
-      : get-gesture-pinch-vector
-      : get-gesture-pinch-angle
-      : update-camera
-      : update-camera-pro}))
+    {: is-key-pressed
+     : is-key-pressed-repeat
+     : is-key-down
+     : is-key-released
+     : is-key-up
+     : get-key-pressed
+     : get-char-pressed
+     : set-exit-key
+     : is-gamepad-available
+     : get-gamepad-name
+     : is-gamepad-button-pressed
+     : is-gamepad-button-down
+     : is-gamepad-button-released
+     : is-gamepad-button-up
+     : get-gamepad-button-pressed
+     : get-gamepad-axis-count
+     : get-gamepad-axis-movement
+     : set-gamepad-mappings
+     : set-gamepad-vibration
+     : is-mouse-button-pressed
+     : is-mouse-button-down
+     : is-mouse-button-released
+     : is-mouse-button-up
+     : get-mouse-x
+     : get-mouse-y
+     : get-mouse-position
+     : get-mouse-delta
+     : set-mouse-position
+     : set-mouse-offset
+     : set-mouse-scale
+     : get-mouse-wheel-move
+     : get-mouse-wheel-move-v
+     : set-mouse-cursor
+     : get-touch-x
+     : get-touch-y
+     : get-touch-position
+     : get-touch-point-id
+     : get-touch-point-count
+     : set-gestures-enabled
+     : is-gesture-detected
+     : get-gesture-detected
+     : get-gesture-hold-duration
+     : get-gesture-drag-vector
+     : get-gesture-drag-angle
+     : get-gesture-pinch-vector
+     : get-gesture-pinch-angle
+     : update-camera
+     : update-camera-pro}))
 (local enumerators
   (do
     (local enum1 {
-    :flag-vsync-hint 64
-    :flag-fullscreen-mode 2
-    :flag-window-resizable 4
-    :flag-window-undecorated 8
-    :flag-window-hidden 128
-    :flag-window-minimized 512
-    :flag-window-maximized 1024
-    :flag-window-unfocused 2048
-    :flag-window-topmost 4096
-    :flag-window-always-run 256
-    :flag-window-transparent 16
-    :flag-window-highdpi 8192
-    :flag-window-mouse-passthrough 16384
-    :flag-borderless-windowed-mode 32768
-    :flag-msaa-4x-hint 32
-    :flag-interlaced-hint 65536
-    ; Trace log level
-    ; NOTE: Organized by priority level
-    :log-all 0
-    :log-trace 1
-    :log-debug 2
-    :log-info 3
-    :log-warning 4
-    :log-error 5
-    :log-fatal 6
-    :log-none 7
-    ; Keyboard keys US keyboard layout
-    ; NOTE: Use GetKeyPressed to allow redefining
-    ; required keys for alternative layouts
-    :key-null 0
-    :key-apostrophe 39
-    :key-comma 44
-    :key-minus 45
-    :key-period 46
-    :key-slash 47
-    :key-zero 48
-    :key-one 49
-    :key-two 50
-    :key-three 51
-    :key-four 52
-    :key-five 53
-    :key-six 54
-    :key-seven 55
-    :key-eight 56
-    :key-nine 57
-    :key-semicolon 59
-    :key-equal 61
-    :key-a 65
-    :key-b 66
-    :key-c 67
-    :key-d 68
-    :key-e 69
-    :key-f 70
-    :key-g 71
-    :key-h 72
-    :key-i 73
-    :key-j 74
-    :key-k 75
-    :key-l 76
-    :key-m 77
-    :key-n 78
-    :key-o 79
-    :key-p 80
-    :key-q 81
-    :key-r 82
-    :key-s 83
-    :key-t 84
-    :key-u 85
-    :key-v 86
-    :key-w 87
-    :key-x 88
-    :key-y 89
-    :key-z 90
-    :key-left-bracket 91
-    :key-backslash 92
-    :key-right-bracket 93
-    :key-grave 96
-    :key-space 32
-    :key-escape 256
-    :key-enter 257
-    :key-tab 258
-    :key-backspace 259
-    :key-insert 260
-    :key-delete 261
-    :key-right 262
-    :key-left 263
-    :key-down 264
-    :key-up 265
-    :key-page-up 266
-    :key-page-down 267
-    :key-home 268
-    :key-end 269
-    :key-caps-lock 280
-    :key-scroll-lock 281
-    :key-num-lock 282
-    :key-print-screen 283
-    :key-pause 284
-    :key-f1 290
-    :key-f2 291
-    :key-f3 292
-    :key-f4 293
-    :key-f5 294
-    :key-f6 295
-    :key-f7 296
-    :key-f8 297
-    :key-f9 298
-    :key-f10 299
-    :key-f11 300
-    :key-f12 301
-    :key-left-shift 340
-    :key-left-control 341
-    :key-left-alt 342
-    :key-left-super 343
-    :key-right-shift 344
-    :key-right-control 345
-    :key-right-alt 346
-    :key-right-super 347
-    :key-kb-menu 348
-    :key-kp-0 320
-    :key-kp-1 321
-    :key-kp-2 322
-    :key-kp-3 323
-    :key-kp-4 324
-    :key-kp-5 325
-    :key-kp-6 326
-    :key-kp-7 327
-    :key-kp-8 328
-    :key-kp-9 329
-    :key-kp-decimal 330
-    :key-kp-divide 331
-    :key-kp-multiply 332
-    :key-kp-subtract 333
-    :key-kp-add 334
-    :key-kp-enter 335
-    :key-kp-equal 336
-    :key-back 4
-    :key-menu 5
-    :key-volume-up 24
-    :key-volume-down 25})
+      :flag-vsync-hint 64
+      :flag-fullscreen-mode 2
+      :flag-window-resizable 4
+      :flag-window-undecorated 8
+      :flag-window-hidden 128
+      :flag-window-minimized 512
+      :flag-window-maximized 1024
+      :flag-window-unfocused 2048
+      :flag-window-topmost 4096
+      :flag-window-always-run 256
+      :flag-window-transparent 16
+      :flag-window-highdpi 8192
+      :flag-window-mouse-passthrough 16384
+      :flag-borderless-windowed-mode 32768
+      :flag-msaa-4x-hint 32
+      :flag-interlaced-hint 65536
+      ; Trace log level
+      ; NOTE: Organized by priority level
+      :log-all 0
+      :log-trace 1
+      :log-debug 2
+      :log-info 3
+      :log-warning 4
+      :log-error 5
+      :log-fatal 6
+      :log-none 7
+      ; Keyboard keys US keyboard layout
+      ; NOTE: Use GetKeyPressed to allow redefining
+      ; required keys for alternative layouts
+      :key-null 0
+      :key-apostrophe 39
+      :key-comma 44
+      :key-minus 45
+      :key-period 46
+      :key-slash 47
+      :key-zero 48
+      :key-one 49
+      :key-two 50
+      :key-three 51
+      :key-four 52
+      :key-five 53
+      :key-six 54
+      :key-seven 55
+      :key-eight 56
+      :key-nine 57
+      :key-semicolon 59
+      :key-equal 61
+      :key-a 65
+      :key-b 66
+      :key-c 67
+      :key-d 68
+      :key-e 69
+      :key-f 70
+      :key-g 71
+      :key-h 72
+      :key-i 73
+      :key-j 74
+      :key-k 75
+      :key-l 76
+      :key-m 77
+      :key-n 78
+      :key-o 79
+      :key-p 80
+      :key-q 81
+      :key-r 82
+      :key-s 83
+      :key-t 84
+      :key-u 85
+      :key-v 86
+      :key-w 87
+      :key-x 88
+      :key-y 89
+      :key-z 90
+      :key-left-bracket 91
+      :key-backslash 92
+      :key-right-bracket 93
+      :key-grave 96
+      :key-space 32
+      :key-escape 256
+      :key-enter 257
+      :key-tab 258
+      :key-backspace 259
+      :key-insert 260
+      :key-delete 261
+      :key-right 262
+      :key-left 263
+      :key-down 264
+      :key-up 265
+      :key-page-up 266
+      :key-page-down 267
+      :key-home 268
+      :key-end 269
+      :key-caps-lock 280
+      :key-scroll-lock 281
+      :key-num-lock 282
+      :key-print-screen 283
+      :key-pause 284
+      :key-f1 290
+      :key-f2 291
+      :key-f3 292
+      :key-f4 293
+      :key-f5 294
+      :key-f6 295
+      :key-f7 296
+      :key-f8 297
+      :key-f9 298
+      :key-f10 299
+      :key-f11 300
+      :key-f12 301
+      :key-left-shift 340
+      :key-left-control 341
+      :key-left-alt 342
+      :key-left-super 343
+      :key-right-shift 344
+      :key-right-control 345
+      :key-right-alt 346
+      :key-right-super 347
+      :key-kb-menu 348
+      :key-kp-0 320
+      :key-kp-1 321
+      :key-kp-2 322
+      :key-kp-3 323
+      :key-kp-4 324
+      :key-kp-5 325
+      :key-kp-6 326
+      :key-kp-7 327
+      :key-kp-8 328
+      :key-kp-9 329
+      :key-kp-decimal 330
+      :key-kp-divide 331
+      :key-kp-multiply 332
+      :key-kp-subtract 333
+      :key-kp-add 334
+      :key-kp-enter 335
+      :key-kp-equal 336
+      :key-back 4
+      :key-menu 5
+      :key-volume-up 24
+      :key-volume-down 25})
     ; Add backwards compatibility support for deprecated names
     ; Mouse buttons
-    (local enum2 {:mouse-button-left 0
-    :mouse-button-right 1
-    :mouse-button-middle 2
-    :mouse-button-side 3
-    :mouse-button-extra 4
-    :mouse-button-forward 5
-    :mouse-button-back 6
-    ; Mouse cursor
-    :mouse-cursor-default 0
-    :mouse-cursor-arrow 1
-    :mouse-cursor-ibeam 2
-    :mouse-cursor-crosshair 3
-    :mouse-cursor-pointing-hand 4
-    :mouse-cursor-resize-ew 5
-    :mouse-cursor-resize-ns 6
-    :mouse-cursor-resize-nwse 7
-    :mouse-cursor-resize-nesw 8
-    :mouse-cursor-resize-all 9
-    :mouse-cursor-not-allowed 10
-    ; Gamepad buttons
-    :gamepad-button-unknown 0
-    :gamepad-button-left-face-up 1
-    :gamepad-button-left-face-right 2
-    :gamepad-button-left-face-down 3
-    :gamepad-button-left-face-left 4
-    :gamepad-button-right-face-up 5
-    :gamepad-button-right-face-right 6
-    :gamepad-button-right-face-down 7
-    :gamepad-button-right-face-left 8
-    :gamepad-button-left-trigger-1 9
-    :gamepad-button-left-trigger-2 10
-    :gamepad-button-right-trigger-1 11
-    :gamepad-button-right-trigger-2 12
-    :gamepad-button-middle-left 13
-    :gamepad-button-middle 14
-    :gamepad-button-middle-right 15
-    :gamepad-button-left-thumb 16
-    :gamepad-button-right-thumb 17
-    ; Gamepad axis
-    :gamepad-axis-left-x 0
-    :gamepad-axis-left-y 1
-    :gamepad-axis-right-x 2
-    :gamepad-axis-right-y 3
-    :gamepad-axis-left-trigger 4
-    :gamepad-axis-right-trigger 5})
+    (local enum2 {
+      :mouse-button-left 0
+      :mouse-button-right 1
+      :mouse-button-middle 2
+      :mouse-button-side 3
+      :mouse-button-extra 4
+      :mouse-button-forward 5
+      :mouse-button-back 6
+      ; Mouse cursor
+      :mouse-cursor-default 0
+      :mouse-cursor-arrow 1
+      :mouse-cursor-ibeam 2
+      :mouse-cursor-crosshair 3
+      :mouse-cursor-pointing-hand 4
+      :mouse-cursor-resize-ew 5
+      :mouse-cursor-resize-ns 6
+      :mouse-cursor-resize-nwse 7
+      :mouse-cursor-resize-nesw 8
+      :mouse-cursor-resize-all 9
+      :mouse-cursor-not-allowed 10
+      ; Gamepad buttons
+      :gamepad-button-unknown 0
+      :gamepad-button-left-face-up 1
+      :gamepad-button-left-face-right 2
+      :gamepad-button-left-face-down 3
+      :gamepad-button-left-face-left 4
+      :gamepad-button-right-face-up 5
+      :gamepad-button-right-face-right 6
+      :gamepad-button-right-face-down 7
+      :gamepad-button-right-face-left 8
+      :gamepad-button-left-trigger-1 9
+      :gamepad-button-left-trigger-2 10
+      :gamepad-button-right-trigger-1 11
+      :gamepad-button-right-trigger-2 12
+      :gamepad-button-middle-left 13
+      :gamepad-button-middle 14
+      :gamepad-button-middle-right 15
+      :gamepad-button-left-thumb 16
+      :gamepad-button-right-thumb 17
+      ; Gamepad axis
+      :gamepad-axis-left-x 0
+      :gamepad-axis-left-y 1
+      :gamepad-axis-right-x 2
+      :gamepad-axis-right-y 3
+      :gamepad-axis-left-trigger 4
+      :gamepad-axis-right-trigger 5})
     ; Material map index
-    (local enum3 {:material-map-albedo 0
-    :material-map-metalness 1
-    :material-map-normal 2
-    :material-map-roughness 3
-    :material-map-occlusion 4
-    :material-map-emission 5
-    :material-map-height 6
-    :material-map-cubemap 7
-    :material-map-irradiance 8
-    :material-map-prefilter 9
-    :material-map-brdf 10
-    ; Shader location index
-    :shader-loc-vertex-position 0
-    :shader-loc-vertex-texcoord01 1
-    :shader-loc-vertex-texcoord02 2
-    :shader-loc-vertex-normal 3
-    :shader-loc-vertex-tangent 4
-    :shader-loc-vertex-color 5
-    :shader-loc-matrix-mvp 6
-    :shader-loc-matrix-view 7
-    :shader-loc-matrix-projection 8
-    :shader-loc-matrix-model 9
-    :shader-loc-matrix-normal 10
-    :shader-loc-vector-view 11
-    :shader-loc-color-diffuse 12
-    :shader-loc-color-specular 13
-    :shader-loc-color-ambient 14
-    :shader-loc-map-albedo 15
-    :shader-loc-map-metalness 16
-    :shader-loc-map-normal 17
-    :shader-loc-map-roughness 18
-    :shader-loc-map-occlusion 19
-    :shader-loc-map-emission 20
-    :shader-loc-map-height 21
-    :shader-loc-map-cubemap 22
-    :shader-loc-map-irradiance 23
-    :shader-loc-map-prefilter 24
-    :shader-loc-map-brdf 25
-    :shader-loc-vertex-boneids 26
-    :shader-loc-vertex-boneweights 27
-    :shader-loc-bone-matrices 28
-    ; Shader uniform data type
-    :shader-uniform-float 0
-    :shader-uniform-vec2 1
-    :shader-uniform-vec3 2
-    :shader-uniform-vec4 3
-    :shader-uniform-int 4
-    :shader-uniform-ivec2 5
-    :shader-uniform-ivec3 6
-    :shader-uniform-ivec4 7
-    :shader-uniform-sampler2d 8
-    ; Shader attribute data types
-    :shader-attrib-float 0
-    :shader-attrib-vec2 1
-    :shader-attrib-vec3 2
-    :shader-attrib-vec4 3
-    ; Pixel formats
-    ; NOTE: Support depends on OpenGL version and platform
-    :pixelformat-uncompressed-grayscale 1
-    :pixelformat-uncompressed-gray-alpha 2
-    :pixelformat-uncompressed-r5g6b5 3
-    :pixelformat-uncompressed-r8g8b8 4
-    :pixelformat-uncompressed-r5g5b5a1 5
-    :pixelformat-uncompressed-r4g4b4a4 6
-    :pixelformat-uncompressed-r8g8b8a8 7
-    :pixelformat-uncompressed-r32 8
-    :pixelformat-uncompressed-r32g32b32 9
-    :pixelformat-uncompressed-r32g32b32a32 10
-    :pixelformat-uncompressed-r16 11
-    :pixelformat-uncompressed-r16g16b16 12
-    :pixelformat-uncompressed-r16g16b16a16 13
-    :pixelformat-compressed-dxt1-rgb 14
-    :pixelformat-compressed-dxt1-rgba 15
-    :pixelformat-compressed-dxt3-rgba 16
-    :pixelformat-compressed-dxt5-rgba 17
-    :pixelformat-compressed-etc1-rgb 18
-    :pixelformat-compressed-etc2-rgb 19
-    :pixelformat-compressed-etc2-eac-rgba 20
-    :pixelformat-compressed-pvrt-rgb 21
-    :pixelformat-compressed-pvrt-rgba 22
-    :pixelformat-compressed-astc-4x4-rgba 23
-    :pixelformat-compressed-astc-8x8-rgba 24
-    ; Texture parameters: filter mode
-    ; NOTE 1: Filtering considers mipmaps if available in the texture
-    ; NOTE 2: Filter is accordingly set for minification and magnification
-    :texture-filter-point 0
-    :texture-filter-bilinear 1
-    :texture-filter-trilinear 2
-    :texture-filter-anisotropic-4x 3
-    :texture-filter-anisotropic-8x 4
-    :texture-filter-anisotropic-16x 5
-    ; Texture parameters: wrap mode
-    :texture-wrap-repeat 0
-    :texture-wrap-clamp 1
-    :texture-wrap-mirror-repeat 2
-    :texture-wrap-mirror-clamp 3
-    ; Cubemap layouts
-    :cubemap-layout-auto-detect 0
-    :cubemap-layout-line-vertical 1
-    :cubemap-layout-line-horizontal 2
-    :cubemap-layout-cross-three-by-four 3
-    :cubemap-layout-cross-four-by-three 4
-    ; Font type, defines generation method
-    :font-default 0
-    :font-bitmap 1
-    :font-sdf 2
-    ; Color blending modes pre-defined
-    :blend-alpha 0
-    :blend-additive 1
-    :blend-multiplied 2
-    :blend-add-colors 3
-    :blend-subtract-colors 4
-    :blend-alpha-premultiply 5
-    :blend-custom 6
-    :blend-custom-separate 7
-    ; Gesture
-    ; NOTE: Provided as bit-wise flags to enable only desired gestures
-    :gesture-none 0
-    :gesture-tap 1
-    :gesture-doubletap 2
-    :gesture-hold 4
-    :gesture-drag 8
-    :gesture-swipe-right 16
-    :gesture-swipe-left 32
-    :gesture-swipe-up 64
-    :gesture-swipe-down 128
-    :gesture-pinch-in 256
-    :gesture-pinch-out 512
-    ; Camera system modes
-    :camera-custom 0
-    :camera-free 1
-    :camera-orbital 2
-    :camera-first-person 3
-    :camera-third-person 4
-    ; Camera projection
-    :camera-perspective 0
-    :camera-orthographic 1
-    ; N-patch layout
-    :npatch-nine-patch 0
-    :npatch-three-patch-vertical 1
-    :npatch-three-patch-horizontal 2})
+    (local enum3 {
+      :material-map-albedo 0
+      :material-map-metalness 1
+      :material-map-normal 2
+      :material-map-roughness 3
+      :material-map-occlusion 4
+      :material-map-emission 5
+      :material-map-height 6
+      :material-map-cubemap 7
+      :material-map-irradiance 8
+      :material-map-prefilter 9
+      :material-map-brdf 10
+      ; Shader location index
+      :shader-loc-vertex-position 0
+      :shader-loc-vertex-texcoord01 1
+      :shader-loc-vertex-texcoord02 2
+      :shader-loc-vertex-normal 3
+      :shader-loc-vertex-tangent 4
+      :shader-loc-vertex-color 5
+      :shader-loc-matrix-mvp 6
+      :shader-loc-matrix-view 7
+      :shader-loc-matrix-projection 8
+      :shader-loc-matrix-model 9
+      :shader-loc-matrix-normal 10
+      :shader-loc-vector-view 11
+      :shader-loc-color-diffuse 12
+      :shader-loc-color-specular 13
+      :shader-loc-color-ambient 14
+      :shader-loc-map-albedo 15
+      :shader-loc-map-metalness 16
+      :shader-loc-map-normal 17
+      :shader-loc-map-roughness 18
+      :shader-loc-map-occlusion 19
+      :shader-loc-map-emission 20
+      :shader-loc-map-height 21
+      :shader-loc-map-cubemap 22
+      :shader-loc-map-irradiance 23
+      :shader-loc-map-prefilter 24
+      :shader-loc-map-brdf 25
+      :shader-loc-vertex-boneids 26
+      :shader-loc-vertex-boneweights 27
+      :shader-loc-bone-matrices 28
+      ; Shader uniform data type
+      :shader-uniform-float 0
+      :shader-uniform-vec2 1
+      :shader-uniform-vec3 2
+      :shader-uniform-vec4 3
+      :shader-uniform-int 4
+      :shader-uniform-ivec2 5
+      :shader-uniform-ivec3 6
+      :shader-uniform-ivec4 7
+      :shader-uniform-sampler2d 8
+      ; Shader attribute data types
+      :shader-attrib-float 0
+      :shader-attrib-vec2 1
+      :shader-attrib-vec3 2
+      :shader-attrib-vec4 3
+      ; Pixel formats
+      ; NOTE: Support depends on OpenGL version and platform
+      :pixelformat-uncompressed-grayscale 1
+      :pixelformat-uncompressed-gray-alpha 2
+      :pixelformat-uncompressed-r5g6b5 3
+      :pixelformat-uncompressed-r8g8b8 4
+      :pixelformat-uncompressed-r5g5b5a1 5
+      :pixelformat-uncompressed-r4g4b4a4 6
+      :pixelformat-uncompressed-r8g8b8a8 7
+      :pixelformat-uncompressed-r32 8
+      :pixelformat-uncompressed-r32g32b32 9
+      :pixelformat-uncompressed-r32g32b32a32 10
+      :pixelformat-uncompressed-r16 11
+      :pixelformat-uncompressed-r16g16b16 12
+      :pixelformat-uncompressed-r16g16b16a16 13
+      :pixelformat-compressed-dxt1-rgb 14
+      :pixelformat-compressed-dxt1-rgba 15
+      :pixelformat-compressed-dxt3-rgba 16
+      :pixelformat-compressed-dxt5-rgba 17
+      :pixelformat-compressed-etc1-rgb 18
+      :pixelformat-compressed-etc2-rgb 19
+      :pixelformat-compressed-etc2-eac-rgba 20
+      :pixelformat-compressed-pvrt-rgb 21
+      :pixelformat-compressed-pvrt-rgba 22
+      :pixelformat-compressed-astc-4x4-rgba 23
+      :pixelformat-compressed-astc-8x8-rgba 24
+      ; Texture parameters: filter mode
+      ; NOTE 1: Filtering considers mipmaps if available in the texture
+      ; NOTE 2: Filter is accordingly set for minification and magnification
+      :texture-filter-point 0
+      :texture-filter-bilinear 1
+      :texture-filter-trilinear 2
+      :texture-filter-anisotropic-4x 3
+      :texture-filter-anisotropic-8x 4
+      :texture-filter-anisotropic-16x 5
+      ; Texture parameters: wrap mode
+      :texture-wrap-repeat 0
+      :texture-wrap-clamp 1
+      :texture-wrap-mirror-repeat 2
+      :texture-wrap-mirror-clamp 3
+      ; Cubemap layouts
+      :cubemap-layout-auto-detect 0
+      :cubemap-layout-line-vertical 1
+      :cubemap-layout-line-horizontal 2
+      :cubemap-layout-cross-three-by-four 3
+      :cubemap-layout-cross-four-by-three 4
+      ; Font type, defines generation method
+      :font-default 0
+      :font-bitmap 1
+      :font-sdf 2
+      ; Color blending modes pre-defined
+      :blend-alpha 0
+      :blend-additive 1
+      :blend-multiplied 2
+      :blend-add-colors 3
+      :blend-subtract-colors 4
+      :blend-alpha-premultiply 5
+      :blend-custom 6
+      :blend-custom-separate 7
+      ; Gesture
+      ; NOTE: Provided as bit-wise flags to enable only desired gestures
+      :gesture-none 0
+      :gesture-tap 1
+      :gesture-doubletap 2
+      :gesture-hold 4
+      :gesture-drag 8
+      :gesture-swipe-right 16
+      :gesture-swipe-left 32
+      :gesture-swipe-up 64
+      :gesture-swipe-down 128
+      :gesture-pinch-in 256
+      :gesture-pinch-out 512
+      ; Camera system modes
+      :camera-custom 0
+      :camera-free 1
+      :camera-orbital 2
+      :camera-first-person 3
+      :camera-third-person 4
+      ; Camera projection
+      :camera-perspective 0
+      :camera-orthographic 1
+      ; N-patch layout
+      :npatch-nine-patch 0
+      :npatch-three-patch-vertical 1
+      :npatch-three-patch-horizontal 2})
     (local enums {})
     (merge-tables enums enum1)
     (merge-tables enums enum2)
@@ -4418,6 +4418,6 @@
 (merge-tables raylib inputhandling)
 (merge-tables raylib enumerators)
 
-(print "Raylib bindings loaded!")
+(print "INFO: Initializing raylib 5.5 bindings")
 
 raylib
