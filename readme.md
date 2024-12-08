@@ -7,7 +7,7 @@ Provides full coverage of:
 Includes:
 - Built-in [Raylib dynamic libraries](https://github.com/raysan5/raylib/releases/tag/5.5) for Windows and Linux (x64).
 - [Lume](https://github.com/rxi/lume) library
-- A couple of [examples](https://github.com/0riginaln0/fnl-raylib/tree/main/examples)
+- [7 examples](https://github.com/0riginaln0/fnl-raylib/tree/main/examples). Some of them are adaptations of official examples, the rest are custom ones.
 - Makefile for both Windows and Linux
 
 
