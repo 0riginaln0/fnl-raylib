@@ -1,4 +1,4 @@
-(print "INIT: RAYLIB")
+(print "LOAD: RAYLIB")
 (local lume (require :lib.lume))
 
 (local raylib {})

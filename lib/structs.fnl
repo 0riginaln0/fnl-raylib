@@ -1,6 +1,6 @@
 ; raymath.h bindigs are placed here because they have the same struct typedefs as the struct module
 ; splitting up those two modules will produce "attempt to refedine" error
-(print "INIT: STRUCTS & MATH")
+(print "LOAD: STRUCTS & MATH")
 
 (local dll (require :lib.dll))
 (local ffi (. dll :ffi))

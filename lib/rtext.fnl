@@ -1,4 +1,4 @@
-(print "INIT: TEXT")
+(print "LOAD: TEXT")
 (local safe-mode true)
 
 (local dll (require :lib.dll))

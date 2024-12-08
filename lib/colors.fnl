@@ -1,4 +1,4 @@
-(print "INIT: COLORS")
+(print "LOAD: COLORS")
 
 (local structs (require :lib.structs))
 

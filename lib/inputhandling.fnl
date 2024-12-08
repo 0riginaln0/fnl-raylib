@@ -1,4 +1,4 @@
-(print "INIT: INPUT HANDLING")
+(print "LOAD: INPUT HANDLING")
 
 (local dll (require :lib.dll))
 (local ffi (. dll :ffi))

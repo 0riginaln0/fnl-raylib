@@ -1,4 +1,6 @@
 (local rl (require :lib.raylib))
+(local utils (require :lib.utils))
+(local inspect (. utils :inspect))
 
 (local screen-width 800)
 (local screen-height 450)
@@ -8,8 +10,10 @@
 (var ball-position (rl.Vector2 0 0))
 (var ball-color rl.darkblue)
 
-
-(rl.set-target-fps 60)
+(var current-screen (rl.get-current-monitor))
+(-> (rl.get-monitor-refresh-rate current-screen)
+    (inspect "Monitor refresh rate:")
+    (rl.set-target-fps))
 
 (while (not (rl.window-should-close))
   (set ball-position (rl.get-mouse-position))

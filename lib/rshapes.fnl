@@ -1,4 +1,4 @@
-(print "INIT: SHAPES")
+(print "LOAD: SHAPES")
 (local safe-mode true)
 
 (local dll (require :lib.dll))

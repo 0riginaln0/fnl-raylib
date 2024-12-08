@@ -1,6 +1,6 @@
 ; Cursor-related functions
 
-(print "INIT: CURSOR")
+(print "LOAD: CURSOR")
 
 (local dll (require :lib.dll))
 (local ffi (. dll :ffi))

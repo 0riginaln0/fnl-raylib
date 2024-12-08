@@ -1,4 +1,4 @@
-(print "INIT: TEXTURES")
+(print "LOAD: TEXTURES")
 (local safe-mode true)
 
 (local dll (require :lib.dll))

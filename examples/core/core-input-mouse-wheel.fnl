@@ -11,10 +11,10 @@
 
 (var box-position (lume.round (- (/ screen-height) 40)))
 (var scroll-speed 10)
-; (var current-screen (rl.get-current-monitor))
-; (-> (rl.get-monitor-refresh-rate current-screen)
-;     (inspect "Monitor refresh rate:")
-;     (rl.set-target-fps))
+(var current-screen (rl.get-current-monitor))
+(-> (rl.get-monitor-refresh-rate current-screen)
+    (inspect "Monitor refresh rate:")
+    (rl.set-target-fps))
 
 
 (while (not (rl.window-should-close))

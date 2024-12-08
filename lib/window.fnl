@@ -1,4 +1,4 @@
-(print "INIT: WINDOW")
+(print "LOAD: WINDOW")
 
 (local dll (require :lib.dll))
 (local ffi (. dll :ffi))

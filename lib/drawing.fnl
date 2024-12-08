@@ -1,4 +1,4 @@
-(print "INIT: Drawing, Vr, Shader, and others")
+(print "LOAD: Drawing, Vr, Shader, and others")
 
 (local dll (require :lib.dll))
 (local ffi (. dll :ffi))

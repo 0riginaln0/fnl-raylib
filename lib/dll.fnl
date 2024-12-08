@@ -1,4 +1,4 @@
-(print "INIT: DLL")
+(print "LOAD: DLL")
 
 (local ffi (require :ffi))
 

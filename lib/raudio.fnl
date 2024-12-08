@@ -1,4 +1,4 @@
-(print "INIT: RAUDIO")
+(print "LOAD: RAUDIO")
 (local safe-mode true)
 
 (local dll (require :lib.dll))
