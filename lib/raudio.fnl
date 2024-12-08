@@ -146,272 +146,272 @@ void DetachAudioMixedProcessor(AudioCallback processor); // Detach audio stream 
 ;------------------------------------------------------------------------------------
 ; Audio device management functions
 (fn init-audio-device []
-	"Initialize audio device and context"
-	(rl.InitAudioDevice ))
+  "Initialize audio device and context"
+  (rl.InitAudioDevice ))
 
 (fn close-audio-device []
-	"Close the audio device and context"
-	(rl.CloseAudioDevice ))
+  "Close the audio device and context"
+  (rl.CloseAudioDevice ))
 
 (fn is-audio-device-ready []
-	"Check if audio device has been initialized successfully"
-	(rl.IsAudioDeviceReady ))
+  "Check if audio device has been initialized successfully"
+  (rl.IsAudioDeviceReady ))
 
 (fn set-master-volume [volume]
-	"Set master volume (listener)"
-	(rl.SetMasterVolume volume))
+  "Set master volume (listener)"
+  (rl.SetMasterVolume volume))
 
 (fn get-master-volume []
-	"Get master volume (listener)"
-	(rl.GetMasterVolume ))
+  "Get master volume (listener)"
+  (rl.GetMasterVolume ))
 
 ; Wave/Sound loading/unloading functions
 (fn load-wave [file-name]
-	"Load wave data from file"
-	(rl.LoadWave file-name))
+  "Load wave data from file"
+  (rl.LoadWave file-name))
 
 (fn load-wave-from-memory [file-type file-data data-size]
-	"Load wave from memory buffer, fileType refers to extension: i.e. '.wav'"
-	(rl.LoadWaveFromMemory file-type file-data data-size))
+  "Load wave from memory buffer, fileType refers to extension: i.e. '.wav'"
+  (rl.LoadWaveFromMemory file-type file-data data-size))
 
 (fn is-wave-valid [wave]
-	"Checks if wave data is valid (data loaded and parameters)"
-	(rl.IsWaveValid wave))
+  "Checks if wave data is valid (data loaded and parameters)"
+  (rl.IsWaveValid wave))
 
 (fn load-sound [file-name]
-	"Load sound from file"
-	(rl.LoadSound file-name))
+  "Load sound from file"
+  (rl.LoadSound file-name))
 
 (fn load-sound-from-wave [wave]
-	"Load sound from wave data"
-	(rl.LoadSoundFromWave wave))
+  "Load sound from wave data"
+  (rl.LoadSoundFromWave wave))
 
 (fn load-sound-alias [source]
-	"Create a new sound that shares the same sample data as the source sound, does not own the sound data"
-	(rl.LoadSoundAlias source))
+  "Create a new sound that shares the same sample data as the source sound, does not own the sound data"
+  (rl.LoadSoundAlias source))
 
 (fn is-sound-valid [sound]
-	"Checks if a sound is valid (data loaded and buffers initialized)"
-	(rl.IsSoundValid sound))
+  "Checks if a sound is valid (data loaded and buffers initialized)"
+  (rl.IsSoundValid sound))
 
 (fn update-sound [sound data sample-count]
-	"Update sound buffer with new data"
-	(rl.UpdateSound sound data sample-count))
+  "Update sound buffer with new data"
+  (rl.UpdateSound sound data sample-count))
 
 (fn unload-wave [wave]
-	"Unload wave data"
-	(rl.UnloadWave wave))
+  "Unload wave data"
+  (rl.UnloadWave wave))
 
 (fn unload-sound [sound]
-	"Unload sound"
-	(rl.UnloadSound sound))
+  "Unload sound"
+  (rl.UnloadSound sound))
 
 (fn unload-sound-alias [alias]
-	"Unload a sound alias (does not deallocate sample data)"
-	(rl.UnloadSoundAlias alias))
+  "Unload a sound alias (does not deallocate sample data)"
+  (rl.UnloadSoundAlias alias))
 
 (fn export-wave [wave file-name]
-	"Export wave data to file, returns true on success"
-	(rl.ExportWave wave file-name))
+  "Export wave data to file, returns true on success"
+  (rl.ExportWave wave file-name))
 
 (fn export-wave-as-code [wave file-name]
-	"Export wave sample data to code (.h), returns true on success"
-	(rl.ExportWaveAsCode wave file-name))
+  "Export wave sample data to code (.h), returns true on success"
+  (rl.ExportWaveAsCode wave file-name))
 
 ; Wave/Sound management functions
 (fn play-sound [sound]
-	"Play a sound"
-	(rl.PlaySound sound))
+  "Play a sound"
+  (rl.PlaySound sound))
 
 (fn stop-sound [sound]
-	"Stop playing a sound"
-	(rl.StopSound sound))
+  "Stop playing a sound"
+  (rl.StopSound sound))
 
 (fn pause-sound [sound]
-	"Pause a sound"
-	(rl.PauseSound sound))
+  "Pause a sound"
+  (rl.PauseSound sound))
 
 (fn resume-sound [sound]
-	"Resume a paused sound"
-	(rl.ResumeSound sound))
+  "Resume a paused sound"
+  (rl.ResumeSound sound))
 
 (fn is-sound-playing [sound]
-	"Check if a sound is currently playing"
-	(rl.IsSoundPlaying sound))
+  "Check if a sound is currently playing"
+  (rl.IsSoundPlaying sound))
 
 (fn set-sound-volume [sound volume]
-	"Set volume for a sound (1.0 is max level)"
-	(rl.SetSoundVolume sound volume))
+  "Set volume for a sound (1.0 is max level)"
+  (rl.SetSoundVolume sound volume))
 
 (fn set-sound-pitch [sound pitch]
-	"Set pitch for a sound (1.0 is base level)"
-	(rl.SetSoundPitch sound pitch))
+  "Set pitch for a sound (1.0 is base level)"
+  (rl.SetSoundPitch sound pitch))
 
 (fn set-sound-pan [sound pan]
-	"Set pan for a sound (0.5 is center)"
-	(rl.SetSoundPan sound pan))
+  "Set pan for a sound (0.5 is center)"
+  (rl.SetSoundPan sound pan))
 
 (fn wave-copy [wave]
-	"Copy a wave to a new wave"
-	(rl.WaveCopy wave))
+  "Copy a wave to a new wave"
+  (rl.WaveCopy wave))
 
 (fn wave-crop [wave init-frame final-frame]
-	"Crop a wave to defined frames range"
-	(rl.WaveCrop wave init-frame final-frame))
+  "Crop a wave to defined frames range"
+  (rl.WaveCrop wave init-frame final-frame))
 
 (fn wave-format [wave sample-rate sample-size channels]
-	"Convert wave data to desired format"
-	(rl.WaveFormat wave sample-rate sample-size channels))
+  "Convert wave data to desired format"
+  (rl.WaveFormat wave sample-rate sample-size channels))
 
 (fn load-wave-samples [wave]
-	"Load samples data from wave as a 32bit float data array"
-	(rl.LoadWaveSamples wave))
+  "Load samples data from wave as a 32bit float data array"
+  (rl.LoadWaveSamples wave))
 
 (fn unload-wave-samples [samples]
-	"Unload samples data loaded with LoadWaveSamples()"
-	(rl.UnloadWaveSamples samples))
+  "Unload samples data loaded with LoadWaveSamples()"
+  (rl.UnloadWaveSamples samples))
 
 ; Music management functions
 (fn load-music-stream [file-name]
-	"Load music stream from file"
-	(rl.LoadMusicStream file-name))
+  "Load music stream from file"
+  (rl.LoadMusicStream file-name))
 
 (fn load-music-stream-from-memory [file-type data data-size]
-	"Load music stream from data"
-	(rl.LoadMusicStreamFromMemory file-type data data-size))
+  "Load music stream from data"
+  (rl.LoadMusicStreamFromMemory file-type data data-size))
 
 (fn is-music-valid [music]
-	"Checks if a music stream is valid (context and buffers initialized)"
-	(rl.IsMusicValid music))
+  "Checks if a music stream is valid (context and buffers initialized)"
+  (rl.IsMusicValid music))
 
 (fn unload-music-stream [music]
-	"Unload music stream"
-	(rl.UnloadMusicStream music))
+  "Unload music stream"
+  (rl.UnloadMusicStream music))
 
 (fn play-music-stream [music]
-	"Start music playing"
-	(rl.PlayMusicStream music))
+  "Start music playing"
+  (rl.PlayMusicStream music))
 
 (fn is-music-stream-playing [music]
-	"Check if music is playing"
-	(rl.IsMusicStreamPlaying music))
+  "Check if music is playing"
+  (rl.IsMusicStreamPlaying music))
 
 (fn update-music-stream [music]
-	"Updates buffers for music streaming"
-	(rl.UpdateMusicStream music))
+  "Updates buffers for music streaming"
+  (rl.UpdateMusicStream music))
 
 (fn stop-music-stream [music]
-	"Stop music playing"
-	(rl.StopMusicStream music))
+  "Stop music playing"
+  (rl.StopMusicStream music))
 
 (fn pause-music-stream [music]
-	"Pause music playing"
-	(rl.PauseMusicStream music))
+  "Pause music playing"
+  (rl.PauseMusicStream music))
 
 (fn resume-music-stream [music]
-	"Resume playing paused music"
-	(rl.ResumeMusicStream music))
+  "Resume playing paused music"
+  (rl.ResumeMusicStream music))
 
 (fn seek-music-stream [music position]
-	"Seek music to a position (in seconds)"
-	(rl.SeekMusicStream music position))
+  "Seek music to a position (in seconds)"
+  (rl.SeekMusicStream music position))
 
 (fn set-music-volume [music volume]
-	"Set volume for music (1.0 is max level)"
-	(rl.SetMusicVolume music volume))
+  "Set volume for music (1.0 is max level)"
+  (rl.SetMusicVolume music volume))
 
 (fn set-music-pitch [music pitch]
-	"Set pitch for a music (1.0 is base level)"
-	(rl.SetMusicPitch music pitch))
+  "Set pitch for a music (1.0 is base level)"
+  (rl.SetMusicPitch music pitch))
 
 (fn set-music-pan [music pan]
-	"Set pan for a music (0.5 is center)"
-	(rl.SetMusicPan music pan))
+  "Set pan for a music (0.5 is center)"
+  (rl.SetMusicPan music pan))
 
 (fn get-music-time-length [music]
-	"Get music time length (in seconds)"
-	(rl.GetMusicTimeLength music))
+  "Get music time length (in seconds)"
+  (rl.GetMusicTimeLength music))
 
 (fn get-music-time-played [music]
-	"Get current music time played (in seconds)"
-	(rl.GetMusicTimePlayed music))
+  "Get current music time played (in seconds)"
+  (rl.GetMusicTimePlayed music))
 
 ; AudioStream management functions
 (fn load-audio-stream [sample-rate sample-size channels]
-	"Load audio stream (to stream raw audio pcm data)"
-	(rl.LoadAudioStream sample-rate sample-size channels))
+  "Load audio stream (to stream raw audio pcm data)"
+  (rl.LoadAudioStream sample-rate sample-size channels))
 
 (fn is-audio-stream-valid [stream]
-	"Checks if an audio stream is valid (buffers initialized)"
-	(rl.IsAudioStreamValid stream))
+  "Checks if an audio stream is valid (buffers initialized)"
+  (rl.IsAudioStreamValid stream))
 
 (fn unload-audio-stream [stream]
-	"Unload audio stream and free memory"
-	(rl.UnloadAudioStream stream))
+  "Unload audio stream and free memory"
+  (rl.UnloadAudioStream stream))
 
 (fn update-audio-stream [stream data frame-count]
-	"Update audio stream buffers with data"
-	(rl.UpdateAudioStream stream data frame-count))
+  "Update audio stream buffers with data"
+  (rl.UpdateAudioStream stream data frame-count))
 
 (fn is-audio-stream-processed [stream]
-	"Check if any audio stream buffers requires refill"
-	(rl.IsAudioStreamProcessed stream))
+  "Check if any audio stream buffers requires refill"
+  (rl.IsAudioStreamProcessed stream))
 
 (fn play-audio-stream [stream]
-	"Play audio stream"
-	(rl.PlayAudioStream stream))
+  "Play audio stream"
+  (rl.PlayAudioStream stream))
 
 (fn pause-audio-stream [stream]
-	"Pause audio stream"
-	(rl.PauseAudioStream stream))
+  "Pause audio stream"
+  (rl.PauseAudioStream stream))
 
 (fn resume-audio-stream [stream]
-	"Resume audio stream"
-	(rl.ResumeAudioStream stream))
+  "Resume audio stream"
+  (rl.ResumeAudioStream stream))
 
 (fn is-audio-stream-playing [stream]
-	"Check if audio stream is playing"
-	(rl.IsAudioStreamPlaying stream))
+  "Check if audio stream is playing"
+  (rl.IsAudioStreamPlaying stream))
 
 (fn stop-audio-stream [stream]
-	"Stop audio stream"
-	(rl.StopAudioStream stream))
+  "Stop audio stream"
+  (rl.StopAudioStream stream))
 
 (fn set-audio-stream-volume [stream volume]
-	"Set volume for audio stream (1.0 is max level)"
-	(rl.SetAudioStreamVolume stream volume))
+  "Set volume for audio stream (1.0 is max level)"
+  (rl.SetAudioStreamVolume stream volume))
 
 (fn set-audio-stream-pitch [stream pitch]
-	"Set pitch for audio stream (1.0 is base level)"
-	(rl.SetAudioStreamPitch stream pitch))
+  "Set pitch for audio stream (1.0 is base level)"
+  (rl.SetAudioStreamPitch stream pitch))
 
 (fn set-audio-stream-pan [stream pan]
-	"Set pan for audio stream (0.5 is centered)"
-	(rl.SetAudioStreamPan stream pan))
+  "Set pan for audio stream (0.5 is centered)"
+  (rl.SetAudioStreamPan stream pan))
 
 (fn set-audio-stream-buffer-size-default [size]
-	"Default size for new audio streams"
-	(rl.SetAudioStreamBufferSizeDefault size))
+  "Default size for new audio streams"
+  (rl.SetAudioStreamBufferSizeDefault size))
 
 (fn set-audio-stream-callback [stream callback]
-	"Audio thread callback to request new data"
-	(rl.SetAudioStreamCallback stream callback))
+  "Audio thread callback to request new data"
+  (rl.SetAudioStreamCallback stream callback))
 
 (fn attach-audio-stream-processor [stream processor]
-	"Attach audio stream processor to stream, receives the samples as 'float'"
-	(rl.AttachAudioStreamProcessor stream processor))
+  "Attach audio stream processor to stream, receives the samples as 'float'"
+  (rl.AttachAudioStreamProcessor stream processor))
 
 (fn detach-audio-stream-processor [stream processor]
-	"Detach audio stream processor from stream"
-	(rl.DetachAudioStreamProcessor stream processor))
+  "Detach audio stream processor from stream"
+  (rl.DetachAudioStreamProcessor stream processor))
 
 (fn attach-audio-mixed-processor [processor]
-	"Attach audio stream processor to the entire audio pipeline, receives the samples as 'float'"
-	(rl.AttachAudioMixedProcessor processor))
+  "Attach audio stream processor to the entire audio pipeline, receives the samples as 'float'"
+  (rl.AttachAudioMixedProcessor processor))
 
 (fn detach-audio-mixed-processor [processor]
-	"Detach audio stream processor from the entire audio pipeline"
-	(rl.DetachAudioMixedProcessor processor))
+  "Detach audio stream processor from the entire audio pipeline"
+  (rl.DetachAudioMixedProcessor processor))
 
 {: init-audio-device
  : close-audio-device

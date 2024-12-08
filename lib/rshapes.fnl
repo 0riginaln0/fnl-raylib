@@ -148,272 +148,272 @@ Rectangle GetCollisionRec(Rectangle rec1, Rectangle rec2);                      
 ; NOTE: It can be useful when using basic shapes and one single font,
 ; defining a font char white rectangle would allow drawing everything in a single draw call
 (fn set-shapes-texture [texture source]
-	"Set texture and rectangle to be used on shapes drawing"
-	(rl.SetShapesTexture texture source))
+  "Set texture and rectangle to be used on shapes drawing"
+  (rl.SetShapesTexture texture source))
 
 (fn get-shapes-texture []
-	"Get texture that is used for shapes drawing"
-	(rl.GetShapesTexture ))
+  "Get texture that is used for shapes drawing"
+  (rl.GetShapesTexture ))
 
 (fn get-shapes-texture-rectangle []
-	"Get texture source rectangle that is used for shapes drawing"
-	(rl.GetShapesTextureRectangle ))
+  "Get texture source rectangle that is used for shapes drawing"
+  (rl.GetShapesTextureRectangle ))
 
 ; Basic shapes drawing functions
 (fn draw-pixel [pos-x pos-y color]
-	"Draw a pixel using geometry [Can be slow, use with care]"
-	(rl.DrawPixel pos-x pos-y color))
+  "Draw a pixel using geometry [Can be slow, use with care]"
+  (rl.DrawPixel pos-x pos-y color))
 
 (fn draw-pixel-v [position color]
-	"Draw a pixel using geometry (Vector version) [Can be slow, use with care]"
-	(rl.DrawPixelV position color))
+  "Draw a pixel using geometry (Vector version) [Can be slow, use with care]"
+  (rl.DrawPixelV position color))
 
 (fn draw-line [start-pos-x start-pos-y end-pos-x end-pos-y color]
-	"Draw a line"
-	(rl.DrawLine start-pos-x start-pos-y end-pos-x end-pos-y color))
+  "Draw a line"
+  (rl.DrawLine start-pos-x start-pos-y end-pos-x end-pos-y color))
 
 (fn draw-line-v [start-pos end-pos color]
-	"Draw a line (using gl lines)"
-	(rl.DrawLineV start-pos end-pos color))
+  "Draw a line (using gl lines)"
+  (rl.DrawLineV start-pos end-pos color))
 
 (fn draw-line-ex [start-pos end-pos thick color]
-	"Draw a line (using triangles/quads)"
-	(rl.DrawLineEx start-pos end-pos thick color))
+  "Draw a line (using triangles/quads)"
+  (rl.DrawLineEx start-pos end-pos thick color))
 
 (fn draw-line-strip [points point-count color]
-	"Draw lines sequence (using gl lines)"
-	(rl.DrawLineStrip points point-count color))
+  "Draw lines sequence (using gl lines)"
+  (rl.DrawLineStrip points point-count color))
 
 (fn draw-line-bezier [start-pos end-pos thick color]
-	"Draw line segment cubic-bezier in-out interpolation"
-	(rl.DrawLineBezier start-pos end-pos thick color))
+  "Draw line segment cubic-bezier in-out interpolation"
+  (rl.DrawLineBezier start-pos end-pos thick color))
 
 (fn draw-circle [center-x center-y radius color]
-	"Draw a color-filled circle"
-	(rl.DrawCircle center-x center-y radius color))
+  "Draw a color-filled circle"
+  (rl.DrawCircle center-x center-y radius color))
 
 (fn draw-circle-sector [center radius start-angle end-angle segments color]
-	"Draw a piece of a circle"
-	(rl.DrawCircleSector center radius start-angle end-angle segments color))
+  "Draw a piece of a circle"
+  (rl.DrawCircleSector center radius start-angle end-angle segments color))
 
 (fn draw-circle-sector-lines [center radius start-angle end-angle segments color]
-	"Draw circle sector outline"
-	(rl.DrawCircleSectorLines center radius start-angle end-angle segments color))
+  "Draw circle sector outline"
+  (rl.DrawCircleSectorLines center radius start-angle end-angle segments color))
 
 (fn draw-circle-gradient [center-x center-y radius inner outer]
-	"Draw a gradient-filled circle"
-	(rl.DrawCircleGradient center-x center-y radius inner outer))
+  "Draw a gradient-filled circle"
+  (rl.DrawCircleGradient center-x center-y radius inner outer))
 
 (fn draw-circle-v [center radius color]
-	"Draw a color-filled circle (Vector version)"
-	(rl.DrawCircleV center radius color))
+  "Draw a color-filled circle (Vector version)"
+  (rl.DrawCircleV center radius color))
 
 (fn draw-circle-lines [center-x center-y radius color]
-	"Draw circle outline"
-	(rl.DrawCircleLines center-x center-y radius color))
+  "Draw circle outline"
+  (rl.DrawCircleLines center-x center-y radius color))
 
 (fn draw-circle-lines-v [center radius color]
-	"Draw circle outline (Vector version)"
-	(rl.DrawCircleLinesV center radius color))
+  "Draw circle outline (Vector version)"
+  (rl.DrawCircleLinesV center radius color))
 
 (fn draw-ellipse [center-x center-y radius-h radius-v color]
-	"Draw ellipse"
-	(rl.DrawEllipse center-x center-y radius-h radius-v color))
+  "Draw ellipse"
+  (rl.DrawEllipse center-x center-y radius-h radius-v color))
 
 (fn draw-ellipse-lines [center-x center-y radius-h radius-v color]
-	"Draw ellipse outline"
-	(rl.DrawEllipseLines center-x center-y radius-h radius-v color))
+  "Draw ellipse outline"
+  (rl.DrawEllipseLines center-x center-y radius-h radius-v color))
 
 (fn draw-ring [center inner-radius outer-radius start-angle end-angle segments color]
-	"Draw ring"
-	(rl.DrawRing center inner-radius outer-radius start-angle end-angle segments color))
+  "Draw ring"
+  (rl.DrawRing center inner-radius outer-radius start-angle end-angle segments color))
 
 (fn draw-ring-lines [center inner-radius outer-radius start-angle end-angle segments color]
-	"Draw ring outline"
-	(rl.DrawRingLines center inner-radius outer-radius start-angle end-angle segments color))
+  "Draw ring outline"
+  (rl.DrawRingLines center inner-radius outer-radius start-angle end-angle segments color))
 
 (fn draw-rectangle [pos-x pos-y width height color]
-	"Draw a color-filled rectangle"
-	(rl.DrawRectangle pos-x pos-y width height color))
+  "Draw a color-filled rectangle"
+  (rl.DrawRectangle pos-x pos-y width height color))
 
 (fn draw-rectangle-v [position size color]
-	"Draw a color-filled rectangle (Vector version)"
-	(rl.DrawRectangleV position size color))
+  "Draw a color-filled rectangle (Vector version)"
+  (rl.DrawRectangleV position size color))
 
 (fn draw-rectangle-rec [rec color]
-	"Draw a color-filled rectangle"
-	(rl.DrawRectangleRec rec color))
+  "Draw a color-filled rectangle"
+  (rl.DrawRectangleRec rec color))
 
 (fn draw-rectangle-pro [rec origin rotation color]
-	"Draw a color-filled rectangle with pro parameters"
-	(rl.DrawRectanglePro rec origin rotation color))
+  "Draw a color-filled rectangle with pro parameters"
+  (rl.DrawRectanglePro rec origin rotation color))
 
 (fn draw-rectangle-gradient-v [pos-x pos-y width height top bottom]
-	"Draw a vertical-gradient-filled rectangle"
-	(rl.DrawRectangleGradientV pos-x pos-y width height top bottom))
+  "Draw a vertical-gradient-filled rectangle"
+  (rl.DrawRectangleGradientV pos-x pos-y width height top bottom))
 
 (fn draw-rectangle-gradient-h [pos-x pos-y width height left right]
-	"Draw a horizontal-gradient-filled rectangle"
-	(rl.DrawRectangleGradientH pos-x pos-y width height left right))
+  "Draw a horizontal-gradient-filled rectangle"
+  (rl.DrawRectangleGradientH pos-x pos-y width height left right))
 
 (fn draw-rectangle-gradient-ex [rec top-left bottom-left top-right bottom-right]
-	"Draw a gradient-filled rectangle with custom vertex colors"
-	(rl.DrawRectangleGradientEx rec top-left bottom-left top-right bottom-right))
+  "Draw a gradient-filled rectangle with custom vertex colors"
+  (rl.DrawRectangleGradientEx rec top-left bottom-left top-right bottom-right))
 
 (fn draw-rectangle-lines [pos-x pos-y width height color]
-	"Draw rectangle outline"
-	(rl.DrawRectangleLines pos-x pos-y width height color))
+  "Draw rectangle outline"
+  (rl.DrawRectangleLines pos-x pos-y width height color))
 
 (fn draw-rectangle-lines-ex [rec line-thick color]
-	"Draw rectangle outline with extended parameters"
-	(rl.DrawRectangleLinesEx rec line-thick color))
+  "Draw rectangle outline with extended parameters"
+  (rl.DrawRectangleLinesEx rec line-thick color))
 
 (fn draw-rectangle-rounded [rec roundness segments color]
-	"Draw rectangle with rounded edges"
-	(rl.DrawRectangleRounded rec roundness segments color))
+  "Draw rectangle with rounded edges"
+  (rl.DrawRectangleRounded rec roundness segments color))
 
 (fn draw-rectangle-rounded-lines [rec roundness segments color]
-	"Draw rectangle lines with rounded edges"
-	(rl.DrawRectangleRoundedLines rec roundness segments color))
+  "Draw rectangle lines with rounded edges"
+  (rl.DrawRectangleRoundedLines rec roundness segments color))
 
 (fn draw-rectangle-rounded-lines-ex [rec roundness segments line-thick color]
-	"Draw rectangle with rounded edges outline"
-	(rl.DrawRectangleRoundedLinesEx rec roundness segments line-thick color))
+  "Draw rectangle with rounded edges outline"
+  (rl.DrawRectangleRoundedLinesEx rec roundness segments line-thick color))
 
 (fn draw-triangle [v1 v2 v3 color]
-	"Draw a color-filled triangle (vertex in counter-clockwise order!)"
-	(rl.DrawTriangle v1 v2 v3 color))
+  "Draw a color-filled triangle (vertex in counter-clockwise order!)"
+  (rl.DrawTriangle v1 v2 v3 color))
 
 (fn draw-triangle-lines [v1 v2 v3 color]
-	"Draw triangle outline (vertex in counter-clockwise order!)"
-	(rl.DrawTriangleLines v1 v2 v3 color))
+  "Draw triangle outline (vertex in counter-clockwise order!)"
+  (rl.DrawTriangleLines v1 v2 v3 color))
 
 (fn draw-triangle-fan [points point-count color]
-	"Draw a triangle fan defined by points (first vertex is the center)"
-	(rl.DrawTriangleFan points point-count color))
+  "Draw a triangle fan defined by points (first vertex is the center)"
+  (rl.DrawTriangleFan points point-count color))
 
 (fn draw-triangle-strip [points point-count color]
-	"Draw a triangle strip defined by points"
-	(rl.DrawTriangleStrip points point-count color))
+  "Draw a triangle strip defined by points"
+  (rl.DrawTriangleStrip points point-count color))
 
 (fn draw-poly [center sides radius rotation color]
-	"Draw a regular polygon (Vector version)"
-	(rl.DrawPoly center sides radius rotation color))
+  "Draw a regular polygon (Vector version)"
+  (rl.DrawPoly center sides radius rotation color))
 
 (fn draw-poly-lines [center sides radius rotation color]
-	"Draw a polygon outline of n sides"
-	(rl.DrawPolyLines center sides radius rotation color))
+  "Draw a polygon outline of n sides"
+  (rl.DrawPolyLines center sides radius rotation color))
 
 (fn draw-poly-lines-ex [center sides radius rotation line-thick color]
-	"Draw a polygon outline of n sides with extended parameters"
-	(rl.DrawPolyLinesEx center sides radius rotation line-thick color))
+  "Draw a polygon outline of n sides with extended parameters"
+  (rl.DrawPolyLinesEx center sides radius rotation line-thick color))
 
 ; Splines drawing functions
 (fn draw-spline-linear [points point-count thick color]
-	"Draw spline: Linear, minimum 2 points"
-	(rl.DrawSplineLinear points point-count thick color))
+  "Draw spline: Linear, minimum 2 points"
+  (rl.DrawSplineLinear points point-count thick color))
 
 (fn draw-spline-basis [points point-count thick color]
-	"Draw spline: B-Spline, minimum 4 points"
-	(rl.DrawSplineBasis points point-count thick color))
+  "Draw spline: B-Spline, minimum 4 points"
+  (rl.DrawSplineBasis points point-count thick color))
 
 (fn draw-spline-catmull-rom [points point-count thick color]
-	"Draw spline: Catmull-Rom, minimum 4 points"
-	(rl.DrawSplineCatmullRom points point-count thick color))
+  "Draw spline: Catmull-Rom, minimum 4 points"
+  (rl.DrawSplineCatmullRom points point-count thick color))
 
 (fn draw-spline-bezier-quadratic [points point-count thick color]
-	"Draw spline: Quadratic Bezier, minimum 3 points (1 control point): [p1, c2, p3, c4...]"
-	(rl.DrawSplineBezierQuadratic points point-count thick color))
+  "Draw spline: Quadratic Bezier, minimum 3 points (1 control point): [p1, c2, p3, c4...]"
+  (rl.DrawSplineBezierQuadratic points point-count thick color))
 
 (fn draw-spline-bezier-cubic [points point-count thick color]
-	"Draw spline: Cubic Bezier, minimum 4 points (2 control points): [p1, c2, c3, p4, c5, c6...]"
-	(rl.DrawSplineBezierCubic points point-count thick color))
+  "Draw spline: Cubic Bezier, minimum 4 points (2 control points): [p1, c2, c3, p4, c5, c6...]"
+  (rl.DrawSplineBezierCubic points point-count thick color))
 
 (fn draw-spline-segment-linear [p1 p2 thick color]
-	"Draw spline segment: Linear, 2 points"
-	(rl.DrawSplineSegmentLinear p1 p2 thick color))
+  "Draw spline segment: Linear, 2 points"
+  (rl.DrawSplineSegmentLinear p1 p2 thick color))
 
 (fn draw-spline-segment-basis [p1 p2 p3 p4 thick color]
-	"Draw spline segment: B-Spline, 4 points"
-	(rl.DrawSplineSegmentBasis p1 p2 p3 p4 thick color))
+  "Draw spline segment: B-Spline, 4 points"
+  (rl.DrawSplineSegmentBasis p1 p2 p3 p4 thick color))
 
 (fn draw-spline-segment-catmull-rom [p1 p2 p3 p4 thick color]
-	"Draw spline segment: Catmull-Rom, 4 points"
-	(rl.DrawSplineSegmentCatmullRom p1 p2 p3 p4 thick color))
+  "Draw spline segment: Catmull-Rom, 4 points"
+  (rl.DrawSplineSegmentCatmullRom p1 p2 p3 p4 thick color))
 
 (fn draw-spline-segment-bezier-quadratic [p1 c2 p3 thick color]
-	"Draw spline segment: Quadratic Bezier, 2 points, 1 control point"
-	(rl.DrawSplineSegmentBezierQuadratic p1 c2 p3 thick color))
+  "Draw spline segment: Quadratic Bezier, 2 points, 1 control point"
+  (rl.DrawSplineSegmentBezierQuadratic p1 c2 p3 thick color))
 
 (fn draw-spline-segment-bezier-cubic [p1 c2 c3 p4 thick color]
-	"Draw spline segment: Cubic Bezier, 2 points, 2 control points"
-	(rl.DrawSplineSegmentBezierCubic p1 c2 c3 p4 thick color))
+  "Draw spline segment: Cubic Bezier, 2 points, 2 control points"
+  (rl.DrawSplineSegmentBezierCubic p1 c2 c3 p4 thick color))
 
 ; Spline segment point evaluation functions, for a given t [0.0f .. 1.0f]
 (fn get-spline-point-linear [start-pos end-pos t]
-	"Get (evaluate) spline point: Linear"
-	(rl.GetSplinePointLinear start-pos end-pos t))
+  "Get (evaluate) spline point: Linear"
+  (rl.GetSplinePointLinear start-pos end-pos t))
 
 (fn get-spline-point-basis [p1 p2 p3 p4 t]
-	"Get (evaluate) spline point: B-Spline"
-	(rl.GetSplinePointBasis p1 p2 p3 p4 t))
+  "Get (evaluate) spline point: B-Spline"
+  (rl.GetSplinePointBasis p1 p2 p3 p4 t))
 
 (fn get-spline-point-catmull-rom [p1 p2 p3 p4 t]
-	"Get (evaluate) spline point: Catmull-Rom"
-	(rl.GetSplinePointCatmullRom p1 p2 p3 p4 t))
+  "Get (evaluate) spline point: Catmull-Rom"
+  (rl.GetSplinePointCatmullRom p1 p2 p3 p4 t))
 
 (fn get-spline-point-bezier-quad [p1 c2 p3 t]
-	"Get (evaluate) spline point: Quadratic Bezier"
-	(rl.GetSplinePointBezierQuad p1 c2 p3 t))
+  "Get (evaluate) spline point: Quadratic Bezier"
+  (rl.GetSplinePointBezierQuad p1 c2 p3 t))
 
 (fn get-spline-point-bezier-cubic [p1 c2 c3 p4 t]
-	"Get (evaluate) spline point: Cubic Bezier"
-	(rl.GetSplinePointBezierCubic p1 c2 c3 p4 t))
+  "Get (evaluate) spline point: Cubic Bezier"
+  (rl.GetSplinePointBezierCubic p1 c2 c3 p4 t))
 
 ; Basic shapes collision detection functions
 (fn check-collision-recs [rec1 rec2]
-	"Check collision between two rectangles"
-	(rl.CheckCollisionRecs rec1 rec2))
+  "Check collision between two rectangles"
+  (rl.CheckCollisionRecs rec1 rec2))
 
 (fn check-collision-circles [center1 radius1 center2 radius2]
-	"Check collision between two circles"
-	(rl.CheckCollisionCircles center1 radius1 center2 radius2))
+  "Check collision between two circles"
+  (rl.CheckCollisionCircles center1 radius1 center2 radius2))
 
 (fn check-collision-circle-rec [center radius rec]
-	"Check collision between circle and rectangle"
-	(rl.CheckCollisionCircleRec center radius rec))
+  "Check collision between circle and rectangle"
+  (rl.CheckCollisionCircleRec center radius rec))
 
 (fn check-collision-circle-line [center radius p1 p2]
-	"Check if circle collides with a line created betweeen two points [p1] and [p2]"
-	(rl.CheckCollisionCircleLine center radius p1 p2))
+  "Check if circle collides with a line created betweeen two points [p1] and [p2]"
+  (rl.CheckCollisionCircleLine center radius p1 p2))
 
 (fn check-collision-point-rec [point rec]
-	"Check if point is inside rectangle"
-	(rl.CheckCollisionPointRec point rec))
+  "Check if point is inside rectangle"
+  (rl.CheckCollisionPointRec point rec))
 
 (fn check-collision-point-circle [point center radius]
-	"Check if point is inside circle"
-	(rl.CheckCollisionPointCircle point center radius))
+  "Check if point is inside circle"
+  (rl.CheckCollisionPointCircle point center radius))
 
 (fn check-collision-point-triangle [point p1 p2 p3]
-	"Check if point is inside a triangle"
-	(rl.CheckCollisionPointTriangle point p1 p2 p3))
+  "Check if point is inside a triangle"
+  (rl.CheckCollisionPointTriangle point p1 p2 p3))
 
 (fn check-collision-point-line [point p1 p2 threshold]
-	"Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]"
-	(rl.CheckCollisionPointLine point p1 p2 threshold))
+  "Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]"
+  (rl.CheckCollisionPointLine point p1 p2 threshold))
 
 (fn check-collision-point-poly [point points point-count]
-	"Check if point is within a polygon described by array of vertices"
-	(rl.CheckCollisionPointPoly point points point-count))
+  "Check if point is within a polygon described by array of vertices"
+  (rl.CheckCollisionPointPoly point points point-count))
 
 (fn check-collision-lines [start-pos1 end-pos1 start-pos2 end-pos2 collision-point]
-	"Check the collision between two lines defined by two points each, returns collision point by reference"
-	(rl.CheckCollisionLines start-pos1 end-pos1 start-pos2 end-pos2 collision-point))
+  "Check the collision between two lines defined by two points each, returns collision point by reference"
+  (rl.CheckCollisionLines start-pos1 end-pos1 start-pos2 end-pos2 collision-point))
 
 (fn get-collision-rec [rec1 rec2]
-	"Get collision rectangle for two rectangles collision"
-	(rl.GetCollisionRec rec1 rec2))
+  "Get collision rectangle for two rectangles collision"
+  (rl.GetCollisionRec rec1 rec2))
 
 {: set-shapes-texture
  : get-shapes-texture

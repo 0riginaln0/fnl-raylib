@@ -108,203 +108,203 @@ void DisableEventWaiting(void);                             // Disable waiting f
 
 ; Window-related functions
 (fn init-window [width height title]
-	"Initialize window and OpenGL context"
-	(rl.InitWindow width height title))
+  "Initialize window and OpenGL context"
+  (rl.InitWindow width height title))
 
 (fn close-window []
-	"Close window and unload OpenGL context"
-	(rl.CloseWindow ))
+  "Close window and unload OpenGL context"
+  (rl.CloseWindow ))
 
 (fn window-should-close []
-	"Check if application should close (KEY_ESCAPE pressed or windows close icon clicked)"
-	(rl.WindowShouldClose ))
+  "Check if application should close (KEY_ESCAPE pressed or windows close icon clicked)"
+  (rl.WindowShouldClose ))
 
 (fn is-window-ready []
-	"Check if window has been initialized successfully"
-	(rl.IsWindowReady ))
+  "Check if window has been initialized successfully"
+  (rl.IsWindowReady ))
 
 (fn is-window-fullscreen []
-	"Check if window is currently fullscreen"
-	(rl.IsWindowFullscreen ))
+  "Check if window is currently fullscreen"
+  (rl.IsWindowFullscreen ))
 
 (fn is-window-hidden []
-	"Check if window is currently hidden"
-	(rl.IsWindowHidden ))
+  "Check if window is currently hidden"
+  (rl.IsWindowHidden ))
 
 (fn is-window-minimized []
-	"Check if window is currently minimized"
-	(rl.IsWindowMinimized ))
+  "Check if window is currently minimized"
+  (rl.IsWindowMinimized ))
 
 (fn is-window-maximized []
-	"Check if window is currently maximized"
-	(rl.IsWindowMaximized ))
+  "Check if window is currently maximized"
+  (rl.IsWindowMaximized ))
 
 (fn is-window-focused []
-	"Check if window is currently focused"
-	(rl.IsWindowFocused ))
+  "Check if window is currently focused"
+  (rl.IsWindowFocused ))
 
 (fn is-window-resized []
-	"Check if window has been resized last frame"
-	(rl.IsWindowResized ))
+  "Check if window has been resized last frame"
+  (rl.IsWindowResized ))
 
 (fn is-window-state [flag]
-	"Check if one specific window flag is enabled"
-	(rl.IsWindowState flag))
+  "Check if one specific window flag is enabled"
+  (rl.IsWindowState flag))
 
 (fn set-window-state [flags]
-	"Set window configuration state using flags"
-	(rl.SetWindowState flags))
+  "Set window configuration state using flags"
+  (rl.SetWindowState flags))
 
 (fn clear-window-state [flags]
-	"Clear window configuration state flags"
-	(rl.ClearWindowState flags))
+  "Clear window configuration state flags"
+  (rl.ClearWindowState flags))
 
 (fn toggle-fullscreen []
-	"Toggle window state: fullscreen/windowed, resizes monitor to match window resolution"
-	(rl.ToggleFullscreen ))
+  "Toggle window state: fullscreen/windowed, resizes monitor to match window resolution"
+  (rl.ToggleFullscreen ))
 
 (fn toggle-borderless-windowed []
-	"Toggle window state: borderless windowed, resizes window to match monitor resolution"
-	(rl.ToggleBorderlessWindowed ))
+  "Toggle window state: borderless windowed, resizes window to match monitor resolution"
+  (rl.ToggleBorderlessWindowed ))
 
 (fn maximize-window []
-	"Set window state: maximized, if resizable"
-	(rl.MaximizeWindow ))
+  "Set window state: maximized, if resizable"
+  (rl.MaximizeWindow ))
 
 (fn minimize-window []
-	"Set window state: minimized, if resizable"
-	(rl.MinimizeWindow ))
+  "Set window state: minimized, if resizable"
+  (rl.MinimizeWindow ))
 
 (fn restore-window []
-	"Set window state: not minimized/maximized"
-	(rl.RestoreWindow ))
+  "Set window state: not minimized/maximized"
+  (rl.RestoreWindow ))
 
 (fn set-window-icon [image]
-	"Set icon for window (single image, RGBA 32bit)"
-	(rl.SetWindowIcon image))
+  "Set icon for window (single image, RGBA 32bit)"
+  (rl.SetWindowIcon image))
 
 (fn set-window-icons [images count]
-	"Set icon for window (multiple images, RGBA 32bit)"
-	(rl.SetWindowIcons images count))
+  "Set icon for window (multiple images, RGBA 32bit)"
+  (rl.SetWindowIcons images count))
 
 (fn set-window-title [title]
-	"Set title for window"
-	(rl.SetWindowTitle title))
+  "Set title for window"
+  (rl.SetWindowTitle title))
 
 (fn set-window-position [x y]
-	"Set window position on screen"
-	(rl.SetWindowPosition x y))
+  "Set window position on screen"
+  (rl.SetWindowPosition x y))
 
 (fn set-window-monitor [monitor]
-	"Set monitor for the current window"
-	(rl.SetWindowMonitor monitor))
+  "Set monitor for the current window"
+  (rl.SetWindowMonitor monitor))
 
 (fn set-window-min-size [width height]
-	"Set window minimum dimensions (for FLAG_WINDOW_RESIZABLE)"
-	(rl.SetWindowMinSize width height))
+  "Set window minimum dimensions (for FLAG_WINDOW_RESIZABLE)"
+  (rl.SetWindowMinSize width height))
 
 (fn set-window-max-size [width height]
-	"Set window maximum dimensions (for FLAG_WINDOW_RESIZABLE)"
-	(rl.SetWindowMaxSize width height))
+  "Set window maximum dimensions (for FLAG_WINDOW_RESIZABLE)"
+  (rl.SetWindowMaxSize width height))
 
 (fn set-window-size [width height]
-	"Set window dimensions"
-	(rl.SetWindowSize width height))
+  "Set window dimensions"
+  (rl.SetWindowSize width height))
 
 (fn set-window-opacity [opacity]
-	"Set window opacity [0.0f..1.0f]"
-	(rl.SetWindowOpacity opacity))
+  "Set window opacity [0.0f..1.0f]"
+  (rl.SetWindowOpacity opacity))
 
 (fn set-window-focused []
-	"Set window focused"
-	(rl.SetWindowFocused ))
+  "Set window focused"
+  (rl.SetWindowFocused ))
 
 (fn get-window-handle []
-	"Get native window handle"
-	(rl.GetWindowHandle ))
+  "Get native window handle"
+  (rl.GetWindowHandle ))
 
 (fn get-screen-width []
-	"Get current screen width"
-	(rl.GetScreenWidth ))
+  "Get current screen width"
+  (rl.GetScreenWidth ))
 
 (fn get-screen-height []
-	"Get current screen height"
-	(rl.GetScreenHeight ))
+  "Get current screen height"
+  (rl.GetScreenHeight ))
 
 (fn get-render-width []
-	"Get current render width (it considers HiDPI)"
-	(rl.GetRenderWidth ))
+  "Get current render width (it considers HiDPI)"
+  (rl.GetRenderWidth ))
 
 (fn get-render-height []
-	"Get current render height (it considers HiDPI)"
-	(rl.GetRenderHeight ))
+  "Get current render height (it considers HiDPI)"
+  (rl.GetRenderHeight ))
 
 (fn get-monitor-count []
-	"Get number of connected monitors"
-	(rl.GetMonitorCount ))
+  "Get number of connected monitors"
+  (rl.GetMonitorCount ))
 
 (fn get-current-monitor []
-	"
-	Get current monitor where window is placed. 
-	Returns 0, 1, 2 or any other number according to the Monitor number
-	"
-	(rl.GetCurrentMonitor ))
+  "
+  Get current monitor where window is placed. 
+  Returns 0, 1, 2 or any other number according to the Monitor number
+  "
+  (rl.GetCurrentMonitor ))
 
 (fn get-monitor-position [monitor]
-	"Get specified monitor position"
-	(rl.GetMonitorPosition monitor))
+  "Get specified monitor position"
+  (rl.GetMonitorPosition monitor))
 
 (fn get-monitor-width [monitor]
-	"Get specified monitor width (current video mode used by monitor)"
-	(rl.GetMonitorWidth monitor))
+  "Get specified monitor width (current video mode used by monitor)"
+  (rl.GetMonitorWidth monitor))
 
 (fn get-monitor-height [monitor]
-	"Get specified monitor height (current video mode used by monitor)"
-	(rl.GetMonitorHeight monitor))
+  "Get specified monitor height (current video mode used by monitor)"
+  (rl.GetMonitorHeight monitor))
 
 (fn get-monitor-physical-width [monitor]
-	"Get specified monitor physical width in millimetres"
-	(rl.GetMonitorPhysicalWidth monitor))
+  "Get specified monitor physical width in millimetres"
+  (rl.GetMonitorPhysicalWidth monitor))
 
 (fn get-monitor-physical-height [monitor]
-	"Get specified monitor physical height in millimetres"
-	(rl.GetMonitorPhysicalHeight monitor))
+  "Get specified monitor physical height in millimetres"
+  (rl.GetMonitorPhysicalHeight monitor))
 
 (fn get-monitor-refresh-rate [monitor]
-	"Get specified monitor refresh rate"
-	(rl.GetMonitorRefreshRate monitor))
+  "Get specified monitor refresh rate"
+  (rl.GetMonitorRefreshRate monitor))
 
 (fn get-window-position []
-	"Get window position XY on monitor"
-	(rl.GetWindowPosition ))
+  "Get window position XY on monitor"
+  (rl.GetWindowPosition ))
 
 (fn get-window-scale-dpi []
-	"Get window scale DPI factor"
-	(rl.GetWindowScaleDPI ))
+  "Get window scale DPI factor"
+  (rl.GetWindowScaleDPI ))
 
 (fn get-monitor-name [monitor]
-	"Get the human-readable, UTF-8 encoded name of the specified monitor"
-	(rl.GetMonitorName monitor))
+  "Get the human-readable, UTF-8 encoded name of the specified monitor"
+  (rl.GetMonitorName monitor))
 
 (fn set-clipboard-text [text]
-	"Set clipboard text content"
-	(rl.SetClipboardText text))
+  "Set clipboard text content"
+  (rl.SetClipboardText text))
 
 (fn get-clipboard-text []
-	"Get clipboard text content"
-	(rl.GetClipboardText ))
+  "Get clipboard text content"
+  (rl.GetClipboardText ))
 
 (fn get-clipboard-image []
-	"Get clipboard image content"
-	(rl.GetClipboardImage ))
+  "Get clipboard image content"
+  (rl.GetClipboardImage ))
 
 (fn enable-event-waiting []
-	"Enable waiting for events on EndDrawing(), no automatic event polling"
-	(rl.EnableEventWaiting ))
+  "Enable waiting for events on EndDrawing(), no automatic event polling"
+  (rl.EnableEventWaiting ))
 
 (fn disable-event-waiting []
-	"Disable waiting for events on EndDrawing(), automatic events polling"
-	(rl.DisableEventWaiting ))
+  "Disable waiting for events on EndDrawing(), automatic events polling"
+  (rl.DisableEventWaiting ))
 
 {: init-window
  : close-window

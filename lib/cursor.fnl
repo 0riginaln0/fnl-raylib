@@ -21,28 +21,28 @@ bool IsCursorOnScreen(void);                                // Check if cursor i
 ")
 
 (fn show-cursor []
-	"Shows cursor"
-	(rl.ShowCursor ))
+  "Shows cursor"
+  (rl.ShowCursor ))
 
 (fn hide-cursor []
-	"Hides cursor"
-	(rl.HideCursor ))
+  "Hides cursor"
+  (rl.HideCursor ))
 
 (fn is-cursor-hidden []
-	"Check if cursor is not visible"
-	(rl.IsCursorHidden ))
+  "Check if cursor is not visible"
+  (rl.IsCursorHidden ))
 
 (fn enable-cursor []
-	"Enables cursor (unlock cursor)"
-	(rl.EnableCursor ))
+  "Enables cursor (unlock cursor)"
+  (rl.EnableCursor ))
 
 (fn disable-cursor []
-	"Disables cursor (lock cursor)"
-	(rl.DisableCursor ))
+  "Disables cursor (lock cursor)"
+  (rl.DisableCursor ))
 
 (fn is-cursor-on-screen []
-	"Check if cursor is on the screen"
-	(rl.IsCursorOnScreen ))
+  "Check if cursor is on the screen"
+  (rl.IsCursorOnScreen ))
 
 {: show-cursor
  : hide-cursor

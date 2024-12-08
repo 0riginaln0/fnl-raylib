@@ -529,28 +529,28 @@ int QuaternionEquals(Quaternion p, Quaternion q);                           // C
 
 ; Utils math
 (fn clamp [value min max]
-	"Clamp float value"
-	(rl.Clamp value min max))
+  "Clamp float value"
+  (rl.Clamp value min max))
 
 (fn lerp [start end amount]
-	"Calculate linear interpolation between two floats"
-	(rl.Lerp start end amount))
+  "Calculate linear interpolation between two floats"
+  (rl.Lerp start end amount))
 
 (fn normalize [value start end]
-	"Normalize input value within input range"
-	(rl.Normalize value start end))
+  "Normalize input value within input range"
+  (rl.Normalize value start end))
 
 (fn remap [value input-start input-end output-start output-end]
-	"Remap input value within input range to output range"
-	(rl.Remap value input-start input-end output-start output-end))
+  "Remap input value within input range to output range"
+  (rl.Remap value input-start input-end output-start output-end))
 
 (fn wrap [value min max]
-	"Wrap input value from min to max"
-	(rl.Wrap value min max))
+  "Wrap input value from min to max"
+  (rl.Wrap value min max))
 
 (fn float-equals [x y]
-	"Check whether two given floats are almost equal"
-	(rl.FloatEquals x y))
+  "Check whether two given floats are almost equal"
+  (rl.FloatEquals x y))
 
 ;; Vector2 math
 (fn vector2-zero []

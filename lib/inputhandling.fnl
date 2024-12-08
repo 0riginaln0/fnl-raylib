@@ -109,205 +109,205 @@ void UpdateCameraPro(Camera *camera, Vector3 movement, Vector3 rotation, float z
 ;------------------------------------------------------------------------------------
 ; Input-related functions: keyboard
 (fn is-key-pressed [key]
-	"Check if a key has been pressed once"
-	(rl.IsKeyPressed key))
+  "Check if a key has been pressed once"
+  (rl.IsKeyPressed key))
 
 (fn is-key-pressed-repeat [key]
-	"Check if a key has been pressed again"
-	(rl.IsKeyPressedRepeat key))
+  "Check if a key has been pressed again"
+  (rl.IsKeyPressedRepeat key))
 
 (fn is-key-down [key]
-	"Check if a key is being pressed"
-	(rl.IsKeyDown key))
+  "Check if a key is being pressed"
+  (rl.IsKeyDown key))
 
 (fn is-key-released [key]
-	"Check if a key has been released once"
-	(rl.IsKeyReleased key))
+  "Check if a key has been released once"
+  (rl.IsKeyReleased key))
 
 (fn is-key-up [key]
-	"Check if a key is NOT being pressed"
-	(rl.IsKeyUp key))
+  "Check if a key is NOT being pressed"
+  (rl.IsKeyUp key))
 
 (fn get-key-pressed []
-	"Get key pressed (keycode), call it multiple times for keys queued, returns 0 when the queue is empty"
-	(rl.GetKeyPressed ))
+  "Get key pressed (keycode), call it multiple times for keys queued, returns 0 when the queue is empty"
+  (rl.GetKeyPressed ))
 
 (fn get-char-pressed []
-	"Get char pressed (unicode), call it multiple times for chars queued, returns 0 when the queue is empty"
-	(rl.GetCharPressed ))
+  "Get char pressed (unicode), call it multiple times for chars queued, returns 0 when the queue is empty"
+  (rl.GetCharPressed ))
 
 (fn set-exit-key [key]
-	"Set a custom key to exit program (default is ESC)"
-	(rl.SetExitKey key))
+  "Set a custom key to exit program (default is ESC)"
+  (rl.SetExitKey key))
 
 ; Input-related functions: gamepads
 (fn is-gamepad-available [gamepad]
-	"Check if a gamepad is available"
-	(rl.IsGamepadAvailable gamepad))
+  "Check if a gamepad is available"
+  (rl.IsGamepadAvailable gamepad))
 
 (fn get-gamepad-name [gamepad]
-	"Get gamepad internal name id"
-	(rl.GetGamepadName gamepad))
+  "Get gamepad internal name id"
+  (rl.GetGamepadName gamepad))
 
 (fn is-gamepad-button-pressed [gamepad button]
-	"Check if a gamepad button has been pressed once"
-	(rl.IsGamepadButtonPressed gamepad button))
+  "Check if a gamepad button has been pressed once"
+  (rl.IsGamepadButtonPressed gamepad button))
 
 (fn is-gamepad-button-down [gamepad button]
-	"Check if a gamepad button is being pressed"
-	(rl.IsGamepadButtonDown gamepad button))
+  "Check if a gamepad button is being pressed"
+  (rl.IsGamepadButtonDown gamepad button))
 
 (fn is-gamepad-button-released [gamepad button]
-	"Check if a gamepad button has been released once"
-	(rl.IsGamepadButtonReleased gamepad button))
+  "Check if a gamepad button has been released once"
+  (rl.IsGamepadButtonReleased gamepad button))
 
 (fn is-gamepad-button-up [gamepad button]
-	"Check if a gamepad button is NOT being pressed"
-	(rl.IsGamepadButtonUp gamepad button))
+  "Check if a gamepad button is NOT being pressed"
+  (rl.IsGamepadButtonUp gamepad button))
 
 (fn get-gamepad-button-pressed []
-	"Get the last gamepad button pressed"
-	(rl.GetGamepadButtonPressed ))
+  "Get the last gamepad button pressed"
+  (rl.GetGamepadButtonPressed ))
 
 (fn get-gamepad-axis-count [gamepad]
-	"Get gamepad axis count for a gamepad"
-	(rl.GetGamepadAxisCount gamepad))
+  "Get gamepad axis count for a gamepad"
+  (rl.GetGamepadAxisCount gamepad))
 
 (fn get-gamepad-axis-movement [gamepad axis]
-	"Get axis movement value for a gamepad axis"
-	(rl.GetGamepadAxisMovement gamepad axis))
+  "Get axis movement value for a gamepad axis"
+  (rl.GetGamepadAxisMovement gamepad axis))
 
 (fn set-gamepad-mappings [mappings]
-	"Set internal gamepad mappings (SDL_GameControllerDB)"
-	(rl.SetGamepadMappings mappings))
+  "Set internal gamepad mappings (SDL_GameControllerDB)"
+  (rl.SetGamepadMappings mappings))
 
 (fn set-gamepad-vibration [gamepad left-motor right-motor duration]
-	"Set gamepad vibration for both motors (duration in seconds)"
-	(rl.SetGamepadVibration gamepad left-motor right-motor duration))
+  "Set gamepad vibration for both motors (duration in seconds)"
+  (rl.SetGamepadVibration gamepad left-motor right-motor duration))
 
 ; Input-related functions: mouse
 (fn is-mouse-button-pressed [button]
-	"Check if a mouse button has been pressed once"
-	(rl.IsMouseButtonPressed button))
+  "Check if a mouse button has been pressed once"
+  (rl.IsMouseButtonPressed button))
 
 (fn is-mouse-button-down [button]
-	"Check if a mouse button is being pressed"
-	(rl.IsMouseButtonDown button))
+  "Check if a mouse button is being pressed"
+  (rl.IsMouseButtonDown button))
 
 (fn is-mouse-button-released [button]
-	"Check if a mouse button has been released once"
-	(rl.IsMouseButtonReleased button))
+  "Check if a mouse button has been released once"
+  (rl.IsMouseButtonReleased button))
 
 (fn is-mouse-button-up [button]
-	"Check if a mouse button is NOT being pressed"
-	(rl.IsMouseButtonUp button))
+  "Check if a mouse button is NOT being pressed"
+  (rl.IsMouseButtonUp button))
 
 (fn get-mouse-x []
-	"Get mouse position X"
-	(rl.GetMouseX ))
+  "Get mouse position X"
+  (rl.GetMouseX ))
 
 (fn get-mouse-y []
-	"Get mouse position Y"
-	(rl.GetMouseY ))
+  "Get mouse position Y"
+  (rl.GetMouseY ))
 
 (fn get-mouse-position []
-	"Get mouse position XY"
-	(rl.GetMousePosition ))
+  "Get mouse position XY"
+  (rl.GetMousePosition ))
 
 (fn get-mouse-delta []
-	"Get mouse delta between frames"
-	(rl.GetMouseDelta ))
+  "Get mouse delta between frames"
+  (rl.GetMouseDelta ))
 
 (fn set-mouse-position [x y]
-	"Set mouse position XY"
-	(rl.SetMousePosition x y))
+  "Set mouse position XY"
+  (rl.SetMousePosition x y))
 
 (fn set-mouse-offset [offset-x offset-y]
-	"Set mouse offset"
-	(rl.SetMouseOffset offset-x offset-y))
+  "Set mouse offset"
+  (rl.SetMouseOffset offset-x offset-y))
 
 (fn set-mouse-scale [scale-x scale-y]
-	"Set mouse scaling"
-	(rl.SetMouseScale scale-x scale-y))
+  "Set mouse scaling"
+  (rl.SetMouseScale scale-x scale-y))
 
 (fn get-mouse-wheel-move []
-	"Get mouse wheel movement for X or Y, whichever is larger"
-	(rl.GetMouseWheelMove ))
+  "Get mouse wheel movement for X or Y, whichever is larger"
+  (rl.GetMouseWheelMove ))
 
 (fn get-mouse-wheel-move-v []
-	"Get mouse wheel movement for both X and Y"
-	(rl.GetMouseWheelMoveV ))
+  "Get mouse wheel movement for both X and Y"
+  (rl.GetMouseWheelMoveV ))
 
 (fn set-mouse-cursor [cursor]
-	"Set mouse cursor"
-	(rl.SetMouseCursor cursor))
+  "Set mouse cursor"
+  (rl.SetMouseCursor cursor))
 
 ; Input-related functions: touch
 (fn get-touch-x []
-	"Get touch position X for touch point 0 (relative to screen size)"
-	(rl.GetTouchX ))
+  "Get touch position X for touch point 0 (relative to screen size)"
+  (rl.GetTouchX ))
 
 (fn get-touch-y []
-	"Get touch position Y for touch point 0 (relative to screen size)"
-	(rl.GetTouchY ))
+  "Get touch position Y for touch point 0 (relative to screen size)"
+  (rl.GetTouchY ))
 
 (fn get-touch-position [index]
-	"Get touch position XY for a touch point index (relative to screen size)"
-	(rl.GetTouchPosition index))
+  "Get touch position XY for a touch point index (relative to screen size)"
+  (rl.GetTouchPosition index))
 
 (fn get-touch-point-id [index]
-	"Get touch point identifier for given index"
-	(rl.GetTouchPointId index))
+  "Get touch point identifier for given index"
+  (rl.GetTouchPointId index))
 
 (fn get-touch-point-count []
-	"Get number of touch points"
-	(rl.GetTouchPointCount ))
+  "Get number of touch points"
+  (rl.GetTouchPointCount ))
 
 ;------------------------------------------------------------------------------------
 ; Gestures and Touch Handling Functions (Module: rgestures)
 ;------------------------------------------------------------------------------------
 (fn set-gestures-enabled [flags]
-	"Enable a set of gestures using flags"
-	(rl.SetGesturesEnabled flags))
+  "Enable a set of gestures using flags"
+  (rl.SetGesturesEnabled flags))
 
 (fn is-gesture-detected [gesture]
-	"Check if a gesture have been detected"
-	(rl.IsGestureDetected gesture))
+  "Check if a gesture have been detected"
+  (rl.IsGestureDetected gesture))
 
 (fn get-gesture-detected []
-	"Get latest detected gesture"
-	(rl.GetGestureDetected ))
+  "Get latest detected gesture"
+  (rl.GetGestureDetected ))
 
 (fn get-gesture-hold-duration []
-	"Get gesture hold time in seconds"
-	(rl.GetGestureHoldDuration ))
+  "Get gesture hold time in seconds"
+  (rl.GetGestureHoldDuration ))
 
 (fn get-gesture-drag-vector []
-	"Get gesture drag vector"
-	(rl.GetGestureDragVector ))
+  "Get gesture drag vector"
+  (rl.GetGestureDragVector ))
 
 (fn get-gesture-drag-angle []
-	"Get gesture drag angle"
-	(rl.GetGestureDragAngle ))
+  "Get gesture drag angle"
+  (rl.GetGestureDragAngle ))
 
 (fn get-gesture-pinch-vector []
-	"Get gesture pinch delta"
-	(rl.GetGesturePinchVector ))
+  "Get gesture pinch delta"
+  (rl.GetGesturePinchVector ))
 
 (fn get-gesture-pinch-angle []
-	"Get gesture pinch angle"
-	(rl.GetGesturePinchAngle ))
+  "Get gesture pinch angle"
+  (rl.GetGesturePinchAngle ))
 
 ;------------------------------------------------------------------------------------
 ; Camera System Functions (Module: rcamera)
 ;------------------------------------------------------------------------------------
 (fn update-camera [camera mode]
-	"Update camera position for selected mode"
-	(rl.UpdateCamera camera mode))
+  "Update camera position for selected mode"
+  (rl.UpdateCamera camera mode))
 
 (fn update-camera-pro [camera movement rotation zoom]
-	"Update camera movement/rotation"
-	(rl.UpdateCameraPro camera movement rotation zoom))
+  "Update camera movement/rotation"
+  (rl.UpdateCameraPro camera movement rotation zoom))
 
 
 
