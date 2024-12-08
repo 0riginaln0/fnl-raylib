@@ -64,7 +64,7 @@
 (fn toggle-borderless-windowed []
   (rl.toggle-borderless-windowed))
 
-;; Hack (or they really do it in prod) the window to fold on alt+tab
+;; Hack (or they really do it in prod) the window to fold on when unfocused (dor example after alt+tab)
 (fn fold-window []
   (if (rl.is-window-state rl.flag-window-unfocused)
     (rl.set-window-state rl.flag-window-minimized)))
