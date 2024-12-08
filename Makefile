@@ -14,9 +14,10 @@ else
 	copy-to-release = cp main main.luac release/; cp -r lib release/
 endif
 
-run: build
+run:
 	$(run-command)
 
+# Compiles all .fnl files to .lua files
 build: $(fennel-files:.fnl=.lua)
 %.lua: %.fnl
 	fennel --compile $< > $@
@@ -28,8 +29,10 @@ release: build
 
 	$(copy-to-release)
 
+# Deletes every *.lua file in project skipping the `lib` and `release` folders 
 clean:
 	python cleanup_luafiles.py
 
+# Deletes every *.lua file in project skipping the `release` folder
 clean-all:
 	python cleanup_luafiles.py --all
