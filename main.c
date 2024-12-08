@@ -14,7 +14,7 @@
 
 int main(int argc, char **argv)
 {
-    printf("C app starts\n");
+    printf("C wrapper starts\n");
     lua_State *L = luaL_newstate(); // Create a new Lua state
     luaL_openlibs(L);               // Load standard libraries
 
@@ -26,6 +26,6 @@ int main(int argc, char **argv)
     }
 
     lua_close(L); // Close the Lua state
-    printf("C app ends\n");
+    printf("C wrapper ends\n");
     return 0;
 }
