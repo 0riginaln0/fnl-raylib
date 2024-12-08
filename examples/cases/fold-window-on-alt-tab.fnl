@@ -1,3 +1,6 @@
+;; Based on the fullscreen-and-mouselock.fnl
+;; The only addition is the "fold-window" part
+
 (local rl (require :lib.raylib))
 (local lume (require :lib.lume))
 (local utils (require :lib.utils))
@@ -61,6 +64,12 @@
 (fn toggle-borderless-windowed []
   (rl.toggle-borderless-windowed))
 
+;; Hack (or they really do it in prod) the window to fold on alt+tab
+(fn fold-window []
+  (if (rl.is-window-state rl.flag-window-unfocused)
+    (rl.set-window-state rl.flag-window-minimized)))
+
+
 (while (not (rl.window-should-close))
   ; Update
   (set cursor-pos (get-new-cursor-pos))
@@ -73,6 +82,9 @@
   
   (when (rl.is-key-pressed rl.key-f9)
     (toggle-borderless-windowed))
+  
+  (when (rl.is-window-state rl.flag-window-unfocused)
+    (fold-window))
   
   ; Draw
   (rl.begin-drawing)
