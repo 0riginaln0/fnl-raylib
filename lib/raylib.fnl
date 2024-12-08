@@ -365,8 +365,7 @@
   Quaternion QuaternionFromEuler(float pitch, float yaw, float roll);         // Get the quaternion equivalent to Euler angles NOTE: Rotation order is ZYX
   Vector3 QuaternionToEuler(Quaternion q);                                    // Get the Euler angles equivalent to quaternion (roll, pitch, yaw) NOTE: Angles are returned in a Vector3 struct in radians
   Quaternion QuaternionTransform(Quaternion q, Matrix mat);                   // Transform a quaternion given a transformation matrix
-  int QuaternionEquals(Quaternion p, Quaternion q);                           // Check whether two given quaternions are almost equal
-")
+  int QuaternionEquals(Quaternion p, Quaternion q);                           // Check whether two given quaternions are almost equal")
 (ffi.cdef "
   void InitWindow(int width, int height, const char *title);  // Initialize window and OpenGL context
   void CloseWindow(void);                                     // Close window and unload OpenGL context
@@ -416,8 +415,7 @@
   const char *GetClipboardText(void);                         // Get clipboard text content
   Image GetClipboardImage(void);                              // Get clipboard image content
   void EnableEventWaiting(void);                              // Enable waiting for events on EndDrawing(), no automatic event polling
-  void DisableEventWaiting(void);                             // Disable waiting for events on EndDrawing(), automatic events polling
-")
+  void DisableEventWaiting(void);                             // Disable waiting for events on EndDrawing(), automatic events polling")
 (ffi.cdef "
   void ClearBackground(Color color);                          // Set background color (framebuffer clear color)
   void BeginDrawing(void);                                    // Setup canvas (framebuffer) to start drawing
@@ -528,8 +526,7 @@
   void SetAutomationEventBaseFrame(int frame);                                      // Set automation event internal base frame to start recording
   void StartAutomationEventRecording(void);                                         // Start recording automation events (AutomationEventList must be set)
   void StopAutomationEventRecording(void);                                          // Stop recording automation events
-  void PlayAutomationEvent(AutomationEvent event);                                  // Play a recorded automation event
-")
+  void PlayAutomationEvent(AutomationEvent event);                                  // Play a recorded automation event")
 (ffi.cdef "
   Font GetFontDefault(void);                                                            // Get the default Font
   Font LoadFont(const char *fileName);                                                  // Load font from file into GPU memory (VRAM)
@@ -580,16 +577,14 @@
   const char *TextToSnake(const char *text);                      // Get Snake case notation version of provided string
   const char *TextToCamel(const char *text);                      // Get Camel case notation version of provided string
   int TextToInteger(const char *text);                            // Get integer value from text (negative values not supported)
-  float TextToFloat(const char *text);                            // Get float value from text (negative values not supported)
-")
+  float TextToFloat(const char *text);                            // Get float value from text (negative values not supported)")
 (ffi.cdef "
   void ShowCursor(void);                                      // Shows cursor
   void HideCursor(void);                                      // Hides cursor
   bool IsCursorHidden(void);                                  // Check if cursor is not visible
   void EnableCursor(void);                                    // Enables cursor (unlock cursor)
   void DisableCursor(void);                                   // Disables cursor (lock cursor)
-  bool IsCursorOnScreen(void);                                // Check if cursor is on the screen
-")
+  bool IsCursorOnScreen(void);                                // Check if cursor is on the screen")
 (ffi.cdef "
   bool IsKeyPressed(int key);                             // Check if a key has been pressed once
   bool IsKeyPressedRepeat(int key);                       // Check if a key has been pressed again
@@ -638,8 +633,7 @@
   Vector2 GetGesturePinchVector(void);              // Get gesture pinch delta
   float GetGesturePinchAngle(void);                 // Get gesture pinch angle
   void UpdateCamera(Camera *camera, int mode);      // Update camera position for selected mode
-  void UpdateCameraPro(Camera *camera, Vector3 movement, Vector3 rotation, float zoom); // Update camera movement/rotation
-")
+  void UpdateCameraPro(Camera *camera, Vector3 movement, Vector3 rotation, float zoom); // Update camera movement/rotation")
 (ffi.cdef "
   void DrawLine3D(Vector3 startPos, Vector3 endPos, Color color);                                    // Draw a line in 3D world space
   void DrawPoint3D(Vector3 position, Color color);                                                   // Draw a point in 3D space, actually a small line
@@ -716,8 +710,7 @@
   RayCollision GetRayCollisionBox(Ray ray, BoundingBox box);                                    // Get collision info between ray and box
   RayCollision GetRayCollisionMesh(Ray ray, Mesh mesh, Matrix transform);                       // Get collision info between ray and mesh
   RayCollision GetRayCollisionTriangle(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3);            // Get collision info between ray and triangle
-  RayCollision GetRayCollisionQuad(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3, Vector3 p4);    // Get collision info between ray and quad
-")
+  RayCollision GetRayCollisionQuad(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3, Vector3 p4);    // Get collision info between ray and quad")
 (ffi.cdef "
   void SetShapesTexture(Texture2D texture, Rectangle source);       // Set texture and rectangle to be used on shapes drawing
   Texture2D GetShapesTexture(void);                                 // Get texture that is used for shapes drawing
@@ -784,8 +777,7 @@
   bool CheckCollisionPointLine(Vector2 point, Vector2 p1, Vector2 p2, int threshold);                // Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]
   bool CheckCollisionPointPoly(Vector2 point, const Vector2 *points, int pointCount);                // Check if point is within a polygon described by array of vertices
   bool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 startPos2, Vector2 endPos2, Vector2 *collisionPoint); // Check the collision between two lines defined by two points each, returns collision point by reference
-  Rectangle GetCollisionRec(Rectangle rec1, Rectangle rec2);                                         // Get collision rectangle for two rectangles collision
-")
+  Rectangle GetCollisionRec(Rectangle rec1, Rectangle rec2);                                         // Get collision rectangle for two rectangles collision")
 (ffi.cdef "
   void InitAudioDevice(void);                                     // Initialize audio device and context
   void CloseAudioDevice(void);                                    // Close the audio device and context
@@ -853,8 +845,7 @@
   void AttachAudioStreamProcessor(AudioStream stream, AudioCallback processor); // Attach audio stream processor to stream, receives the samples as 'float'
   void DetachAudioStreamProcessor(AudioStream stream, AudioCallback processor); // Detach audio stream processor from stream
   void AttachAudioMixedProcessor(AudioCallback processor); // Attach audio stream processor to the entire audio pipeline, receives the samples as 'float'
-  void DetachAudioMixedProcessor(AudioCallback processor); // Detach audio stream processor from the entire audio pipeline
-")
+  void DetachAudioMixedProcessor(AudioCallback processor); // Detach audio stream processor from the entire audio pipeline")
 (ffi.cdef "
   // Image loading functions
   // NOTE: These functions do not require GPU access
@@ -981,8 +972,7 @@
   Color GetColor(unsigned int hexValue);                                // Get Color structure from hexadecimal value
   Color GetPixelColor(void *srcPtr, int format);                        // Get Color from a source pixel pointer of certain format
   void SetPixelColor(void *dstPtr, Color color, int format);            // Set color formatted into destination pixel pointer
-  int GetPixelDataSize(int width, int height, int format);              // Get pixel data size in bytes for certain format
-")
+  int GetPixelDataSize(int width, int height, int format);              // Get pixel data size in bytes for certain format")
 (local structs 
   (do
     ; Structures Definition
