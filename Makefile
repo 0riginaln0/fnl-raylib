@@ -4,14 +4,14 @@ ifeq ($(OS),Windows_NT)
 	run-command = fennel .\main.fnl
 
 	compile-release-binary = gcc -o main main.c -I"C:\LuaJIT\src" -L"C:\LuaJIT\src" -l"luajit-5.1"
-	copy-to-release = copy main.exe release\ & copy main.luac release\ & xcopy lib release\lib /E /I
+	copy-to-release = copy main.exe release\ & copy main.luac release\ & xcopy lib release\lib /E /I & xcopy src release\src /E /I
 else
 	fennel-files := $(shell find . -name '*.fnl')
 
 	run-command = fennel ./main.fnl
 
 	compile-release-binary = gcc -o main main.c -lluajit-5.1
-	copy-to-release = cp main main.luac release/; cp -r lib release/
+	copy-to-release = cp main main.luac release/; cp -r lib release/ ; cp -r src release/
 endif
 
 run:
