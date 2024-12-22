@@ -1,4 +1,4 @@
-# Raylib 5.5 bindings for the Fennel programming language (and consequently for Lua) for the sake of interest.
+# Raylib 5.5 bindings for the Fennel programming language for the sake of interest.
 
 Provides full coverage of:
 - `raylib.h` [main cheatsheet](https://www.raylib.com/cheatsheet/cheatsheet.html)
